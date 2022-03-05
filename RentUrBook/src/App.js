@@ -15,9 +15,7 @@ import SignIn from "./screens/SignIn"
 const App = () => {
 
   return (
-    <SafeAreaView style={styles.body}>
-      <SignIn />
-    </SafeAreaView>
+    <SignIn />
   );
 };
 
