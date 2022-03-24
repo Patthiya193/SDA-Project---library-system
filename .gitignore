@@ -3,3 +3,5 @@
 RentUrBook/ios/Podfile.lock
 RentUrBook/package-lock.json
 RentUrBook/package.json
+node_modules
+node_modules
