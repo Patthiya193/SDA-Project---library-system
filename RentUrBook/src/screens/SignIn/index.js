@@ -48,7 +48,7 @@ const SignIn = ({navigation, route}) => {
                 </View>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faLock } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Password' style={styles.textInput}/>
+                    <TextInput placeholder='Password' style={styles.textInput} secureTextEntry={true}/>
                 </View>
                 <View>
 
