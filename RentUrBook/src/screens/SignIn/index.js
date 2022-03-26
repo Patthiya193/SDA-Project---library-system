@@ -44,11 +44,11 @@ const SignIn = ({navigation, route}) => {
                 <Text style={styles.title}> Login to RentUrBook </Text>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faUserCircle } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Username' style={styles.textInput}/>
+                    <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
                 </View>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faLock } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Password' style={styles.textInput} secureTextEntry={true}/>
+                    <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' secureTextEntry={true}/>
                 </View>
                 <View>
 
