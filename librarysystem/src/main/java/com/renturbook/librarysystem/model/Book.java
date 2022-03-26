@@ -5,6 +5,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.renturbook.librarysystem.AvailableState;
+import com.renturbook.librarysystem.BookState;
+import com.renturbook.librarysystem.ReservedState;
+import com.renturbook.librarysystem.UnavailableState;
+
 @Entity
 @Table
 public class Book {
@@ -20,6 +25,9 @@ public class Book {
     )
     private Long id;
     private String bookName;
+    private String category;
+    private Long borrowedBy;
+    private String curState;
 
     @Column(nullable = true, length = 64)
     private String coverImage;
@@ -27,12 +35,41 @@ public class Book {
     @ElementCollection
     private List<String> authors;
 
-    public Book() {}
+    @Transient
+    private BookState availableState;
+    @Transient
+    private BookState unvailableState;
+    @Transient
+    private BookState reservedState;
+    @Transient
+    private BookState currentState;
+    public Book() {
 
-    public Book(String bookName, List<String> authors) {
+    }
+
+    public Book(String bookName, String category, String currentState, Long borrowedBy, List<String> authors) {
         this.bookName = bookName;
         this.authors = authors;
+        this.category = category;
         this.coverImage = "";
+        this.availableState = new AvailableState(this);
+        this.unvailableState = new UnavailableState(this);
+        this.reservedState = new ReservedState(this);
+        this.borrowedBy = borrowedBy;
+        switch( currentState ) {
+            case "available":
+                this.currentState = this.availableState;
+                break;
+            case "unavailable":
+                this.currentState = this.unvailableState;
+                break;
+            case "reserved":
+                this.currentState = this.reservedState;
+                break;
+            default:
+                this.currentState = this.unvailableState;
+        }
+        this.curState = currentState;
     }
 
     public Long getId() {
@@ -59,15 +96,106 @@ public class Book {
         this.authors = authors;
     }
 
+    public String getCurState() {
+        return this.curState;
+    }
+
+    public void setState( String state ) {
+        switch( state ) {
+            case "available":
+                setCurrentState(this.availableState);
+                break;
+            case "unavailable":
+                setCurrentState(this.unvailableState);
+                break;
+            case "reserved":
+                setCurrentState(this.reservedState);
+                break;
+            default:
+                setCurrentState(this.unvailableState);
+        }
+    }
+
+    public String getCategory() { return category; }
+
+    public void pressBorrow(Long callerID ) {
+        this.currentState.pressBorrow(callerID);
+    }
+
+    public void setCategory( String newCategory) { this.category = newCategory; }
+
     @Override
     public String toString() {
         return "Book{" +
-                "book id='" + id + '\'' +
-                ", book name='" + bookName + '\'' +
+                "id=" + id +
+                ", bookName='" + bookName + '\'' +
+                ", category='" + category + '\'' +
+                ", borrowedBy=" + borrowedBy +
+                ", curState='" + curState + '\'' +
+                ", authors=" + authors +
+                ", availableState=" + availableState +
+                ", unvailableState=" + unvailableState +
+                ", reservedState=" + reservedState +
+                ", currentState=" + currentState +
                 '}';
     }
+//    public String toString() {
+//        return "Book{" +
+//                "book id='" + id + '\'' +
+//                ", book name='" + bookName + '\'' +
+//                ", state=" + currentState.toString() + "}";
+//    }
 
-    public void addAuthor( String author ) {
+    public Long getBorrowedBy() {
+        return borrowedBy;
+    }
+
+    public void setBorrowedBy(Long borrowedBy) {
+        this.borrowedBy = borrowedBy;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
+
+    public BookState getAvailableState() {
+        return availableState;
+    }
+
+    public void setAvailableState(BookState availableState) {
+        this.availableState = availableState;
+    }
+
+    public BookState getUnvailableState() {
+        return unvailableState;
+    }
+
+    public void setUnvailableState(BookState unvailableState) {
+        this.unvailableState = unvailableState;
+    }
+
+    public BookState getReservedState() {
+        return reservedState;
+    }
+
+    public void setReservedState(BookState reservedState) {
+        this.reservedState = reservedState;
+    }
+
+    public BookState getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(BookState currentState) {
+        this.currentState = currentState;
+        this.curState = this.currentState.toString();
+    }
+
+    public void addAuthor(String author ) {
         this.authors.add( author );
     }
 }
