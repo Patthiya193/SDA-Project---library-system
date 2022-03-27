@@ -64,17 +64,9 @@ public class BookController {
         for (Book b : bookList) {
             b.generateState();
         }
-        return bookList;    }
+        return bookList;
+    }
 
-//    @GetMapping("/genre/")
-//    public List<Book> getBookByGenre( @RequestParam String genre ) {
-//        List<Book> bookList = bookService.getByGenre(genre);
-//        for (Book b : bookList) {
-//            b.generateState();
-//        }
-//        return bookList;
-//    }
-//
     @GetMapping("/genre/")
     public List<Book> getBookByGenre( @RequestParam String genre ) {
         List<Book> bookList = bookService.getByGenre(genre);
@@ -91,19 +83,23 @@ public class BookController {
             bookService.removeGenreById( bookId, genre );
         }
     }
-//
+
+    @PatchMapping("/addgenre/")
+    public void addGenre(@RequestParam Long bookId, @RequestParam String genre ){
+        Book book = getBookById(bookId);
+        if ( book.getGenre().contains(genre) ) {
+            return;
+        }
+        bookService.removeGenreById( bookId, genre );
+    }
 
     @PatchMapping("/borrow")
     @ResponseBody
     public Book borrowBook( @RequestParam Long bookId, @RequestParam Long callerID) {
         Book tempBook = bookService.getById(bookId);
         tempBook.generateState();
-//        System.out.println("########"+tempBook.getCurState());
-//        System.out.println(tempBook);
         tempBook.pressBorrow(callerID);
         bookService.saveBook(tempBook);
-//        System.out.println("########"+tempBook.getCurState());
-//        System.out.println(tempBook);
         return tempBook;
     }
 
@@ -117,6 +113,5 @@ public class BookController {
         bookService.saveBook(new Book("isbn", "test book","NOVEL", "available", 0L, List.of("DRAMA", "SCI-FI"),List.of("author1", "author2")));
         bookService.saveBook(new Book("isbn2", "book2","MAGAZINE", "available", 0L, List.of("SCI-FI"),List.of("author3")));
     }
-
 
 }

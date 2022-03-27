@@ -58,4 +58,9 @@ public class BookServiceImpl{
         bookRepository.save(book);
     }
 
+    public void addGenreById( Long bookId, String genre) {
+        Book book = getById( bookId );
+        book.addGenre(genre);
+        bookRepository.save(book);
+    }
 }
