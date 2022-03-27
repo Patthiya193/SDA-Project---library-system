@@ -23,16 +23,19 @@ public class LibraryUser {
     )
     private Long id;
     private String username;
-    private String name;
-    private String email;
+    private String password;
+    private String firstName;
+    private String lastName;
+
     @ElementCollection
     private List<Long> favoriteBooks; // list of book ids
 
-    public LibraryUser(String username, String email , String name) {
+    public LibraryUser(String username, String password , String firstName, String lastName, List<Long> favoriteBooks) {
         this.username = username;
-        this.name = name;
-        this.favoriteBooks = Collections.<Long>emptyList();
-        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.favoriteBooks = favoriteBooks;
+        this.password = password;
     }
 
     public LibraryUser() {
@@ -47,7 +50,7 @@ public class LibraryUser {
     }
 
     public String getName() {
-        return name;
+        return this.firstName + " " + this.lastName;
     }
 
     public Long getId() {
@@ -58,38 +61,53 @@ public class LibraryUser {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPassword(String newPwd) {
+        this.password = newPwd;
     }
 
     public void setFavoriteBooks(List<Long> favoriteBooks) {
         this.favoriteBooks = favoriteBooks;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
-    public List<Book> getFavoriteBooks() {
-        List<Book> favBooks = Collections.<Book>emptyList();
+    public void setLastName(String name) { this.lastName = name; }
 
-        return favBooks;
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public List<Long> getFavoriteBooks() {
+
+        return this.favoriteBooks;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", name='" + name + '\'' +
+                ", name='" + getName() + '\'' +
+                ", fav=" + favoriteBooks +
                 '}';
     }
 
     public void addFavoriteBooks(Long favoriteBooksId) {
-
         this.favoriteBooks.add(favoriteBooksId);
+    }
+
+    public void removeFavoriteBooks( Long favoriteBooksId) {
+        System.out.println("&&&&&&&&\n\n" + this.favoriteBooks);
+        this.favoriteBooks.remove( favoriteBooksId );
+        System.out.println("&&&&&&&&\n\n" + this.favoriteBooks);
     }
 }

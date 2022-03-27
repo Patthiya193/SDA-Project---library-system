@@ -6,11 +6,12 @@ import com.renturbook.librarysystem.repository.BookRepository;
 import com.renturbook.librarysystem.model.Book;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl{
 
     BookRepository bookRepository;
 
@@ -30,4 +31,31 @@ public class BookServiceImpl implements BookService{
     public Book getById( Long id ) {
         return bookRepository.findBookById(id);
     }
+
+    public List<Book> getByName( String name ) { return bookRepository.findBookByName( name ); }
+
+    public List<Book> getByIsbn( String isbn ) { return bookRepository.findBookByIsbn( isbn); }
+
+    public List<Book> getByType( String type ) { return bookRepository.findBookByType( type ); }
+
+    public List<Book> getByGenre( String genre) {
+//        List<String> genreList = Arrays.asList(genres);
+//        List<Book> outList = bookRepository.findBookByGenre(genreList.get(0));
+//        for (String g : genreList.subList(1,genreList.size())) {
+//            List<Book> temp = bookRepository.findBookByGenre(g);
+//            for ( Book b : temp) {
+//                if (!outList.contains(b)) {
+//                    outList.add(b);
+//                }
+//            }
+//        }
+        return bookRepository.findBookByGenre(genre);
+    }
+
+    public void removeGenreById( Long bookId, String genre ) {
+        Book book = getById( bookId );
+        book.removeGenre(genre);
+        bookRepository.save(book);
+    }
+
 }

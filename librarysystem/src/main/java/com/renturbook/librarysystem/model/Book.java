@@ -2,7 +2,6 @@ package com.renturbook.librarysystem.model;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.renturbook.librarysystem.AvailableState;
@@ -24,8 +23,9 @@ public class Book {
             generator = "book_sequence"
     )
     private Long id;
+    private String isbn;
     private String bookName;
-    private String category;
+    private String bookType;
     private Long borrowedBy;
     private String curState;
 
@@ -35,10 +35,13 @@ public class Book {
     @ElementCollection
     private List<String> authors;
 
+    @ElementCollection
+    private List<String> genre;
+
     @Transient
     private BookState availableState;
     @Transient
-    private BookState unvailableState;
+    private BookState unavailableState;
     @Transient
     private BookState reservedState;
     @Transient
@@ -47,33 +50,48 @@ public class Book {
 
     }
 
-    public Book(String bookName, String category, String currentState, Long borrowedBy, List<String> authors) {
+    public Book(String isbn,String bookName, String bookType, String currentState, Long borrowedBy, List<String> genre, List<String> authors) {
+        this.isbn = isbn;
         this.bookName = bookName;
         this.authors = authors;
-        this.category = category;
+        this.bookType = bookType;
+        this.genre = genre;
         this.coverImage = "";
         this.availableState = new AvailableState(this);
-        this.unvailableState = new UnavailableState(this);
+        this.unavailableState = new UnavailableState(this);
         this.reservedState = new ReservedState(this);
         this.borrowedBy = borrowedBy;
         switch( currentState ) {
             case "available":
                 this.currentState = this.availableState;
                 break;
-            case "unavailable":
-                this.currentState = this.unvailableState;
-                break;
             case "reserved":
                 this.currentState = this.reservedState;
                 break;
             default:
-                this.currentState = this.unvailableState;
+                this.currentState = this.unavailableState;
         }
         this.curState = currentState;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public List<String> getGenre() {
+        return genre;
+    }
+
+    public void setGenre(List<String> genre) {
+        this.genre = genre;
     }
 
     public void setId(Long id) {
@@ -106,45 +124,40 @@ public class Book {
                 setCurrentState(this.availableState);
                 break;
             case "unavailable":
-                setCurrentState(this.unvailableState);
+                setCurrentState(this.unavailableState);
                 break;
             case "reserved":
                 setCurrentState(this.reservedState);
                 break;
             default:
-                setCurrentState(this.unvailableState);
+                setCurrentState(this.unavailableState);
         }
     }
 
-    public String getCategory() { return category; }
+    public String getBookType() { return bookType; }
 
     public void pressBorrow(Long callerID ) {
         this.currentState.pressBorrow(callerID);
     }
 
-    public void setCategory( String newCategory) { this.category = newCategory; }
+    public void setBookType( String newBookType) { this.bookType = newBookType; }
 
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", bookName='" + bookName + '\'' +
-                ", category='" + category + '\'' +
+                ", category='" + bookType + '\'' +
+                ", genre='" + genre + '\'' +
                 ", borrowedBy=" + borrowedBy +
                 ", curState='" + curState + '\'' +
                 ", authors=" + authors +
                 ", availableState=" + availableState +
-                ", unvailableState=" + unvailableState +
+                ", unvailableState=" + unavailableState +
                 ", reservedState=" + reservedState +
                 ", currentState=" + currentState +
                 '}';
     }
-//    public String toString() {
-//        return "Book{" +
-//                "book id='" + id + '\'' +
-//                ", book name='" + bookName + '\'' +
-//                ", state=" + currentState.toString() + "}";
-//    }
 
     public Long getBorrowedBy() {
         return borrowedBy;
@@ -170,12 +183,12 @@ public class Book {
         this.availableState = availableState;
     }
 
-    public BookState getUnvailableState() {
-        return unvailableState;
+    public BookState getUnavailableState() {
+        return unavailableState;
     }
 
-    public void setUnvailableState(BookState unvailableState) {
-        this.unvailableState = unvailableState;
+    public void setUnavailableState(BookState unavailableState) {
+        this.unavailableState = unavailableState;
     }
 
     public BookState getReservedState() {
@@ -195,7 +208,19 @@ public class Book {
         this.curState = this.currentState.toString();
     }
 
+    public void generateState() {
+        this.availableState = new AvailableState(this);
+        this.unavailableState = new UnavailableState(this);
+        this.reservedState = new ReservedState( this );
+        this.setState(curState);
+    }
     public void addAuthor(String author ) {
         this.authors.add( author );
     }
+
+    public void addGenre(String genre) {
+        this.genre.add( genre);
+    }
+
+    public void removeGenre( String genre) { this.genre.remove(genre);}
 }
