@@ -28,6 +28,7 @@ public class Book {
     private String bookType;
     private Long borrowedBy;
     private String curState;
+    private String description;
 
     @Column(nullable = true, length = 64)
     private String coverImage;
@@ -50,11 +51,12 @@ public class Book {
 
     }
 
-    public Book(String isbn,String bookName, String bookType, String currentState, Long borrowedBy, List<String> genre, List<String> authors) {
+    public Book(String isbn,String bookName, String bookType, String description, String currentState, Long borrowedBy, List<String> genre, List<String> authors) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.authors = authors;
         this.bookType = bookType;
+        this.description = description;
         this.genre = genre;
         this.coverImage = "";
         this.availableState = new AvailableState(this);
@@ -223,4 +225,12 @@ public class Book {
     }
 
     public void removeGenre( String genre) { this.genre.remove(genre);}
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

@@ -110,8 +110,22 @@ public class BookController {
 
     @PostMapping("/test")
     public void addTestBook() {
-        bookService.saveBook(new Book("isbn", "test book","NOVEL", "available", 0L, List.of("DRAMA", "SCI-FI"),List.of("author1", "author2")));
-        bookService.saveBook(new Book("isbn2", "book2","MAGAZINE", "available", 0L, List.of("SCI-FI"),List.of("author3")));
+        bookService.saveBook(new Book("isbn", "test book","NOVEL", "this book so good", "available", 0L, List.of("DRAMA", "SCI-FI"),List.of("author1", "author2")));
+        bookService.saveBook(new Book("isbn2", "私の最後の日","SONG BOOK",
+                "原稿なんていらない\n" +
+                        "だって到底　描ききれないや\n" +
+                        "台本だっていらない\n" +
+                        "不器用でしょう　わかってるわ\n" +
+                        "\n" +
+                        "吹き替えなんていらない\n" +
+                        "だって映画のようにならないよ\n" +
+                        "結末だっていらない\n" +
+                        "救いようのない　終わりはいらない\n" +
+                        "きっと泣き言だって言わない\n" +
+                        "誤魔化して隠す　悪い癖\n" +
+                        "「約束」なんて言えない\n" +
+                        "束ねたまましまった\n"
+                        , "available", 0L, List.of("SCI-FI"),List.of("author3")));
     }
 
 }
