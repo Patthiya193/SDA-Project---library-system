@@ -1,13 +1,12 @@
-import { useState } from "react";
-
-const userUrl = "localhost:8080/api/v1/user";
 
 export const getUser = async () => {
-    // const [data, setData] = useState([]);
+    const userUrl = "http://<yourip>:8080/api/v1/user"; //remove ip everytime you commit for security
+    
     try {
         const response = await fetch(userUrl);
         const json = await response.json();
-        return json.movies;
+        console.log(json);
+        return json;
     } 
     catch (error) {
         console.error(error);

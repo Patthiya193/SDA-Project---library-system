@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
         borderTopRightRadius: 44,
         paddingVertical: 20,
         paddingHorizontal: 30,
+        paddingTop: 30,
         alignItems: 'center',
     },
     title: {
@@ -50,11 +51,42 @@ export const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         borderColor: '#A8AFB9',
         alignItems: 'center',
-        paddingLeft: 5,
+        paddingLeft: 10,
         borderRadius: 16,
     },
+    signupContainer: {
+        flexDirection: 'row',
+    },
     textInput: {
-        color: '#A8AFB9',
+        fontWeight: 'bold',
         paddingLeft: 10,
+    },
+    forgotButtonStyle: {
+        color: '#040415',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
+    },
+    loginButtonStyle: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 16,
+        elevation: 3,
+        backgroundColor: '#6C70EB',
+    },
+    loginText: {
+        color: '#FFFFFF',
+        fontWeight: 'bold',
+    },
+    signupButtonStyle: {
+        
+    },
+    signupText: {
+        color: '#6C70EB',
     },
 })
