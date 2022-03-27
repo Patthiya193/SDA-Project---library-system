@@ -1,37 +1,19 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Dimensions, ScrollView, Text, TextInput } from "react-native";
+import { View, Dimensions, ScrollView, Text, TextInput, Button } from "react-native";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
+import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
-// import { getUser } from "../../network/loginService";
+import { getUser } from "../../network/loginService";
 
-const userUrl = "http://localhost:8080/api/v1/user";
-// const userUrl = "https://reactnative.dev/movies.json";
+const userUrl = "http://192.168.1.110:8080/api/v1/user";
 
 const SignIn = ({navigation, route}) => {
     const [data, setData] = useState([]);
-    
-    const getUser = async () => {
-        
-        try {
-            const response = await fetch(userUrl);
-            const json = await response.json();
-            console.log(json);
-            setData(json);
-        } 
-        catch (error) {
-            console.error(error);
-        }
-    
-    }
-
-    useEffect(() => {
-        getUser();
-    }, []);
 
     return(
         <View style={styles.background}>
@@ -51,18 +33,20 @@ const SignIn = ({navigation, route}) => {
                     <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' secureTextEntry={true}/>
                 </View>
                 <View>
-                    <Pressable onPress={() => {console.log("Pressed")}} style={styles.forgotButtonStyle} >
+                    <Pressable onPress={() => {console.log("Pressed1")}} style={styles.forgotButtonStyle} >
                         <Text>Forgot Your Password ?</Text>
                     </Pressable>
                 </View>
                 <View>
-                    <Pressable onPress={() => {}} style={styles.loginButtonStyle}>
+                    <Pressable onPress={() => {
+                        setData(getUser());
+                    } } style={styles.loginButtonStyle}>
                         <Text style={styles.loginText}>Login</Text>
                     </Pressable>
                 </View>
                 <View style={styles.signupContainer}>
                     <Text>Don't have an account ? </Text>
-                    <Pressable onPress={() => {}} style={styles.signupButtonStyle}>
+                    <Pressable onPress={() => {console.log("Pressed3")}} style={styles.signupButtonStyle}>
                         <Text style={styles.signupText}>Sign Up</Text>
                     </Pressable>
                 </View>
