@@ -10,7 +10,7 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 import { getUser } from "../../network/loginService";
 
-const userUrl = "http://192.168.1.110:8080/api/v1/user";
+const userUrl = "http://171.7.58.216:8080/api/v1/user";
 
 const SignIn = ({navigation, route}) => {
     const [data, setData] = useState([]);
