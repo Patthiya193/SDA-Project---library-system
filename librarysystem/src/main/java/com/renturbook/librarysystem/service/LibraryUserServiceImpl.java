@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.renturbook.librarysystem.repository.LibraryUserRepository;
 import com.renturbook.librarysystem.model.LibraryUser;
+import com.renturbook.librarysystem.PasswordUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class LibraryUserServiceImpl {
         if ( userByUsername.isPresent()) {
             throw new IllegalStateException("Existed username");
         }
+        newUser.setPassword(PasswordUtils.generateSecurePassword(newUser.getPassword(),PasswordUtils.getSalt(30)));
         userRepository.save(newUser);
         System.out.println(newUser);
     }
@@ -69,5 +71,16 @@ public class LibraryUserServiceImpl {
             bookList.add(bookRepository.findBookById(bid));
         }
         return bookList;
+    }
+
+    public Optional<LibraryUser> login( String username, String password) {
+        Optional<LibraryUser> user = userRepository.findLibraryUserByUsername(username);
+        LibraryUser libUser = user.get();
+        if (PasswordUtils.verifyUserPassword(password, libUser.getPassword(), PasswordUtils.getSalt(30))) {
+            return user;
+        }
+        else {
+            return Optional.empty();
+        }
     }
 }

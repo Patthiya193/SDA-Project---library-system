@@ -44,6 +44,11 @@ public class LibraryUserController {
     @GetMapping("/favbook/")
     public List<Book> getFavBookById( @RequestParam Long userId) { return userService.getFavBookById(userId); }
 
+    @GetMapping("/login/")
+    public Optional<LibraryUser> login( @RequestBody String username, @RequestBody String password) {
+        return userService.login(username, password);
+    }
+
     @PostMapping
     public void registerNewUser(@RequestBody LibraryUser newUser) {
         userService.addNewUser(newUser);
