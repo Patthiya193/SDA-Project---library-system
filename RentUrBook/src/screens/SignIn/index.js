@@ -35,7 +35,8 @@ const SignIn = ({navigation, route}) => {
                 <View>
                     <Pressable onPress={() => {
                         setData(getUser());
-                    } } style={styles.loginButtonStyle}>
+                        console.log(data);
+                    } } style={({pressed}) => [{backgroundColor: pressed ? '#6C70EB' : '#8185eb'}, styles.loginButtonStyle}>
                         <Text style={styles.loginText}>Login</Text>
                     </Pressable>
                 </View>
