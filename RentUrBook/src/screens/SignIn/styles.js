@@ -77,7 +77,6 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 32,
         borderRadius: 16,
         elevation: 3,
-        backgroundColor: '#6C70EB',
     },
     loginText: {
         color: '#FFFFFF',
