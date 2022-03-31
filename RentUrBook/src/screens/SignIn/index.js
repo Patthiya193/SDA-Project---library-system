@@ -33,11 +33,6 @@ const SignIn = ({navigation, route}) => {
                     <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' secureTextEntry={true}/>
                 </View>
                 <View>
-                    <Pressable onPress={() => {console.log("Pressed1")}} style={styles.forgotButtonStyle} >
-                        <Text>Forgot Your Password ?</Text>
-                    </Pressable>
-                </View>
-                <View>
                     <Pressable onPress={() => {
                         setData(getUser());
                     } } style={styles.loginButtonStyle}>
