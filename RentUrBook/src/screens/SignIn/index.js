@@ -36,14 +36,18 @@ const SignIn = ({navigation, route}) => {
                     <Pressable onPress={() => {
                         setData(getUser());
                         console.log(data);
-                    } } style={({pressed}) => [{backgroundColor: pressed ? '#8185eb' : '#6C70EB'}, styles.loginButtonStyle]}>
+                    } } style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#6C70EB'}, styles.loginButtonStyle]}>
                         <Text style={styles.loginText}>Login</Text>
                     </Pressable>
                 </View>
                 <View style={styles.signupContainer}>
                     <Text>Don't have an account ? </Text>
                     <Pressable onPress={() => {console.log("Pressed3")}} style={styles.signupButtonStyle}>
-                        <Text style={styles.signupText}>Sign Up</Text>
+                        {({ pressed }) => (
+                            <Text style={[{color: pressed ? '#434594':'#6C70EB'}, styles.signupText]}>
+                                Sign Up
+                            </Text>
+                        )}
                     </Pressable>
                 </View>
             </View>
