@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 import {
   SafeAreaView,
@@ -11,11 +13,19 @@ import {
 } from 'react-native';
 
 import SignIn from "./screens/SignIn"
+import Register from "./screens/Register/index.js";
+
+const AuthStack = createStackNavigator();
 
 const App = () => {
 
   return (
-    <SignIn />
+    <NavigationContainer>
+        <AuthStack.Navigator initialRouteName = "SignIn">
+            <AuthStack.Screen name = "SignIn" component = {SignIn} />
+            <AuthStack.Screen name = "Register" component = {Register}/>
+        </AuthStack.Navigator>
+    </NavigationContainer>
   );
 };
 

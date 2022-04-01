@@ -18,5 +18,6 @@ public interface LibraryUserRepository
 
     @Query("SELECT fav FROM LibraryUser u JOIN u.favoriteBooks fav WHERE u.id = :id")
     List<Long> findFavoriteBooksIdById(Long id );
+
 }
 
