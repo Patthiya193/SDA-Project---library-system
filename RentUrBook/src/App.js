@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
-        <AuthStack.Navigator initialRouteName = "SignIn">
+        <AuthStack.Navigator initialRouteName = "SignIn" screenOptions={{ headerShown: false }}>
             <AuthStack.Screen name = "SignIn" component = {SignIn} />
             <AuthStack.Screen name = "Register" component = {Register}/>
         </AuthStack.Navigator>
