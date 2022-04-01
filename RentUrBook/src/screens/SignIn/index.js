@@ -46,7 +46,7 @@ const SignIn = ({navigation, route}) => {
                     <Text>Don't have an account ? </Text>
                     <Pressable onPress={() => {
                         navigation.navigate('Register')
-                        console.log("Pressed3")}} style={styles.signupButtonStyle}>
+                        console.log("Pressed3")}}>
                         {({ pressed }) => (
                             <Text style={[{color: pressed ? '#434594':'#6C70EB'}, styles.signupText]}>
                                 Sign Up

@@ -54,9 +54,6 @@ export const styles = StyleSheet.create({
         paddingLeft: 10,
         borderRadius: 16,
     },
-    signupContainer: {
-        flexDirection: 'row',
-    },
     textInput: {
         fontWeight: 'bold',
         paddingLeft: 10,
@@ -77,12 +74,17 @@ export const styles = StyleSheet.create({
         height: Dimensions.get('window').width * 0.125,
         borderRadius: 16,
         elevation: 3,
-        marginTop: 10,
-        marginBottom: 10,
+        marginTop: 15,
+        marginBottom: 15,
     },
     loginText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
+    },
+    signupContainer: {
+        flexDirection: 'row',
+        marginTop: 15,
+        marginBottom: 15,
     },
     signupButtonStyle: {
         
