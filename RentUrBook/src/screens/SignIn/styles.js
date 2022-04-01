@@ -73,10 +73,12 @@ export const styles = StyleSheet.create({
     loginButtonStyle: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 32,
+        width: Dimensions.get('window').width * 0.75,
+        height: Dimensions.get('window').width * 0.125,
         borderRadius: 16,
         elevation: 3,
+        marginTop: 10,
+        marginBottom: 10,
     },
     loginText: {
         color: '#FFFFFF',
@@ -86,6 +88,6 @@ export const styles = StyleSheet.create({
         
     },
     signupText: {
-        color: '#6C70EB',
+        fontWeight: 'bold',
     },
 })
