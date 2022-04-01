@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 import { View, Dimensions, ScrollView, Text, TextInput, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
-
+import { NavigationContainer } from '@react-native/native'
 import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
@@ -14,8 +12,7 @@ import { getUser } from "../../network/loginService";
 
 const userUrl = "http://171.7.58.216:8080/api/v1/user";
 
-const SignIn = ({navigation, route}) => {
-    const [data, setData] = useState([]);
+const Register = () => {
 
     return(
         <View style={styles.background}>
@@ -25,7 +22,7 @@ const SignIn = ({navigation, route}) => {
                 </View>
             </View>
             <View style={styles.mainBody}>
-                <Text style={styles.title}> Login to RentUrBook </Text>
+                <Text style={styles.title}> Register to RentUrBook </Text>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faUserCircle } color='#A8AFB9' size={24} />
                     <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
@@ -60,4 +57,4 @@ const SignIn = ({navigation, route}) => {
     )
 }
 
-export default SignIn;
+export default Register;
