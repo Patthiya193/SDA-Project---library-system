@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Dimensions, ScrollView, Text, TextInput, Button } from "react-native";
+import { View, Dimensions, ScrollView, Text, TextInput, Button, Alert } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -10,11 +10,12 @@ import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
 import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
-import { getUser } from "../../network/loginService";
+import { loginUser } from "../../network/loginService";
 
 const SignIn = ({navigation, route}) => {
-    const [data, setData] = useState([]);
-
+    const [data, setData] = useState({"noUser":true});
+    const [username, setUserName] = useState("");
+    const [password, setPassWord] = useState("");
     return(
         <View style={styles.background}>
             <View style={styles.top}>
@@ -26,15 +27,26 @@ const SignIn = ({navigation, route}) => {
                 <Text style={styles.title}> Login to RentUrBook </Text>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faUserCircle } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
+                    <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9' onChangeText={newUserName => setUserName(newUserName)} value={username}/>
                 </View>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faLock } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' secureTextEntry={true}/>
+                    <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' onChangeText={newPassWord => setPassWord(newPassWord)} value={password}  secureTextEntry={true}/>
                 </View>
                 <View>
                     <Pressable onPress={() => {
-                        setData(getUser());
+                        setData(loginUser(username, password));
+                        console.log("data #### ", data)
+                        if ( data == {"noUser":true} ) {
+                            setPassWord("")
+                            Alert.alert("Login Failed", "Incorrect username or password.", [{text: "OK"}])
+
+                        } else {
+                            setUserName("")
+                            setPassWord("")
+                            navigation.navigate('Home')
+
+                        }
                         console.log(data);
                     } } style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#6C70EB'}, styles.loginButtonStyle]}>
                         <Text style={styles.loginText}>Login</Text>

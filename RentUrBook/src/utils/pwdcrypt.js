@@ -1,0 +1,1 @@
+export const SALT = 'uyiabXwClYiXPdQYU6cys9g0qioRAR'

@@ -1,1 +1,1 @@
-export const userLoginApi = "http://192.168.1.110:8080/api/v1/user";
+export const userLoginApi = "http://192.168.0.108:8080/api/v1/user/login/";
