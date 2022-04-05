@@ -12,8 +12,6 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 import { getUser } from "../../network/loginService";
 
-const userUrl = "http://171.7.58.216:8080/api/v1/user";
-
 const SignIn = ({navigation, route}) => {
     const [data, setData] = useState([]);
 
@@ -45,8 +43,8 @@ const SignIn = ({navigation, route}) => {
                 <View style={styles.signupContainer}>
                     <Text>Don't have an account ? </Text>
                     <Pressable onPress={() => {
-                        navigation.navigate('Register')
-                        console.log("Pressed3")}}>
+                            navigation.navigate('Register')
+                        }}>
                         {({ pressed }) => (
                             <Text style={[{color: pressed ? '#434594':'#6C70EB'}, styles.signupText]}>
                                 Sign Up
