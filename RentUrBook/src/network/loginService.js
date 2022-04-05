@@ -1,11 +1,11 @@
+import { userLoginApi } from "../utils/ipaddr"; 
 
-export const getUser = async () => {
-    const userUrl = "http://171.7.58.216:8080/api/v1/user"; //remove ip everytime you commit for security
+export const getUser = async () => {//remove ip everytime you commit for security
     
     try {
-        const response = await fetch(userUrl);
+        const response = await fetch(userLoginApi);
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
         return json;
     } 
     catch (error) {
