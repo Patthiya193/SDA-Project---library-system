@@ -12,6 +12,8 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 import { getUser } from "../../network/loginService";
 
+import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
+
 const SignIn = ({navigation, route}) => {
     const [data, setData] = useState([]);
 
@@ -28,7 +30,21 @@ const SignIn = ({navigation, route}) => {
                 
             </View>
             <View style={styles.footer}>
-
+                <TabBar
+                    activeTab={0}
+                    onPress={(tabIndex) => { console.warn(tabIndex) }}
+                    iconStyle={{ width: 50, height: 50 }}
+                    iconActiveTintColor="white"
+                    iconInactiveTintColor="#CCCCCC"
+                    tintColor="#6C70EB"
+                    titleColor="#6C70EB" 
+                    values={[
+                        { title: "Home", icon: "home", isIcon: true, iconType: iconTypes.Entypo },
+                        { title: "Favorites", icon: "heart", isIcon: true, iconType: iconTypes.FontAwesome },
+                        { title: "Notification", icon: "notifications", isIcon: true, iconType: iconTypes.MaterialIcons },
+                        { title: "Account", icon: "user-alt", isIcon: true, iconType: iconTypes.FontAwesome5 }
+                    ]}
+                />
             </View>
         </View>
     )

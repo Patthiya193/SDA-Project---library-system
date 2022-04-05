@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     },
     mainBody: {
         flex: 3,
-        backgroundColor: '#F9FAFB',
+        backgroundColor: '#f2f2f2',
         borderTopLeftRadius: 44,
         borderTopRightRadius: 44,
         paddingVertical: 20,
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     footer: {
-        
+        backgroundColor: 'white',
     },
     title: {
         fontSize: 32,
