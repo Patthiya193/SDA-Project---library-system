@@ -13,7 +13,8 @@ import {
 } from 'react-native';
 
 import SignIn from "./screens/SignIn"
-import Register from "./screens/Register/index.js";
+import Register from "./screens/Register";
+import Home from "./screens/Home";
 
 const AuthStack = createStackNavigator();
 
@@ -21,9 +22,10 @@ const App = () => {
 
   return (
     <NavigationContainer>
-        <AuthStack.Navigator initialRouteName = "SignIn" screenOptions={{ headerShown: false }}>
+        <AuthStack.Navigator initialRouteName = "Home" screenOptions={{ headerShown: false }}>
             <AuthStack.Screen name = "SignIn" component = {SignIn} />
             <AuthStack.Screen name = "Register" component = {Register}/>
+            <AuthStack.Screen name = "Home" component = {Home} />
         </AuthStack.Navigator>
     </NavigationContainer>
   );
