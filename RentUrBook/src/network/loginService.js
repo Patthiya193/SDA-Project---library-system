@@ -3,7 +3,7 @@ import { SALT } from "../utils/pwdcrypt";
 var bcrypt = require('bcryptjs')
 import axios from 'axios'
 
-export const loginUser = async (usr, pwd) => {//remove ip everytime you commit for security
+export const loginUser = async (usr, pwd) => {
     
     // console.log("SALT", bcrypt.genSalt(30))
     // pwd = bcrypt.hashSync(pwd, SALT)
