@@ -1,4 +1,5 @@
 
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { StyleSheet, Dimensions } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -7,13 +8,23 @@ export const styles = StyleSheet.create({
         backgroundColor: '#6C70EB',
     },
     top: {
-        flex: 1.75,
+        flex: 1.35,
         alignItems: 'center',
         paddingTop: "10%",
     },
     mainBody: {
         flex: 3,
         backgroundColor: '#f2f2f2',
+        borderTopLeftRadius: 44,
+        borderTopRightRadius: 44,
+        paddingVertical: 20,
+        paddingHorizontal: 30,
+        paddingTop: 30,
+        alignItems: 'center',
+    },
+    mainBody2: {
+        flex: 3,
+        backgroundColor: '#000000',
         borderTopLeftRadius: 44,
         borderTopRightRadius: 44,
         paddingVertical: 20,
@@ -47,5 +58,19 @@ export const styles = StyleSheet.create({
     textInput: {
         fontWeight: 'bold',
         paddingLeft: 5,
+    },
+    tabBar: {
+        backgroundColor: 'transparent',
+        marginBottom: "5%",
+    },
+    tabBarIndicator: {
+        backgroundColor: '#ffffff',
+    },
+    tabBarIndicatorContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    tabBarLabel: {
+        fontWeight: 'bold',
     },
 })

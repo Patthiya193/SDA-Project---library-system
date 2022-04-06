@@ -14,30 +14,65 @@ import { getUser } from "../../network/loginService";
 
 import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 
+import { TabView, SceneMap, TabBar as BarTabView} from 'react-native-tab-view';
+
+const FirstRoute = () => (
+    <View style={styles.mainBody} />
+);    
+  
+const SecondRoute = () => (
+    <View style={styles.mainBody2} />
+);
+
+const renderScene = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute,
+});
+
+const renderTabBar = props => {
+    return <BarTabView
+        {...props}
+        indicatorContainerStyle={styles.tabBarIndicatorContainer}
+        indicatorStyle={styles.tabBarIndicator}
+        labelStyle={styles.tabBarLabel}
+        style={styles.tabBar}
+    />
+}
+  
+
 const Home = ({navigation, route}) => {
     if (route.params) {
         const [userData, setUser] = useState(route.params["userData"]);
-        console.log("Home data ", userData)
+        console.log("Home data ", userData);
 
     }
     else {
         const [userData, setUser] = useState({});
-        console.log("Home data ", userData)
+        console.log("Home data ", userData);
 
     }
-    const [tabBarTab, setTab] = useState(0)
+    const [tabBarTab, setTab] = useState(0);
+    const [index, setIndex] = useState(0);
+    const [routes] = useState([
+        { key: 'first', title: 'First' },
+        { key: 'second', title: 'Second' },
+    ]);
+
     return(
         <View style={styles.background}>
             <View style={styles.top}>
-                <Text style={styles.title}>Rent Ur Book</Text>
+                <Text style={styles.title}>Home</Text>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
                     <TextInput placeholder='Search for books' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
                 </View>
             </View>
-            <View style={styles.mainBody}>
-                
-            </View>
+            <TabView style={{flex: 3.5}}
+                navigationState={{ index, routes }}
+                renderScene={renderScene}
+                onIndexChange={setIndex}
+                renderTabBar={renderTabBar}
+            />
             <View style={styles.footer}>
                 <TabBar
                     activeTab={tabBarTab}
