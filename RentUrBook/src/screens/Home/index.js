@@ -15,8 +15,17 @@ import { getUser } from "../../network/loginService";
 import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 
 const Home = ({navigation, route}) => {
-    const [userData, setUser] = useState(route.params["userData"]);
-    console.log("Home data ", userData)
+    if (route.params) {
+        const [userData, setUser] = useState(route.params["userData"]);
+        console.log("Home data ", userData)
+
+    }
+    else {
+        const [userData, setUser] = useState({});
+        console.log("Home data ", userData)
+
+    }
+    const [tabBarTab, setTab] = useState(0)
     return(
         <View style={styles.background}>
             <View style={styles.top}>
@@ -31,8 +40,15 @@ const Home = ({navigation, route}) => {
             </View>
             <View style={styles.footer}>
                 <TabBar
-                    activeTab={0}
-                    onPress={(tabIndex) => { console.warn(tabIndex) }}
+                    activeTab={tabBarTab}
+                    onPress={(tabIndex) => { 
+                        setTab(tabIndex) 
+                        switch (tabIndex) {
+                            case 3:
+                                navigation.navigate("SignIn")
+                                break
+                        }
+                    }}
                     iconStyle={{ width: 50, height: 50 }}
                     iconActiveTintColor="white"
                     iconInactiveTintColor="#CCCCCC"
