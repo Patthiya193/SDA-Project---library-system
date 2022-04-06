@@ -13,7 +13,7 @@ export const loginUser = async (usr, pwd) => {//remove ip everytime you commit f
         return response
     })
     .catch(error => {
-        console.log("GET ERROR", error)
+        // console.log("GET ERROR", error)
         return false
     })
     // console.log('GET Response is', response)

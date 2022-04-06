@@ -20,22 +20,29 @@ const SignIn = ({navigation, route}) => {
     const [password, setPassWord] = useState("");
 
     async function onPressLogin() {
-        setData(false)
+        // setData(false)
         var temp = await loginUser( username, password)
-        setData(temp)
-        // console.log(getUser())
-        console.log("data #### ", data)
-    
-        if ( data == false ) {
+        console.log("temp", temp)
+
+        if (temp == false ) {
             setPassWord("")
             Alert.alert("Login Failed", "Incorrect username or password.", [{text: "OK"}])
-    
-        } else {
+        }
+        else {
+            setData(temp)
             setUserName("")
             setPassWord("")
-            navigation.navigate('Home', {"userData":data})
-    
+            navigation.navigate('Home', {"userData":temp})
         }
+        // React.useEffect(() => {
+        //     setData(temp)
+        // },[data])
+        // .then(console.log('data###', data))
+        
+        // console.log(getUser())
+        // console.log("data #### ", data)
+    
+
     }
 
     return(
