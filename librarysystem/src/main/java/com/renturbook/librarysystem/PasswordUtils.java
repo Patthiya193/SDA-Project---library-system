@@ -15,15 +15,18 @@ public class PasswordUtils {
     private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     private static final int ITERATIONS = 10000;
     private static final int KEY_LENGTH = 256;
+    private static final String SALT = "uyiabXwClYiXPdQYU6cys9g0qioRAR";
 
-    public static String getSalt(int length) {
-        StringBuilder returnValue = new StringBuilder(length);
-
-        for (int i = 0; i < length; i++) {
-            returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
-        }
-
-        return new String(returnValue);
+//    public static String getSalt(int length) {
+//        StringBuilder returnValue = new StringBuilder(length);
+//
+//        for (int i = 0; i < length; i++) {
+//            returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
+//        }
+//
+//        return new String(returnValue);
+    public static String getSalt() {
+        return SALT;
     }
 
     public static byte[] hash(char[] password, byte[] salt) {

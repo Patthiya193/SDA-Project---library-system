@@ -7,12 +7,13 @@ import org.springframework.stereotype.Component;
 import com.renturbook.librarysystem.repository.LibraryUserRepository;
 import com.renturbook.librarysystem.model.LibraryUser;
 import com.renturbook.librarysystem.PasswordUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service("libraryUserService")
 public class LibraryUserServiceImpl {
 
     LibraryUserRepository userRepository;
@@ -35,7 +36,7 @@ public class LibraryUserServiceImpl {
         if ( userByUsername.isPresent()) {
             throw new IllegalStateException("Existed username");
         }
-        newUser.setPassword(PasswordUtils.generateSecurePassword(newUser.getPassword(),PasswordUtils.getSalt(30)));
+        newUser.setPassword(PasswordUtils.generateSecurePassword(newUser.getPassword(),PasswordUtils.getSalt()));
         userRepository.save(newUser);
         System.out.println(newUser);
     }
@@ -76,7 +77,7 @@ public class LibraryUserServiceImpl {
     public Optional<LibraryUser> login( String username, String password) {
         Optional<LibraryUser> user = userRepository.findLibraryUserByUsername(username);
         LibraryUser libUser = user.get();
-        if (PasswordUtils.verifyUserPassword(password, libUser.getPassword(), PasswordUtils.getSalt(30))) {
+        if (PasswordUtils.verifyUserPassword(password, libUser.getPassword(), PasswordUtils.getSalt())) {
             return user;
         }
         else {
