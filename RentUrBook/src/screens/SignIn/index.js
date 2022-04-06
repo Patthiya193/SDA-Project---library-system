@@ -10,10 +10,12 @@ import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
 import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
-import { loginUser } from "../../network/loginService";
+import { loginUser, getUser } from "../../network/loginService";
+
+
 
 const SignIn = ({navigation, route}) => {
-    const [data, setData] = useState({"noUser":true});
+    const [data, setData] = useState(false);
     const [username, setUserName] = useState("");
     const [password, setPassWord] = useState("");
     return(
@@ -34,10 +36,12 @@ const SignIn = ({navigation, route}) => {
                     <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' onChangeText={newPassWord => setPassWord(newPassWord)} value={password}  secureTextEntry={true}/>
                 </View>
                 <View>
-                    <Pressable onPress={() => {
-                        setData(loginUser(username, password));
+                    <Pressable onPress={async () => {
+                        setData(await loginUser(username, password))
+                        // console.log(getUser())
                         console.log("data #### ", data)
-                        if ( data == {"noUser":true} ) {
+
+                        if ( data == false ) {
                             setPassWord("")
                             Alert.alert("Login Failed", "Incorrect username or password.", [{text: "OK"}])
 
@@ -47,7 +51,7 @@ const SignIn = ({navigation, route}) => {
                             navigation.navigate('Home')
 
                         }
-                        console.log(data);
+                        // console.log(data);
                     } } style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#6C70EB'}, styles.loginButtonStyle]}>
                         <Text style={styles.loginText}>Login</Text>
                     </Pressable>
