@@ -18,6 +18,26 @@ const SignIn = ({navigation, route}) => {
     const [data, setData] = useState(false);
     const [username, setUserName] = useState("");
     const [password, setPassWord] = useState("");
+
+    async function onPressLogin() {
+        setData(false)
+        var temp = await loginUser( username, password)
+        setData(temp)
+        // console.log(getUser())
+        console.log("data #### ", data)
+    
+        if ( data == false ) {
+            setPassWord("")
+            Alert.alert("Login Failed", "Incorrect username or password.", [{text: "OK"}])
+    
+        } else {
+            setUserName("")
+            setPassWord("")
+            navigation.navigate('Home', {"userData":data})
+    
+        }
+    }
+
     return(
         <View style={styles.background}>
             <View style={styles.top}>
@@ -36,23 +56,9 @@ const SignIn = ({navigation, route}) => {
                     <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' onChangeText={newPassWord => setPassWord(newPassWord)} value={password}  secureTextEntry={true}/>
                 </View>
                 <View>
-                    <Pressable onPress={async () => {
-                        setData(await loginUser(username, password))
-                        // console.log(getUser())
-                        console.log("data #### ", data)
-
-                        if ( data == false ) {
-                            setPassWord("")
-                            Alert.alert("Login Failed", "Incorrect username or password.", [{text: "OK"}])
-
-                        } else {
-                            setUserName("")
-                            setPassWord("")
-                            navigation.navigate('Home')
-
-                        }
+                    <Pressable onPress={ onPressLogin
                         // console.log(data);
-                    } } style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#6C70EB'}, styles.loginButtonStyle]}>
+                     } style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#6C70EB'}, styles.loginButtonStyle]}>
                         <Text style={styles.loginText}>Login</Text>
                     </Pressable>
                 </View>

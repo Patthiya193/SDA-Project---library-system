@@ -14,9 +14,9 @@ import { getUser } from "../../network/loginService";
 
 import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 
-const SignIn = ({navigation, route}) => {
-    const [data, setData] = useState([]);
-
+const Home = ({navigation, route}) => {
+    const [userData, setUser] = useState(route.params["userData"]);
+    console.log("Home data ", userData)
     return(
         <View style={styles.background}>
             <View style={styles.top}>
@@ -50,4 +50,4 @@ const SignIn = ({navigation, route}) => {
     )
 }
 
-export default SignIn;
+export default Home;

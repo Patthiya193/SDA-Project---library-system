@@ -8,22 +8,25 @@ export const loginUser = async (usr, pwd) => {//remove ip everytime you commit f
     // console.log("SALT", bcrypt.genSalt(30))
     // pwd = bcrypt.hashSync(pwd, SALT)
     // console.log("newPASS" + pwd)
-    const response = await axios.get(userLoginApi, { params: {username: usr, password:pwd}})
+    const returnResp = await axios.get(userLoginApi, { params: {username: usr, password:pwd}})
+    .then(response => {
+        return response
+    })
     .catch(error => {
-        // console.log("GET ERROR", error)
+        console.log("GET ERROR", error)
         return false
     })
     // console.log('GET Response is', response)
     // const json = await response.json()
 
-    if ( response == false) {
-        console.log( "GET json failed", response)
+    if ( returnResp == false) {
+        console.log( "GET json failed", returnResp)
 
-        return false
+        return returnResp
     }
     else {
-        console.log( "GET json ", response.data)
-        return response.data
+        console.log( "GET json ", returnResp.data)
+        return returnResp.data
     }
 
 
