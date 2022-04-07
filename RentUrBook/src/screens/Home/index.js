@@ -77,6 +77,11 @@ const Home = ({navigation, route}) => {
         { key: 'tenth', title: 'Travel' },
     ]);
 
+    const renderBook = ({item, onPress}) => {
+        return <Item item={item} onPress={console.log("Pressed")}/>
+    }
+    
+    // Only render the scene for 2 routes at each sides (performance purpose)
     const renderScene = ({ route }) => {
         if (Math.abs(index - routes.indexOf(route)) > 2) {
             // console.log(index)
