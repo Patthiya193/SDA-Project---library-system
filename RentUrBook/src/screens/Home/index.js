@@ -66,15 +66,15 @@ const Home = ({navigation, route}) => {
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         { key: 'first', title: 'Art' },
-        { key: 'second', title: 'Cooking' },
-        { key: 'third', title: 'Health' },
-        { key: 'fourth', title: 'Novel' },
-        { key: 'fifth', title: 'Magazine' },
-        { key: 'sixth', title: 'Travel' },
-        { key: 'seventh', title: 'History' },
-        { key: 'eighth', title: 'Technology' },
-        { key: 'ninth', title: 'Education' },
-        { key: 'tenth', title: 'Cartoon' },
+        { key: 'second', title: 'Cartoon' },
+        { key: 'third', title: 'Cooking' },
+        { key: 'fourth', title: 'Education' },
+        { key: 'fifth', title: 'Health' },
+        { key: 'sixth', title: 'History' },
+        { key: 'seventh', title: 'Magazine'},
+        { key: 'eighth', title: 'Novel' },
+        { key: 'ninth', title: 'Technology' },
+        { key: 'tenth', title: 'Travel' },
     ]);
 
     const renderScene = ({ route }) => {
