@@ -87,7 +87,14 @@ const Home = ({navigation, route}) => {
             // console.log(index)
             return <View/>;
         }
-        return <FlatList style={styles.mainBody} />;
+        
+        const displayData = DATA;
+
+        return <FlatList data={displayData} 
+                renderItem={renderBook}
+                ItemSeparatorComponent={ItemDivider}
+                style={styles.mainBody} 
+                />;
     };
 
     return(
