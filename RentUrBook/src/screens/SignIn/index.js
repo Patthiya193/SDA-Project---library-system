@@ -47,7 +47,7 @@ const SignIn = ({navigation, route}) => {
             setData(temp)
             setUserName("")
             setPassWord("")
-            navigation.navigate('Home', {"userData":temp})
+            navigation.navigate('Main', {"userData":temp})
         }
         
 

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, FlatList } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-
+import { BottomNavigation } from "react-native-paper";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,6 +15,8 @@ import { Item } from "./item";
 import { getUser } from "../../network/loginService";
 
 import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
+import Favorite from "../Favorite"
+
 
 import { TabView } from 'react-native-tab-view';
 
@@ -50,19 +52,40 @@ const DATA = [{
 },
 ]
 
-const Home = ({navigation, route}) => {
-    if (route.params) {
-        const [userData, setUser] = useState(route.params["userData"]);
-        console.log("Home data ", userData);
+const Home = ({navigation, route, userData}) => {
+    console.log('Home: current user',userData)
+    // if (route.params) {
+    //     const [userData, setUser] = useState(route.params["userData"]);
+    //     console.log("Home data ", userData);
 
-    }
-    else {
-        const [userData, setUser] = useState({});
-        console.log("Home data ", userData);
+    // }
+    // else {
+    //     const [userData, setUser] = useState({});
+    //     console.log("Home data ", userData);
 
-    }
+    // }
 
-    const [tabBarTab, setTab] = useState(0);
+    const [tabBarIndex, setTabIndex] = useState(0);
+    const [tabBarRoute, setTabRoute] = useState (
+        [
+            {
+              key: 'home',
+              title: 'Home',
+            },
+            {
+              key: 'favorite',
+              title: 'Favorite',
+            },
+            {
+              key: 'notification',
+              title: 'Notification',
+            },
+            {
+              key: 'profile',
+              title: 'Profile',
+            },
+          ]
+    );
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         { key: 'first', title: 'Art' },
@@ -97,6 +120,16 @@ const Home = ({navigation, route}) => {
                 />;
     };
 
+    const _handleIndexChange = (index) => {
+        setTabIndex(index) 
+
+    }
+
+    const _renderTabScene = BottomNavigation.SceneMap({
+        home: Home,
+        favorite: Favorite,
+    })
+
     return(
         <View style={styles.background}>
             <View style={styles.top}>
@@ -112,30 +145,7 @@ const Home = ({navigation, route}) => {
                 onIndexChange={setIndex}
                 renderTabBar={renderTabBar}
             />
-            <View style={styles.footer}>
-                <TabBar
-                    activeTab={tabBarTab}
-                    onPress={(tabIndex) => { 
-                        setTab(tabIndex) 
-                        switch (tabIndex) {
-                            case 3:
-                                navigation.navigate("SignIn")
-                                break
-                        }
-                    }}
-                    iconStyle={{ width: 50, height: 50 }}
-                    iconActiveTintColor="white"
-                    iconInactiveTintColor="#CCCCCC"
-                    tintColor="#6C70EB"
-                    titleColor="#6C70EB" 
-                    values={[
-                        { title: "Home", icon: "home", isIcon: true, iconType: iconTypes.Entypo },
-                        { title: "Favorites", icon: "heart", isIcon: true, iconType: iconTypes.FontAwesome },
-                        { title: "Notification", icon: "notifications", isIcon: true, iconType: iconTypes.MaterialIcons },
-                        { title: "Account", icon: "user-alt", isIcon: true, iconType: iconTypes.FontAwesome5 }
-                    ]}
-                />
-            </View>
+        
         </View>
     )
 }

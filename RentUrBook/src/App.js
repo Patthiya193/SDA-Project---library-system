@@ -15,6 +15,8 @@ import {
 import SignIn from "./screens/SignIn"
 import Register from "./screens/Register";
 import Home from "./screens/Home";
+import Favorite from "./screens/Favorite"
+import Main from "./screens/Main"
 
 const AuthStack = createStackNavigator();
 
@@ -25,9 +27,11 @@ const App = () => {
         <AuthStack.Navigator initialRouteName = "SignIn" screenOptions={{ headerShown: false }}>
             <AuthStack.Screen name = "SignIn" component = {SignIn} />
             <AuthStack.Screen name = "Register" component = {Register}/>
-            <AuthStack.Screen name = "Home" component = {Home} />
+            <AuthStack.Screen name = "Main" component = {Main} />
         </AuthStack.Navigator>
     </NavigationContainer>
+
+    
   );
 };
 
