@@ -55,8 +55,10 @@ export const styles = StyleSheet.create({
         borderRadius: 16,
     },
     textInput: {
+        width: Dimensions.get('window').width * 0.6,
         fontWeight: 'bold',
         paddingLeft: 10,
+        margin: 5,
     },
     forgotButtonStyle: {
         color: '#040415',

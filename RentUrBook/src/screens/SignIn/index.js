@@ -21,6 +21,21 @@ const SignIn = ({navigation, route}) => {
 
     async function onPressLogin() {
         // setData(false)
+        if ( username != "admin") {
+            if ( username.length == 0 ) {
+                Alert.alert("Login Failed", "Please enter your username.", [{text: "OK"}])
+                return
+            } else if ( password.length == 0 ) {
+                Alert.alert("Login Failed", "Please enter your password.", [{text: "OK"}])
+                return
+            } else if ( username.length < 8 ) {
+                Alert.alert("Login Failed", "Username should be at least 8 characters long.", [{text: "OK"}])
+                return
+            } else if ( password.length < 8) {
+                Alert.alert("Login Failed", "Password should be at least 8 characters long.", [{text: "OK"}])
+                return
+            } 
+        }
         var temp = await loginUser( username, password)
         console.log("temp", temp)
 
@@ -34,14 +49,7 @@ const SignIn = ({navigation, route}) => {
             setPassWord("")
             navigation.navigate('Home', {"userData":temp})
         }
-        // React.useEffect(() => {
-        //     setData(temp)
-        // },[data])
-        // .then(console.log('data###', data))
         
-        // console.log(getUser())
-        // console.log("data #### ", data)
-    
 
     }
 
@@ -55,12 +63,24 @@ const SignIn = ({navigation, route}) => {
             <View style={styles.mainBody}>
                 <Text style={styles.title}> Login to RentUrBook </Text>
                 <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faUserCircle } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9' onChangeText={newUserName => setUserName(newUserName)} value={username}/>
+                    <FontAwesomeIcon icon={ faUserCircle } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9' 
+                    onChangeText={newUserName => {
+                        let value = newUserName
+					    value = value.replace(/[^A-Za-z0-9]/gi, "")
+                        setUserName(value)
+                    }} 
+                    value={username} />
                 </View>
                 <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faLock } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' onChangeText={newPassWord => setPassWord(newPassWord)} value={password}  secureTextEntry={true}/>
+                    <FontAwesomeIcon icon={ faLock } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' 
+                    onChangeText={newPassWord => {
+                        let value = newPassWord
+					    value = value.replace(/[^A-Za-z]/gi, "")
+                        setPassWord(value)
+                    }} 
+                    value={password}  secureTextEntry={true}/>
                 </View>
                 <View>
                     <Pressable onPress={ onPressLogin
