@@ -20,17 +20,6 @@ export const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingHorizontal: 30,
         paddingTop: 30,
-        alignItems: 'center',
-    },
-    mainBody2: {
-        flex: 3,
-        backgroundColor: '#000000',
-        borderTopLeftRadius: 44,
-        borderTopRightRadius: 44,
-        paddingVertical: 20,
-        paddingHorizontal: 30,
-        paddingTop: 30,
-        alignItems: 'center',
     },
     footer: {
         backgroundColor: 'white',
@@ -61,16 +50,22 @@ export const styles = StyleSheet.create({
     },
     tabBar: {
         backgroundColor: 'transparent',
-        marginBottom: "5%",
+        marginBottom: '5%',
+        // paddingLeft: "10%",
+    },
+    tabBarStyle: {
+        width: 'auto',
     },
     tabBarIndicator: {
         backgroundColor: '#ffffff',
+        height: 1,
     },
     tabBarIndicatorContainer: {
         justifyContent: 'center',
         alignItems: 'center',
     },
     tabBarLabel: {
+        fontSize: 14,
         fontWeight: 'bold',
     },
 })
