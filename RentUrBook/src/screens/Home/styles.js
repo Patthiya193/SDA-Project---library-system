@@ -68,4 +68,17 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
     },
+    bookName: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        margin: 10,
+    },
+    bookAuthor: {
+        fontSize: 14,
+        margin: 10,
+    },
+    bookContainer: {
+        paddingLeft: 0,
+        padding: '10%',
+    },  
 })
