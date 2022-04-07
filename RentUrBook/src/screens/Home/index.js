@@ -32,8 +32,16 @@ const Home = ({navigation, route}) => {
     const [tabBarTab, setTab] = useState(0);
     const [index, setIndex] = useState(0);
     const [routes] = useState([
-        { key: 'first', title: 'First' },
-        { key: 'second', title: 'Second' },
+        { key: 'first', title: 'Art' },
+        { key: 'second', title: 'Cooking' },
+        { key: 'third', title: 'Health' },
+        { key: 'fourth', title: 'Novel' },
+        { key: 'fifth', title: 'Magazine' },
+        { key: 'sixth', title: 'Travel' },
+        { key: 'seventh', title: 'History' },
+        { key: 'eighth', title: 'Technology' },
+        { key: 'ninth', title: 'Education' },
+        { key: 'tenth', title: 'Cartoon' },
     ]);
 
     return(
