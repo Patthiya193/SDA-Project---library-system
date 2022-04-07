@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Dimensions, ScrollView, Text, TextInput, Button } from "react-native";
-
+import { View, Dimensions, ScrollView, Text, TextInput, StyleSheet, Button, Alert, Pressable } from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
-import { NavigationContainer } from '@react-native/native'
+import { faUserCircle, faLock, faPencil,faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
-import { getUser } from "../../network/loginService";
+
 
 const Register = () => {
 
@@ -20,38 +18,39 @@ const Register = () => {
                 </View>
             </View>
             <View style={styles.mainBody}>
-                <Text style={styles.title}> Register to RentUrBook </Text>
+                <Text style={styles.title}> Welcome ! </Text>
+                <View style={styles.inputContainer}>
+                    <FontAwesomeIcon icon={ faPencil } color='#A8AFB9' size={24} />
+                    <TextInput placeholder='Name' style={styles.textInput}/>
+                </View>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faUserCircle } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
+                    <TextInput placeholder='Username' style={styles.textInput}/>
                 </View>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faLock } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' secureTextEntry={true}/>
+                    <TextInput placeholder='Password' style={styles.textInput}/>
                 </View>
-                <View>
-                    <Pressable onPress={() => {console.log("Pressed1")}} style={styles.forgotButtonStyle} >
-                        <Text>Forgot Your Password ?</Text>
-                    </Pressable>
+                <View style={styles.inputContainer}>
+                    <FontAwesomeIcon icon={ faEnvelope } color='#A8AFB9' size={24} />
+                    <TextInput placeholder='Email' style={styles.textInput}/>
                 </View>
-                <View>
-                    <Pressable onPress={() => {
-                        setData(getUser());
-                    } } style={styles.loginButtonStyle}>
-                        <Text style={styles.loginText}>Login</Text>
-                    </Pressable>
-                </View>
-                <View style={styles.signupContainer}>
-                    <Text>Don't have an account ? </Text>
-                    <Pressable onPress={() => {
-                        navigation.navigate('Register')
-                        console.log("Pressed3")}} style={styles.signupButtonStyle}>
-                        <Text style={styles.signupText}>Sign Up</Text>
-                    </Pressable>
-                </View>
+                
+                <Pressable style = {styles.RegisterButtonStyle} onPress = {Alert.alert("Confirm to register")}>
+                    <Text style={styles.ReText}> Register </Text>
+                
+                </Pressable>
+                <Text> Already have an account ? </Text>
+                    <Pressable>
+                        {({ pressed }) => (
+                            <Text style={[{color: pressed ? '#434594':'#6C70EB'}]}>
+                                Log In
+                            </Text>
+                        )}
+                    </Pressable>  
             </View>
         </View>
-        
+    
     )
 }
 
