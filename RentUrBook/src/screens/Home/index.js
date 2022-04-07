@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Dimensions, ScrollView, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, FlatList } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -8,13 +8,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
-import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
+import { renderTabBar } from "./renderTabBar";
 
 import { getUser } from "../../network/loginService";
 
 import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 
-import { TabView, SceneMap, TabBar as BarTabView} from 'react-native-tab-view';
+import { TabView } from 'react-native-tab-view';
 
 
 const Home = ({navigation, route}) => {
@@ -28,6 +28,7 @@ const Home = ({navigation, route}) => {
         console.log("Home data ", userData);
 
     }
+
     const [tabBarTab, setTab] = useState(0);
     const [index, setIndex] = useState(0);
     const [routes] = useState([
