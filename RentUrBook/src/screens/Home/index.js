@@ -16,29 +16,6 @@ import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 
 import { TabView, SceneMap, TabBar as BarTabView} from 'react-native-tab-view';
 
-const FirstRoute = () => (
-    <View style={styles.mainBody} />
-);    
-  
-const SecondRoute = () => (
-    <View style={styles.mainBody2} />
-);
-
-const renderScene = SceneMap({
-    first: FirstRoute,
-    second: SecondRoute,
-});
-
-const renderTabBar = props => {
-    return <BarTabView
-        {...props}
-        indicatorContainerStyle={styles.tabBarIndicatorContainer}
-        indicatorStyle={styles.tabBarIndicator}
-        labelStyle={styles.tabBarLabel}
-        style={styles.tabBar}
-    />
-}
-  
 
 const Home = ({navigation, route}) => {
     if (route.params) {
