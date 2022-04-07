@@ -9,6 +9,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
 import { renderTabBar } from "./renderTabBar";
+import { ItemDivider } from "./itemDivider";
+import { Item } from "./item";
 
 import { getUser } from "../../network/loginService";
 
@@ -16,6 +18,37 @@ import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 
 import { TabView } from 'react-native-tab-view';
 
+const DATA = [{
+    id: "1",
+    title: "First item",
+    subtitle: "subtitle",
+    type: "1",
+},
+{
+    id: "2",
+    title: "Second item",
+    subtitle: "subtitle",
+    type: "1",
+},
+{
+    id: "3",
+    title: "Third item",
+    subtitle: "subtitle",
+    type: "1",
+},
+{
+    id: "4",
+    title: "Forth item",
+    subtitle: "subtitle",
+    type: "1",
+},
+{
+    id: "5",
+    title: "Fifth item",
+    subtitle: "subtitle",
+    type: "1",
+},
+]
 
 const Home = ({navigation, route}) => {
     if (route.params) {
@@ -33,23 +66,35 @@ const Home = ({navigation, route}) => {
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         { key: 'first', title: 'Art' },
-        { key: 'second', title: 'Cooking' },
-        { key: 'third', title: 'Health' },
-        { key: 'fourth', title: 'Novel' },
-        { key: 'fifth', title: 'Magazine' },
-        { key: 'sixth', title: 'Travel' },
-        { key: 'seventh', title: 'History' },
-        { key: 'eighth', title: 'Technology' },
-        { key: 'ninth', title: 'Education' },
-        { key: 'tenth', title: 'Cartoon' },
+        { key: 'second', title: 'Cartoon' },
+        { key: 'third', title: 'Cooking' },
+        { key: 'fourth', title: 'Education' },
+        { key: 'fifth', title: 'Health' },
+        { key: 'sixth', title: 'History' },
+        { key: 'seventh', title: 'Magazine'},
+        { key: 'eighth', title: 'Novel' },
+        { key: 'ninth', title: 'Technology' },
+        { key: 'tenth', title: 'Travel' },
     ]);
 
+    const renderBook = ({item, onPress}) => {
+        return <Item item={item} onPress={console.log("Pressed")}/>
+    }
+    
+    // Only render the scene for 2 routes at each sides (performance purpose)
     const renderScene = ({ route }) => {
         if (Math.abs(index - routes.indexOf(route)) > 2) {
             // console.log(index)
             return <View/>;
         }
-        return <FlatList style={styles.mainBody} />;
+        
+        const displayData = DATA;
+
+        return <FlatList data={displayData} 
+                renderItem={renderBook}
+                ItemSeparatorComponent={ItemDivider}
+                style={styles.mainBody} 
+                />;
     };
 
     return(
