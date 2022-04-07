@@ -44,6 +44,14 @@ const Home = ({navigation, route}) => {
         { key: 'tenth', title: 'Cartoon' },
     ]);
 
+    const renderScene = ({ route }) => {
+        if (Math.abs(index - routes.indexOf(route)) > 2) {
+            // console.log(index)
+            return <View/>;
+        }
+        return <FlatList style={styles.mainBody} />;
+    };
+
     return(
         <View style={styles.background}>
             <View style={styles.top}>
