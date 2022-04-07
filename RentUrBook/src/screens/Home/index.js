@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { View, Text, TextInput, FlatList } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { BottomNavigation } from "react-native-paper";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,12 +8,6 @@ import { styles } from "./styles";
 import { renderTabBar } from "./renderTabBar";
 import { ItemDivider } from "./itemDivider";
 import { Item } from "./item";
-
-import { getUser } from "../../network/loginService";
-
-import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
-import Favorite from "../Favorite"
-
 
 import { TabView } from 'react-native-tab-view';
 
@@ -54,38 +45,7 @@ const DATA = [{
 
 const Home = ({navigation, route, userData}) => {
     console.log('Home: current user',userData)
-    // if (route.params) {
-    //     const [userData, setUser] = useState(route.params["userData"]);
-    //     console.log("Home data ", userData);
 
-    // }
-    // else {
-    //     const [userData, setUser] = useState({});
-    //     console.log("Home data ", userData);
-
-    // }
-
-    const [tabBarIndex, setTabIndex] = useState(0);
-    const [tabBarRoute, setTabRoute] = useState (
-        [
-            {
-              key: 'home',
-              title: 'Home',
-            },
-            {
-              key: 'favorite',
-              title: 'Favorite',
-            },
-            {
-              key: 'notification',
-              title: 'Notification',
-            },
-            {
-              key: 'profile',
-              title: 'Profile',
-            },
-          ]
-    );
     const [index, setIndex] = useState(0);
     const [routes] = useState([
         { key: 'first', title: 'Art' },
@@ -119,16 +79,6 @@ const Home = ({navigation, route, userData}) => {
                 style={styles.mainBody} 
                 />;
     };
-
-    const _handleIndexChange = (index) => {
-        setTabIndex(index) 
-
-    }
-
-    const _renderTabScene = BottomNavigation.SceneMap({
-        home: Home,
-        favorite: Favorite,
-    })
 
     return(
         <View style={styles.background}>

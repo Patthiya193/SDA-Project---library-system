@@ -1,21 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
-  View,
 } from 'react-native';
 
 import SignIn from "./screens/SignIn"
 import Register from "./screens/Register";
-import Home from "./screens/Home";
-import Favorite from "./screens/Favorite"
 import Main from "./screens/Main"
 
 const AuthStack = createStackNavigator();

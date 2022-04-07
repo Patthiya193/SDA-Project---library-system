@@ -1,44 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 import { View, Text, TextInput, FlatList } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
-import { renderTabBar } from "./renderTabBar";
-
-import { getUser } from "../../network/loginService";
-
-import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
-
-import { TabView } from 'react-native-tab-view';
 
 
-const Favorite = ({navigation, route, userData}) => {
+const Favorite = ({userData}) => {
     console.log("Favorite: current user", userData)
-    // if (route.params) {
-    //     const [userData, setUser] = useState(route.params["userData"]);
-    //     console.log("Favorite data ", userData);
-
-    // }
-    // else {
-    //     const [userData, setUser] = useState({});
-    //     console.log("Favorite data ", userData);
-
-    // }
-
-    const [tabBarTab, setTab] = useState(1);
-
-    // const renderScene = ({ route }) => {
-    //     if (Math.abs(index - routes.indexOf(route)) > 2) {
-    //         // console.log(index)
-    //         return <View/>;
-    //     }
-    //     return <FlatList style={styles.mainBody} />;
-    // };
+    const [favBook, setFavBook] = useState(userData["favoriteBooks"])
 
     return(
         <View style={styles.background}>
