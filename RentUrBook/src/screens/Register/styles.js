@@ -54,39 +54,24 @@ export const styles = StyleSheet.create({
         paddingLeft: 10,
         borderRadius: 16,
     },
-    signupContainer: {
-        flexDirection: 'row',
-    },
+
     textInput: {
         fontWeight: 'bold',
         paddingLeft: 10,
     },
-    forgotButtonStyle: {
-        color: '#040415',
+
+    RegisterButtonStyle: {
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 12,
-        paddingHorizontal: 32,
-        borderRadius: 4,
-        elevation: 3,
-    },
-    loginButtonStyle: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 32,
+        paddingHorizontal: 38,
         borderRadius: 16,
         elevation: 3,
         backgroundColor: '#6C70EB',
     },
-    loginText: {
+    ReText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
     },
-    signupButtonStyle: {
-        
-    },
-    signupText: {
-        color: '#6C70EB',
-    },
+
 })
