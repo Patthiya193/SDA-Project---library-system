@@ -9,6 +9,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
 import { renderTabBar } from "./renderTabBar";
+import { ItemDivider } from "./itemDivider";
+import { Item } from "./item";
 
 import { getUser } from "../../network/loginService";
 
