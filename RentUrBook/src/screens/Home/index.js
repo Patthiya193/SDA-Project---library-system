@@ -18,6 +18,37 @@ import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 
 import { TabView } from 'react-native-tab-view';
 
+const DATA = [{
+    id: "1",
+    title: "First item",
+    subtitle: "subtitle",
+    type: "1",
+},
+{
+    id: "2",
+    title: "Second item",
+    subtitle: "subtitle",
+    type: "1",
+},
+{
+    id: "3",
+    title: "Third item",
+    subtitle: "subtitle",
+    type: "1",
+},
+{
+    id: "4",
+    title: "Forth item",
+    subtitle: "subtitle",
+    type: "1",
+},
+{
+    id: "5",
+    title: "Fifth item",
+    subtitle: "subtitle",
+    type: "1",
+},
+]
 
 const Home = ({navigation, route}) => {
     if (route.params) {
