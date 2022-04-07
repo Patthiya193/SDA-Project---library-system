@@ -8,9 +8,11 @@ export const styles = StyleSheet.create({
         backgroundColor: '#6C70EB',
     },
     top: {
-        flex: 1.35,
+        // flex: 1.35,
         alignItems: 'center',
+        
         paddingTop: "10%",
+        // paddingLeft: 25
     },
     mainBody: {
         flex: 3,
@@ -24,12 +26,13 @@ export const styles = StyleSheet.create({
     footer: {
         backgroundColor: 'white',
     },
-    title: {
+    nameText: {
         fontSize: 32,
         fontWeight: 'bold',
         color: 'white',
         marginTop: 30,
         marginBottom: 30,
+        textAlign: 'left'
     },
     inputContainer: {
         width: Dimensions.get('window').width * 0.75,
@@ -66,6 +69,20 @@ export const styles = StyleSheet.create({
     },
     tabBarLabel: {
         fontSize: 14,
+        fontWeight: 'bold',
+    },
+    loginButtonStyle: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: Dimensions.get('window').width * 0.75,
+        height: Dimensions.get('window').width * 0.125,
+        borderRadius: 16,
+        elevation: 3,
+        marginTop: 15,
+        marginBottom: 15,
+    },
+    loginText: {
+        color: '#000000',
         fontWeight: 'bold',
     },
     warnLabel: {

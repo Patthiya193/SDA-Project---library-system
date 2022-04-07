@@ -16,10 +16,10 @@ const App = () => {
 
   return (
     <NavigationContainer>
-        <AuthStack.Navigator initialRouteName = "SignIn" screenOptions={{ headerShown: false }}>
+        <AuthStack.Navigator initialRouteName = "Main" screenOptions={{ headerShown: false }} >
             <AuthStack.Screen name = "SignIn" component = {SignIn} />
             <AuthStack.Screen name = "Register" component = {Register}/>
-            <AuthStack.Screen name = "Main" component = {Main} />
+            <AuthStack.Screen name = "Main" component = {Main} initialParams={{userData:{}}}/>
         </AuthStack.Navigator>
     </NavigationContainer>
 

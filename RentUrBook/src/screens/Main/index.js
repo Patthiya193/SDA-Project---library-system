@@ -11,7 +11,7 @@ import { styles } from "./styles";
 
 import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 import Favorite from "../Favorite"
-
+import Account from "../Account"
 
 import { TabView } from 'react-native-tab-view';
 
@@ -37,10 +37,10 @@ const Main = ({navigation, route}) => {
             //   key: 'notification',
             //   title: 'Notification',
             // },
-            // {
-            //   key: 'favorite',
-            //   title: 'Favoriteb',
-            // },
+            {
+              key: 'account',
+              title: 'Account',
+            },
           ]
     );
 
@@ -56,8 +56,9 @@ const Main = ({navigation, route}) => {
         _handleIndexChange(tabIndex)
     }
     const _renderTabScene = BottomNavigation.SceneMap({
-        home: () => <Home userData={userData["userData"]}/>,
-        favorite: () => <Favorite userData={userData["userData"]} />,
+        home: () => <Home userData={userData}/>,
+        favorite: () => <Favorite userData={userData} />,
+        account: () => <Account navigation={navigation} userData={userData}/>
     })
 
     return(
