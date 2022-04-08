@@ -90,5 +90,15 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         margin: 10,
         color: 'white',
-    }
+    },
+    buttonText: {
+        fontWeight: 'bold',
+        fontSize: 22,
+        margin: 15,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        paddingLeft: 0,
+        padding: '3%',
+    },
 })

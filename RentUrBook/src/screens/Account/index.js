@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Text, TextInput, FlatList } from "react-native";
+import { View, Text, TextInput, FlatList, TouchableHighlight, Alert } from "react-native";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faPencil, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
-
+import { ItemDivider} from "./itemDivider"
 import { styles } from "./styles";
-
+import { Item } from "./item"
+import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
+import { CommonActions, StackActions } from "@react-navigation/core";
 
 const Account = ({navigation, userData}) => {
     const [user, setUser] = useState(userData['userData'])
@@ -21,18 +23,67 @@ const Account = ({navigation, userData}) => {
         navigation.navigate("Register")
     }
 
+    const onPressLogout = () => {
+        Alert.alert(
+            "Log out",
+            "Are you sure you want to logout?",
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "OK", onPress: () => {
+                navigation.dispatch( StackActions.replace('MainGuest', {"userData":{}}))
+              } }
+            ]
+          );
+    }
+    
+
+    const normalDisplay = [{
+        id: "1",
+        title: "Logout",
+        type: "1",
+        key: "logout",
+        icon: faUnlock,
+        onPress: onPressLogout
+    },]
+
+    const adminDisplay = [{
+        id: "2",
+        title: "Add book",
+        type: "1",
+        key: "addbook",
+        icon: faPencil,
+        onPress: () => {
+            Alert.alert("add book")
+        }
+    },{
+        id: "1",
+        title: "Logout",
+        type: "1",
+        key: "logout",
+        icon: faUnlock,
+        onPress: onPressLogout
+    }]
+
+    const renderMenu = ({item}) => {
+        return <Item item={item} onPress={item.onPress} />
+    }
+
     if (user["username"]) {
         return(
             <View style={styles.background}>
                 <View style={styles.top}>
                     <Text style={styles.nameText}>{user["firstName"]} {user["lastName"]}</Text>
-                    <View style={styles.inputContainer}>
-                        <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
-                        <TextInput placeholder='Search for books' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
-                    </View>
                 </View>
-                <View style={styles.mainBody}>
-                    <FlatList style={styles.mainBody}/>
+                <View style={{flex:3.5}}>
+                    <FlatList style={styles.mainBody}
+                    data={user["userType"] == "admin" ? (adminDisplay) : (normalDisplay)}
+                    renderItem={renderMenu}
+                    ItemSeparatorComponent={ItemDivider}
+                    />
                 </View>
                 
             </View>
