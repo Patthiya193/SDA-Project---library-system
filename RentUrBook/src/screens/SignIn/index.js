@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { View, Dimensions, ScrollView, Text, TextInput, Button, Alert } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +9,9 @@ import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 import { loginUser, getUser } from "../../network/loginService";
+import Register from "../Register";
+import Main from "../Main"
+import { CommonActions, StackActions } from "@react-navigation/core";
 
 
 
@@ -47,7 +48,17 @@ const SignIn = ({navigation, route}) => {
             setData(temp)
             setUserName("")
             setPassWord("")
-            navigation.navigate('Home', {"userData":temp})
+            console.log("send user", temp)
+            // navigation.dispatch (CommonActions.reset({
+            //     index:1,
+            //     routes: [{ name: 'SignIn'},
+            //     { name: 'MainLoggedIn', params: {"userData":{temp}} },
+            //     { name: 'Register' },
+            //     { name:'MainGuest', params: {"userData":{}}}],
+            // }));
+            navigation.dispatch( StackActions.popToTop())
+            navigation.dispatch( StackActions.replace('MainLoggedIn', {"userData":temp}))
+            // navigation.navigate('MainLoggedIn', {"userData":temp})
         }
         
 
@@ -67,7 +78,7 @@ const SignIn = ({navigation, route}) => {
                     <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9' 
                     onChangeText={newUserName => {
                         let value = newUserName
-					    value = value.replace(/[^A-Za-z0-9]/gi, "")
+					    value = value.replace(/[^A-Za-z0-9_]/gi, "")
                         setUserName(value)
                     }} 
                     value={username} />
@@ -77,7 +88,7 @@ const SignIn = ({navigation, route}) => {
                     <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' 
                     onChangeText={newPassWord => {
                         let value = newPassWord
-					    value = value.replace(/[^A-Za-z]/gi, "")
+					    value = value.replace(/[^A-Za-z0-9_]/gi, "")
                         setPassWord(value)
                     }} 
                     value={password}  secureTextEntry={true}/>

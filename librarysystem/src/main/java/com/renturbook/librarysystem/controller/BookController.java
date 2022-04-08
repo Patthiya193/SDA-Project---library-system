@@ -110,8 +110,10 @@ public class BookController {
 
     @PostMapping("/test")
     public void addTestBook() {
-        bookService.saveBook(new Book("isbn", "test book","NOVEL", "this book so good", "available", 0L, List.of("DRAMA", "SCI-FI"),List.of("author1", "author2")));
-        bookService.saveBook(new Book("isbn2", "私の最後の日","SONG BOOK",
+        Book temp = new Book("isbn", "test book","NOVEL", "this book so good",
+                "available", 0L, List.of("DRAMA", "SCI-FI"),List.of("author1", "author2"));
+        bookService.saveBook(temp);
+        Book temp2 = new Book("isbn2", "私の最後の日","SONG BOOK",
                 "原稿なんていらない\n" +
                         "だって到底　描ききれないや\n" +
                         "台本だっていらない\n" +
@@ -125,7 +127,8 @@ public class BookController {
                         "誤魔化して隠す　悪い癖\n" +
                         "「約束」なんて言えない\n" +
                         "束ねたまましまった\n"
-                        , "available", 0L, List.of("SCI-FI"),List.of("author3")));
+                , "available", 0L, List.of("SCI-FI"),List.of("author3"));
+        bookService.saveBook(temp2);
     }
 
 }

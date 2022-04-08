@@ -31,6 +31,14 @@ public class LibraryUserServiceImpl {
         return temp;
     }
 
+    public boolean checkUsername( String username ) {
+        Optional<LibraryUser> userByUsername = userRepository.findLibraryUserByUsername(username);
+        if ( userByUsername.isPresent()) {
+            return true;
+        }
+        return false;
+    }
+
     public void addNewUser(LibraryUser newUser) {
         Optional<LibraryUser> userByUsername = userRepository.findLibraryUserByUsername(newUser.getUsername());
         if ( userByUsername.isPresent()) {

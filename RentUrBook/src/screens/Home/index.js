@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { View, Text, TextInput, FlatList, Pressable } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -11,10 +9,6 @@ import { styles } from "./styles";
 import { renderTabBar } from "./renderTabBar";
 import { ItemDivider } from "./itemDivider";
 import { Item } from "./item";
-
-import { getUser } from "../../network/loginService";
-
-import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 
 import { TabView } from 'react-native-tab-view';
 
@@ -51,31 +45,22 @@ const DATA = [{
 },
 ]
 
-const Home = ({navigation, route}) => {
-    if (route.params) {
-        const [userData, setUser] = useState(route.params["userData"]);
-        console.log("Home data ", userData);
+const Home = ({navigation, route, userData}) => {
+    console.log('Home: current user',userData)
 
-    }
-    else {
-        const [userData, setUser] = useState({});
-        console.log("Home data ", userData);
-
-    }
-
-    const [tabBarTab, setTab] = useState(0);
     const [index, setIndex] = useState(0);
     const [routes] = useState([
-        { key: 'first', title: 'Art' },
-        { key: 'second', title: 'Cartoon' },
-        { key: 'third', title: 'Cooking' },
-        { key: 'fourth', title: 'Education' },
-        { key: 'fifth', title: 'Health' },
-        { key: 'sixth', title: 'History' },
-        { key: 'seventh', title: 'Magazine'},
-        { key: 'eighth', title: 'Novel' },
-        { key: 'ninth', title: 'Technology' },
-        { key: 'tenth', title: 'Travel' },
+        { key: 'ALL', title: 'All'},
+        { key: 'ART', title: 'Art' },
+        { key: 'CARTOON', title: 'Cartoon' },
+        { key: 'COOKING', title: 'Cooking' },
+        { key: 'EDUCATION', title: 'Education' },
+        { key: 'HEALTH', title: 'Health' },
+        { key: 'HISTORY', title: 'History' },
+        { key: 'MAGAZINE', title: 'Magazine'},
+        { key: 'NOVEL', title: 'Novel' },
+        { key: 'TECH', title: 'Technology' },
+        { key: 'TRAVEL', title: 'Travel' },
     ]);
 
     const renderBook = ({item, onPress}) => {
@@ -102,15 +87,9 @@ const Home = ({navigation, route}) => {
         <View style={styles.background}>
             <View style={styles.top}>
                 <Text style={styles.title}>Home</Text>
-                <View style={styles.topContainer}>
-                    <View style={styles.inputContainer}>
-                        <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
-                        <TextInput placeholder='Search for books' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
-                    </View>
-                    <Pressable onPress={ console.log("search") } 
-                        style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#ffffff'}, styles.searchButton]}>
-                        <FontAwesomeIcon icon={ faSearch } color='#6C70EB' size={24}  />
-                    </Pressable>
+                <View style={styles.searchContainer}>
+                    <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
+                    <TextInput placeholder='Search for books' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
                 </View>
             </View>
             <TabView style={{flex: 4}}
@@ -119,30 +98,7 @@ const Home = ({navigation, route}) => {
                 onIndexChange={setIndex}
                 renderTabBar={renderTabBar}
             />
-            <View style={styles.footer}>
-                <TabBar
-                    activeTab={tabBarTab}
-                    onPress={(tabIndex) => { 
-                        setTab(tabIndex) 
-                        switch (tabIndex) {
-                            case 3:
-                                navigation.navigate("SignIn")
-                                break
-                        }
-                    }}
-                    iconStyle={{ width: 50, height: 50 }}
-                    iconActiveTintColor="white"
-                    iconInactiveTintColor="#CCCCCC"
-                    tintColor="#6C70EB"
-                    titleColor="#6C70EB" 
-                    values={[
-                        { title: "Home", icon: "home", isIcon: true, iconType: iconTypes.Entypo },
-                        { title: "Favorites", icon: "heart", isIcon: true, iconType: iconTypes.FontAwesome },
-                        { title: "Notification", icon: "notifications", isIcon: true, iconType: iconTypes.MaterialIcons },
-                        { title: "Account", icon: "user-alt", isIcon: true, iconType: iconTypes.FontAwesome5 }
-                    ]}
-                />
-            </View>
+        
         </View>
     )
 }

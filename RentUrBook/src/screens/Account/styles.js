@@ -10,7 +10,9 @@ export const styles = StyleSheet.create({
     top: {
         // flex: 1.35,
         alignItems: 'center',
+        
         paddingTop: "10%",
+        // paddingLeft: 25
     },
     mainBody: {
         flex: 3,
@@ -24,12 +26,13 @@ export const styles = StyleSheet.create({
     footer: {
         backgroundColor: 'white',
     },
-    title: {
+    nameText: {
         fontSize: 32,
         fontWeight: 'bold',
         color: 'white',
         marginTop: 30,
         marginBottom: 30,
+        textAlign: 'left'
     },
     inputContainer: {
         width: Dimensions.get('window').width * 0.75,
@@ -68,10 +71,34 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
     },
+    loginButtonStyle: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: Dimensions.get('window').width * 0.75,
+        height: Dimensions.get('window').width * 0.125,
+        borderRadius: 16,
+        elevation: 3,
+        marginTop: 15,
+        marginBottom: 15,
+    },
+    loginText: {
+        color: '#000000',
+        fontWeight: 'bold',
+    },
     warnLabel: {
         fontWeight: 'bold',
         fontSize: 18,
         margin: 10,
         color: 'white',
-    }
+    },
+    buttonText: {
+        fontWeight: 'bold',
+        fontSize: 22,
+        margin: 15,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        paddingLeft: 0,
+        padding: '3%',
+    },
 })

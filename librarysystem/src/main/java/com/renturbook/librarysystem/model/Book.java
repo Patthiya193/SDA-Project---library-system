@@ -2,6 +2,7 @@ package com.renturbook.librarysystem.model;
 
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.List;
 
 import com.renturbook.librarysystem.AvailableState;
@@ -30,8 +31,13 @@ public class Book {
     private String curState;
     private String description;
 
-    @Column(nullable = true, length = 64)
-    private String coverImage;
+    @Lob
+    private Blob coverImage;
+
+//    @Column(nullable = true, length = 64)
+//    private String coverImage;
+
+
 
     @ElementCollection
     private List<String> authors;
@@ -58,7 +64,7 @@ public class Book {
         this.bookType = bookType;
         this.description = description;
         this.genre = genre;
-        this.coverImage = "";
+//        this.coverImage = "";
         this.availableState = new AvailableState(this);
         this.unavailableState = new UnavailableState(this);
         this.reservedState = new ReservedState(this);
@@ -155,7 +161,7 @@ public class Book {
                 ", curState='" + curState + '\'' +
                 ", authors=" + authors +
                 ", availableState=" + availableState +
-                ", unvailableState=" + unavailableState +
+                ", unavailableState=" + unavailableState +
                 ", reservedState=" + reservedState +
                 ", currentState=" + currentState +
                 '}';
@@ -168,13 +174,19 @@ public class Book {
     public void setBorrowedBy(Long borrowedBy) {
         this.borrowedBy = borrowedBy;
     }
-
-    public String getCoverImage() {
-        return coverImage;
-    }
-
-    public void setCoverImage(String coverImage) {
+//
+//    public String getCoverImage() {
+//        return coverImage;
+//    }
+//
+//    public void setCoverImage(String coverImage) {
+//        this.coverImage = coverImage;
+//    }
+    public void setCoverImage(Blob coverImage) {
         this.coverImage = coverImage;
+    }
+    public Blob getCoverImage() {
+        return this.coverImage;
     }
 
     public BookState getAvailableState() {

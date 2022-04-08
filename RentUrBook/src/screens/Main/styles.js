@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#6C70EB',
     },
     top: {
-        // flex: 1.35,
+        flex: 1.35,
         alignItems: 'center',
         paddingTop: "10%",
     },
@@ -68,10 +68,17 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
     },
-    warnLabel: {
+    bookName: {
         fontWeight: 'bold',
         fontSize: 18,
         margin: 10,
-        color: 'white',
-    }
+    },
+    bookAuthor: {
+        fontSize: 14,
+        margin: 10,
+    },
+    bookContainer: {
+        paddingLeft: 0,
+        padding: '10%',
+    },  
 })

@@ -47,6 +47,18 @@ export const styles = StyleSheet.create({
         borderRadius: 16,
         marginHorizontal: 10,
     },
+    searchContainer: {
+        width: Dimensions.get('window').width * 0.75,
+        height: Dimensions.get('window').width * 0.11,
+        marginTop: 10,
+        marginBottom: 10,
+        flexDirection: 'row',
+        backgroundColor: '#ffffff',
+        borderColor: '#A8AFB9',
+        alignItems: 'center',
+        paddingLeft: 20,
+        borderRadius: 16,
+    },
     textInput: {
         width: Dimensions.get('window').width * 0.5,
         fontWeight: 'bold',

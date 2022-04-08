@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Dimensions, ScrollView, Text, TextInput, Button } from "react-native";
-
+import { View, Dimensions, ScrollView, Text, TextInput, StyleSheet, Button, Alert, Pressable } from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
-import { NavigationContainer } from '@react-native/native'
+import { faUserCircle, faLock, faPencil,faEnvelope, faPeopleRoof, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { styles } from "./styles";
-import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
-import { getUser } from "../../network/loginService";
 
-const Register = () => {
+const Register = ({navigation}) => {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [username, setUserName] = useState("");
+    const [password, setPassWord] = useState("");
+
+    async function onPressRegister() {
+        () => {Alert.alert("Confirm to register")}
+    }
 
     return(
         <View style={styles.background}>
@@ -20,38 +24,65 @@ const Register = () => {
                 </View>
             </View>
             <View style={styles.mainBody}>
-                <Text style={styles.title}> Register to RentUrBook </Text>
+                <Text style={styles.title}> Welcome ! </Text>
+
                 <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faUserCircle } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
+                    <FontAwesomeIcon icon={ faUserCircle } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='First name' style={styles.textInput}
+                    onChangeText={newFirstName => {
+                        let value = newFirstName
+					    value = value.replace(/[^A-Za-z]/gi, "")
+                        setFirstName(value)
+                    }} value={firstName}/>
                 </View>
+
                 <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faLock } color='#A8AFB9' size={24} />
-                    <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' secureTextEntry={true}/>
+                    <FontAwesomeIcon icon={ faPeopleRoof } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='Last name' style={styles.textInput}
+                    onChangeText={newLastName => {
+                        let value = newLastName
+					    value = value.replace(/[^A-Za-z]/gi, "")
+                        setLastName(value)
+                    }} value={lastName}/>
                 </View>
-                <View>
-                    <Pressable onPress={() => {console.log("Pressed1")}} style={styles.forgotButtonStyle} >
-                        <Text>Forgot Your Password ?</Text>
-                    </Pressable>
+
+                <View style={styles.inputContainer}>
+                    <FontAwesomeIcon icon={ faAddressCard } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='Username' style={styles.textInput} 
+                    onChangeText={newUserName => {
+                        let value = newUserName
+					    value = value.replace(/[^A-Za-z0-9_]/gi, "")
+                        setUserName(value)
+                    }} value={username}/>
                 </View>
-                <View>
+
+                <View style={styles.inputContainer}>
+                    <FontAwesomeIcon icon={ faLock } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='Password' style={styles.textInput} secureTextEntry={true}
+                    onChangeText={newPassWord => {
+                        let value = newPassWord
+					    value = value.replace(/[^A-Za-z0-9_]/gi, "")
+                        setPassWord(value)
+                    }} value = {password}/>
+                </View>
+                
+                <Pressable style = {styles.RegisterButtonStyle} onPress = {onPressRegister}>
+                    <Text style={styles.ReText}> Register </Text>
+                
+                </Pressable>
+                <Text style={{paddingBottom: 10}}> Already have an account ? </Text>
                     <Pressable onPress={() => {
-                        setData(getUser());
-                    } } style={styles.loginButtonStyle}>
-                        <Text style={styles.loginText}>Login</Text>
-                    </Pressable>
-                </View>
-                <View style={styles.signupContainer}>
-                    <Text>Don't have an account ? </Text>
-                    <Pressable onPress={() => {
-                        navigation.navigate('Register')
-                        console.log("Pressed3")}} style={styles.signupButtonStyle}>
-                        <Text style={styles.signupText}>Sign Up</Text>
-                    </Pressable>
-                </View>
+                            navigation.navigate('SignIn')
+                        }}>
+                        {({ pressed }) => (
+                            <Text style={[{color: pressed ? '#434594':'#6C70EB'}]}>
+                                Log In
+                            </Text>
+                        )}
+                    </Pressable>  
             </View>
         </View>
-        
+    
     )
 }
 
