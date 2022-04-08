@@ -82,14 +82,14 @@ const Home = ({navigation, route, userData}) => {
         return <FlatList data={displayData} 
                 renderItem={renderBook}
                 ItemSeparatorComponent={ItemDivider}
-                style={styles.mainBody} 
+                style={body.mainBody} 
                 />;
     };
 
     return(
-        <View style={styles.background}>
-            <View style={styles.top}>
-                <Text style={styles.title}>Home</Text>
+        <View style={body.background}>
+            <View style={body.top}>
+                <Text style={body.title}>Home</Text>
                 <View style={searchBarStyle.topContainer}>
                     <View style={searchBarStyle.inputContainer}>
                         <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
