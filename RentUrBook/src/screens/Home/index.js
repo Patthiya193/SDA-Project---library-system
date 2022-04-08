@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
+import { searchBarStyle } from "../universalSyles";
+
 import { renderTabBar } from "./renderTabBar";
 import { ItemDivider } from "./itemDivider";
 import { Item } from "./item";
@@ -87,9 +89,15 @@ const Home = ({navigation, route, userData}) => {
         <View style={styles.background}>
             <View style={styles.top}>
                 <Text style={styles.title}>Home</Text>
-                <View style={styles.searchContainer}>
-                    <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
-                    <TextInput placeholder='Search for books' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
+                <View style={searchBarStyle.topContainer}>
+                    <View style={searchBarStyle.inputContainer}>
+                        <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
+                        <TextInput placeholder='Search for books' style={searchBarStyle.textInput} placeholderTextColor='#A8AFB9'/>
+                    </View>
+                    <Pressable onPress={ console.log("search") } 
+                        style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#ffffff'}, searchBarStyle.searchButton]}>
+                        <FontAwesomeIcon icon={ faSearch } color='#6C70EB' size={24}  />
+                    </Pressable>
                 </View>
             </View>
             <TabView style={{flex: 4}}
@@ -98,7 +106,6 @@ const Home = ({navigation, route, userData}) => {
                 onIndexChange={setIndex}
                 renderTabBar={renderTabBar}
             />
-        
         </View>
     )
 }
