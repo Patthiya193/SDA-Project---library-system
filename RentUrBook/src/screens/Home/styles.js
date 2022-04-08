@@ -30,52 +30,6 @@ export const styles = StyleSheet.create({
         marginTop: 30,
         marginBottom: 30,
     },
-    topContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 10,
-        marginBottom: 10,
-    },
-    inputContainer: {
-        height: Dimensions.get('window').width * 0.11,
-        flexDirection: 'row',
-        backgroundColor: '#ffffff',
-        borderColor: '#A8AFB9',
-        alignItems: 'center',
-        paddingLeft: 10,
-        borderRadius: 16,
-        marginHorizontal: 10,
-    },
-    searchContainer: {
-        width: Dimensions.get('window').width * 0.75,
-        height: Dimensions.get('window').width * 0.11,
-        marginTop: 10,
-        marginBottom: 10,
-        flexDirection: 'row',
-        backgroundColor: '#ffffff',
-        borderColor: '#A8AFB9',
-        alignItems: 'center',
-        paddingLeft: 20,
-        borderRadius: 16,
-    },
-    textInput: {
-        width: Dimensions.get('window').width * 0.5,
-        fontWeight: 'bold',
-        paddingLeft: 5,
-    }, 
-    searchButton: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: Dimensions.get('window').width * 0.15,
-        height: Dimensions.get('window').width * 0.11,
-        borderRadius: 16,
-        elevation: 3,
-    },
-    searchText: {
-        color: '#6C70EB',
-        fontWeight: 'bold',
-    }
 })
 
 export const tabBarStyles = StyleSheet.create({
