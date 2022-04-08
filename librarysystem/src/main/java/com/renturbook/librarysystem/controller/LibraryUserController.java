@@ -77,6 +77,13 @@ public class LibraryUserController {
         userService.addNewUser( temp3);
     }
 
+    @PostMapping("/addadmin")
+    public void addAdmin() {
+        LibraryUser temp3 = new LibraryUser("admin", "admin","Admin","Account",new ArrayList<>());
+        temp3.setUserType("admin");
+        userService.addNewUser( temp3);
+    }
+
     @PatchMapping("/addfav/")
     public void addFavBookById( @RequestParam Long userId, @RequestParam Long bookId) {
         LibraryUser user = getById(userId);
