@@ -9,10 +9,16 @@ export const styles = StyleSheet.create({
     },
     top: {
         // flex: 1.35,
+        alignItems: 'baseline',
+        
+        paddingTop: "10%",
+        paddingLeft: 40
+    },
+    nonUserTop: {
+        // flex: 1.35,
         alignItems: 'center',
         
         paddingTop: "10%",
-        // paddingLeft: 25
     },
     mainBody: {
         flex: 3,
@@ -27,11 +33,11 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     nameText: {
-        fontSize: 32,
+        fontSize: 40,
         fontWeight: 'bold',
         color: 'white',
         marginTop: 30,
-        marginBottom: 30,
+        marginBottom: 5,
         textAlign: 'left'
     },
     inputContainer: {
@@ -101,4 +107,21 @@ export const styles = StyleSheet.create({
         paddingLeft: 0,
         padding: '3%',
     },
+    idText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'lightgrey',
+        marginTop: 5,
+        marginBottom: 30,
+        textAlign: 'left',
+        paddingRight: 20,
+        paddingLeft: 10
+    },
+    rowText: {
+        height: 80,
+        flexDirection: 'row',
+        paddingLeft: 0,
+        paddingRight: 0,
+        padding: '1%',
+    }
 })

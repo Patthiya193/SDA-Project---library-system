@@ -1,4 +1,4 @@
-import { userLoginApi, getUserApi } from "../utils/ipaddr"; 
+import { userLoginApi, getUserApi, registerUserApi, getUserByIdApi, checkUserNameApi } from "../utils/ipaddr"; 
 import { SALT } from "../utils/pwdcrypt";
 var bcrypt = require('bcryptjs')
 import axios from 'axios'
@@ -45,4 +45,27 @@ export const getUser = async () => {
     catch (error) {
         console.error(error);
     }
+}
+
+export const registerUser = (newUserData) => {
+    axios.post(registerUserApi, newUserData).catch(error => console.error(error))
+    
+}
+
+export const checkUserName = async (inUserName) => {
+    const returnResp = await axios.get(checkUserNameApi, { params: {username:inUserName}})
+    .then(response => {
+        return response
+    })
+    .catch(error => {
+        // console.log("GET ERROR", error)
+        return false
+    })
+    // console.log('GET Response is', response)
+    // const json = await response.json()
+
+    
+    console.log( "GET check username json ", returnResp.data)
+    return returnResp.data
+    
 }

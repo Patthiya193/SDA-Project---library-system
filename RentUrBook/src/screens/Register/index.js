@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Dimensions, ScrollView, Text, TextInput, StyleSheet, Button, Alert, Pressable } from "react-native";
+import { View, Dimensions, ScrollView, Text, TextInput, StyleSheet, Button, Alert, Pressable, KeyboardAvoidingView } from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUserCircle, faLock, faPencil,faEnvelope, faPeopleRoof, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { styles } from "./styles";
-
+import { registerUser, getUser, checkUserName } from "../../network/userService";
+import { platform } from "os";
 
 const Register = ({navigation}) => {
     const [firstName, setFirstName] = useState("");
@@ -12,8 +13,48 @@ const Register = ({navigation}) => {
     const [username, setUserName] = useState("");
     const [password, setPassWord] = useState("");
 
-    async function onPressRegister() {
-        () => {Alert.alert("Confirm to register")}
+    const onPressRegister = async () => {
+        if ( firstName.length == 0) {
+            Alert.alert("Invalid Registration", "Please enter your first name.", [{text: "OK"}])
+            return
+        } else if ( lastName.length == 0 ) {
+            Alert.alert("Invalid Registration", "Please enter your last name.", [{text: "OK"}])
+            return
+        }else if ( username.length == 0 ) {
+            Alert.alert("Invalid Registration", "Please enter your username.", [{text: "OK"}])
+            return
+        } else if ( password.length == 0 ) {
+            Alert.alert("Invalid Registration", "Please enter your password.", [{text: "OK"}])
+            return
+        } else if ( username.length < 8 ) {
+            Alert.alert("Invalid Registration", "Username should be at least 8 characters long.", [{text: "OK"}])
+            return
+        } else if ( password.length < 8) {
+            Alert.alert("Invalid Registration", "Password should be at least 8 characters long.", [{text: "OK"}])
+            return
+        } 
+        var tempFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase()
+        var tempLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase()
+        
+
+        var temp = await checkUserName(username);
+        if (temp) {
+            Alert.alert("Invalid Registration", "Username already existed!", [{text: "OK"}])
+        } else {
+            registerUser( {"firstName": tempFirstName,
+            "lastName": tempLastName,
+            "username": username,
+            "password":password,
+            "userType":"normal",
+            "favoriteBooks":[]})
+            Alert.alert("You are all set!", "Congratulations, your account has been successfully created!", [{text: "OK"}])
+            setFirstName("")
+            setLastName("")
+            setUserName("")
+            setPassWord("")
+            navigation.navigate("SignIn")
+        }   
+        
     }
 
     return(
@@ -23,7 +64,7 @@ const Register = ({navigation}) => {
                     <Text style={styles.iconText}> B </Text>
                 </View>
             </View>
-            <View style={styles.mainBody}>
+            <KeyboardAvoidingView behavior={"padding"} style={styles.mainBody}>
                 <Text style={styles.title}> Welcome ! </Text>
 
                 <View style={styles.inputContainer}>
@@ -51,7 +92,7 @@ const Register = ({navigation}) => {
                     <TextInput placeholder='Username' style={styles.textInput} 
                     onChangeText={newUserName => {
                         let value = newUserName
-					    value = value.replace(/[^A-Za-z0-9_]/gi, "")
+					    value = value.replace(/[^a-z0-9_]/gi, "")
                         setUserName(value)
                     }} value={username}/>
                 </View>
@@ -80,7 +121,7 @@ const Register = ({navigation}) => {
                             </Text>
                         )}
                     </Pressable>  
-            </View>
+            </KeyboardAvoidingView >
         </View>
     
     )

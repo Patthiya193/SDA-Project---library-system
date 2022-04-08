@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Text, TextInput, FlatList } from "react-native";
+import { View} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { BottomNavigation } from "react-native-paper";
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import Home from "../Home"
-import { styles } from "./styles";
 
+import Home from "../Home"
 import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 import Favorite from "../Favorite"
 import Notifications from "../Notifications"
 import Account from "../Account"
 
-import { TabView } from 'react-native-tab-view';
 
 const Main = ({navigation, route}) => {
     console.log("params",route.params)

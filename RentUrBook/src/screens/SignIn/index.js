@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-import { View, Dimensions, ScrollView, Text, TextInput, Button, Alert } from "react-native";
+import { View, Dimensions, ScrollView, Text, TextInput, Button, Alert, KeyboardAvoidingView } from "react-native";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faLock, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
-import { loginUser, getUser } from "../../network/loginService";
+import { loginUser, getUser } from "../../network/userService";
 import Register from "../Register";
 import Main from "../Main"
 import { CommonActions, StackActions } from "@react-navigation/core";
@@ -71,14 +71,14 @@ const SignIn = ({navigation, route}) => {
                     <Text style={styles.iconText}> B </Text>
                 </View>
             </View>
-            <View style={styles.mainBody}>
+            <KeyboardAvoidingView behavior={"padding"} style={styles.mainBody}>
                 <Text style={styles.title}> Login to RentUrBook </Text>
                 <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faUserCircle } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <FontAwesomeIcon icon={ faAddressCard } color='#A8AFB9' size={24} style={{margin:5}}/>
                     <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9' 
                     onChangeText={newUserName => {
                         let value = newUserName
-					    value = value.replace(/[^A-Za-z0-9_]/gi, "")
+					    value = value.replace(/[^a-z0-9_]/gi, "")
                         setUserName(value)
                     }} 
                     value={username} />
@@ -112,7 +112,7 @@ const SignIn = ({navigation, route}) => {
                         )}
                     </Pressable>
                 </View>
-            </View>
+            </KeyboardAvoidingView >
         </View>
         
     )

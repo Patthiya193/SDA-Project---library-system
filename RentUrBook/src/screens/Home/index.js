@@ -6,11 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
-import { searchBarStyle } from "../universalSyles";
+import { body, searchBarStyle } from "../universalSyles";
 
 import { renderTabBar } from "./renderTabBar";
-import { ItemDivider } from "./itemDivider";
-import { Item } from "./item";
+
+import { ItemDivider } from "../../components/render/itemDivider"
+import { Item } from "../../components/render/item";
 
 import { TabView } from 'react-native-tab-view';
 
@@ -81,18 +82,18 @@ const Home = ({navigation, route, userData}) => {
         return <FlatList data={displayData} 
                 renderItem={renderBook}
                 ItemSeparatorComponent={ItemDivider}
-                style={styles.mainBody} 
+                style={body.mainBody} 
                 />;
     };
 
     return(
-        <View style={styles.background}>
-            <View style={styles.top}>
-                <Text style={styles.title}>Home</Text>
+        <View style={body.background}>
+            <View style={body.top}>
+                <Text style={body.title}>Home</Text>
                 <View style={searchBarStyle.topContainer}>
                     <View style={searchBarStyle.inputContainer}>
                         <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
-                        <TextInput placeholder='Search for books' style={searchBarStyle.textInput} placeholderTextColor='#A8AFB9'/>
+                        <TextInput placeholder='Search for books' style={searchBarStyle.textInput} placeholderTextColor='#A8AFB9' clearButtonMode="while-editing"/>
                     </View>
                     <Pressable onPress={ console.log("search") } 
                         style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#ffffff'}, searchBarStyle.searchButton]}>
