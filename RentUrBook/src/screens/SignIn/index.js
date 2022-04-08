@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { View, Dimensions, ScrollView, Text, TextInput, Button, Alert } from "react-native";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faLock, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
@@ -74,7 +74,7 @@ const SignIn = ({navigation, route}) => {
             <View style={styles.mainBody}>
                 <Text style={styles.title}> Login to RentUrBook </Text>
                 <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faUserCircle } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <FontAwesomeIcon icon={ faAddressCard } color='#A8AFB9' size={24} style={{margin:5}}/>
                     <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9' 
                     onChangeText={newUserName => {
                         let value = newUserName

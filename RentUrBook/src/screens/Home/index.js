@@ -93,7 +93,7 @@ const Home = ({navigation, route, userData}) => {
                 <View style={searchBarStyle.topContainer}>
                     <View style={searchBarStyle.inputContainer}>
                         <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
-                        <TextInput placeholder='Search for books' style={searchBarStyle.textInput} placeholderTextColor='#A8AFB9'/>
+                        <TextInput placeholder='Search for books' style={searchBarStyle.textInput} placeholderTextColor='#A8AFB9' clearButtonMode="while-editing"/>
                     </View>
                     <Pressable onPress={ console.log("search") } 
                         style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#ffffff'}, searchBarStyle.searchButton]}>

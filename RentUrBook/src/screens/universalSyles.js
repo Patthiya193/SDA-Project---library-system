@@ -49,6 +49,7 @@ export const searchBarStyle = StyleSheet.create({
         width: Dimensions.get('window').width * 0.5,
         fontWeight: 'bold',
         paddingLeft: 5,
+        margin: 7
     }, 
     searchContainer: {
         width: Dimensions.get('window').width * 0.75,
