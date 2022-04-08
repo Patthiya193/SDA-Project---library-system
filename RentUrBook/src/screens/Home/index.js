@@ -84,7 +84,7 @@ const Home = ({navigation, route, userData}) => {
         <View style={styles.background}>
             <View style={styles.top}>
                 <Text style={styles.title}>Home</Text>
-                <View style={styles.inputContainer}>
+                <View style={styles.searchContainer}>
                     <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
                     <TextInput placeholder='Search for books' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
                 </View>
