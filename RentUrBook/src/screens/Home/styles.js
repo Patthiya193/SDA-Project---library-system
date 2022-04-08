@@ -1,5 +1,4 @@
 
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { StyleSheet, Dimensions } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -8,7 +7,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#6C70EB',
     },
     top: {
-        flex: 1.35,
+        flex: 1.5,
         alignItems: 'center',
         paddingTop: "10%",
     },
@@ -31,23 +30,43 @@ export const styles = StyleSheet.create({
         marginTop: 30,
         marginBottom: 30,
     },
-    inputContainer: {
-        width: Dimensions.get('window').width * 0.75,
-        height: Dimensions.get('window').width * 0.11,
+    topContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
         marginTop: 10,
         marginBottom: 10,
+    },
+    inputContainer: {
+        height: Dimensions.get('window').width * 0.11,
         flexDirection: 'row',
         backgroundColor: '#ffffff',
         borderColor: '#A8AFB9',
         alignItems: 'center',
-        justifyContent: 'center',
         paddingLeft: 10,
         borderRadius: 16,
+        marginHorizontal: 10,
     },
     textInput: {
+        width: Dimensions.get('window').width * 0.5,
         fontWeight: 'bold',
         paddingLeft: 5,
+    }, 
+    searchButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: Dimensions.get('window').width * 0.15,
+        height: Dimensions.get('window').width * 0.11,
+        borderRadius: 16,
+        elevation: 3,
     },
+    searchText: {
+        color: '#6C70EB',
+        fontWeight: 'bold',
+    }
+})
+
+export const tabBarStyles = StyleSheet.create({
     tabBar: {
         backgroundColor: 'transparent',
         marginBottom: '5%',
@@ -68,6 +87,9 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
     },
+})
+
+export const bookItemStyles = StyleSheet.create({
     bookName: {
         fontWeight: 'bold',
         fontSize: 18,
@@ -80,5 +102,5 @@ export const styles = StyleSheet.create({
     bookContainer: {
         paddingLeft: 0,
         padding: '10%',
-    },  
+    }, 
 })
