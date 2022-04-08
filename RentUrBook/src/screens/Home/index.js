@@ -6,11 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
-import { searchBarStyle } from "../universalSyles";
+import { body, searchBarStyle } from "../universalSyles";
 
 import { renderTabBar } from "./renderTabBar";
-import { ItemDivider } from "./itemDivider";
-import { Item } from "./item";
+
+import { ItemDivider } from "../../components/render/itemDivider"
+import { Item } from "../../components/render/item";
 
 import { TabView } from 'react-native-tab-view';
 
