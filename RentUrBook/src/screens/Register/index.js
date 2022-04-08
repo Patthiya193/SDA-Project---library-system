@@ -4,7 +4,7 @@ import { View, Dimensions, ScrollView, Text, TextInput, StyleSheet, Button, Aler
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUserCircle, faLock, faPencil,faEnvelope, faPeopleRoof, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { styles } from "./styles";
-
+import { registerUser, getUser, checkUserName } from "../../network/userService";
 
 const Register = ({navigation}) => {
     const [firstName, setFirstName] = useState("");
@@ -12,8 +12,46 @@ const Register = ({navigation}) => {
     const [username, setUserName] = useState("");
     const [password, setPassWord] = useState("");
 
-    async function onPressRegister() {
-        () => {Alert.alert("Confirm to register")}
+    const onPressRegister = async () => {
+        if ( firstName.length == 0) {
+            Alert.alert("Invalid Registration", "Please enter your first name.", [{text: "OK"}])
+            return
+        } else if ( lastName.length == 0 ) {
+            Alert.alert("Invalid Registration", "Please enter your last name.", [{text: "OK"}])
+            return
+        }else if ( username.length == 0 ) {
+            Alert.alert("Invalid Registration", "Please enter your username.", [{text: "OK"}])
+            return
+        } else if ( password.length == 0 ) {
+            Alert.alert("Invalid Registration", "Please enter your password.", [{text: "OK"}])
+            return
+        } else if ( username.length < 8 ) {
+            Alert.alert("Invalid Registration", "Username should be at least 8 characters long.", [{text: "OK"}])
+            return
+        } else if ( password.length < 8) {
+            Alert.alert("Invalid Registration", "Password should be at least 8 characters long.", [{text: "OK"}])
+            return
+        } 
+        
+
+        var temp = await checkUserName(username);
+        if (temp) {
+            Alert.alert("Invalid Registration", "Username already existed!", [{text: "OK"}])
+        } else {
+            registerUser( {"firstName": firstName,
+            "lastName": lastName,
+            "username": username,
+            "password":password,
+            "userType":"normal",
+            "favoriteBooks":[]})
+            Alert.alert("You are all set!", "Congratulations, your account has been successfully created!", [{text: "OK"}])
+            setFirstName("")
+            setLastName("")
+            setUserName("")
+            setPassWord("")
+            navigation.navigate("SignIn")
+        }   
+        
     }
 
     return(
