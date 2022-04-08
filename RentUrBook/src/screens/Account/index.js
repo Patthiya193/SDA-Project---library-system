@@ -72,11 +72,31 @@ const Account = ({navigation, userData}) => {
         return <Item item={item} onPress={item.onPress} />
     }
 
+    var showFirstName = ""
+    var showLastName = ""
+
     if (user["username"]) {
+        if (user["firstName"].length + user["lastName"].length > 13) {
+            if (user["firstName"].length > 10) {
+                showFirstName = user["firstName"].substring(0,12 )+"..."
+            }
+            else {
+                showFirstName = user["firstName"]
+                showLastName = user["lastName"][0].toUpperCase()+"."
+            }
+        }
         return(
             <View style={styles.background}>
                 <View style={styles.top}>
-                    <Text style={styles.nameText}>{user["firstName"]} {user["lastName"]}</Text>
+                    <View style={styles.rowText}>
+                        <Text style={styles.nameText}>{showFirstName} </Text>
+                        <Text style={styles.nameText}>{showLastName}</Text>
+                    </View>
+                    <View style={styles.rowText}>
+                        <Text style={styles.idText}>ID: {user["id"]}</Text>
+                        <Text style={styles.idText}>Username: {user["username"]}</Text>
+
+                    </View>
                 </View>
                 <View style={{flex:3.5}}>
                     <FlatList style={styles.mainBody}
@@ -92,7 +112,7 @@ const Account = ({navigation, userData}) => {
     else {
         return(
             <View style={styles.background}>
-                <View style={styles.top}>
+                <View style={styles.nonUserTop}>
                     <Text style={styles.nameText}>Account</Text>
 
                 </View>

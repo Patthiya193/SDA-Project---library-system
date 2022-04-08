@@ -78,7 +78,7 @@ const SignIn = ({navigation, route}) => {
                     <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9' 
                     onChangeText={newUserName => {
                         let value = newUserName
-					    value = value.replace(/[^A-Za-z0-9_]/gi, "")
+					    value = value.replace(/[^a-z0-9_]/gi, "")
                         setUserName(value)
                     }} 
                     value={username} />

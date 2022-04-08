@@ -32,14 +32,16 @@ const Register = ({navigation}) => {
             Alert.alert("Invalid Registration", "Password should be at least 8 characters long.", [{text: "OK"}])
             return
         } 
+        var tempFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase()
+        var tempLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase()
         
 
         var temp = await checkUserName(username);
         if (temp) {
             Alert.alert("Invalid Registration", "Username already existed!", [{text: "OK"}])
         } else {
-            registerUser( {"firstName": firstName,
-            "lastName": lastName,
+            registerUser( {"firstName": tempFirstName,
+            "lastName": tempLastName,
             "username": username,
             "password":password,
             "userType":"normal",
@@ -89,7 +91,7 @@ const Register = ({navigation}) => {
                     <TextInput placeholder='Username' style={styles.textInput} 
                     onChangeText={newUserName => {
                         let value = newUserName
-					    value = value.replace(/[^A-Za-z0-9_]/gi, "")
+					    value = value.replace(/[^a-z0-9_]/gi, "")
                         setUserName(value)
                     }} value={username}/>
                 </View>
