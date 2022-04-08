@@ -11,6 +11,7 @@ import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { loginUser, getUser } from "../../network/loginService";
 import Register from "../Register";
 import Main from "../Main"
+import { CommonActions, StackActions } from "@react-navigation/core";
 
 
 
@@ -48,7 +49,16 @@ const SignIn = ({navigation, route}) => {
             setUserName("")
             setPassWord("")
             console.log("send user", temp)
-            navigation.navigate('MainLoggedIn', {"userData":temp})
+            // navigation.dispatch (CommonActions.reset({
+            //     index:1,
+            //     routes: [{ name: 'SignIn'},
+            //     { name: 'MainLoggedIn', params: {"userData":{temp}} },
+            //     { name: 'Register' },
+            //     { name:'MainGuest', params: {"userData":{}}}],
+            // }));
+            navigation.dispatch( StackActions.popToTop())
+            navigation.dispatch( StackActions.replace('MainLoggedIn', {"userData":temp}))
+            // navigation.navigate('MainLoggedIn', {"userData":temp})
         }
         
 
