@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { View, Dimensions, ScrollView, Text, TextInput, Button, Alert } from "react-native";
+import { View, Dimensions, ScrollView, Text, TextInput, Button, Alert, KeyboardAvoidingView } from "react-native";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUserCircle, faLock, faAddressCard } from '@fortawesome/free-solid-svg-icons';
@@ -71,7 +71,7 @@ const SignIn = ({navigation, route}) => {
                     <Text style={styles.iconText}> B </Text>
                 </View>
             </View>
-            <View style={styles.mainBody}>
+            <KeyboardAvoidingView behavior={"padding"} style={styles.mainBody}>
                 <Text style={styles.title}> Login to RentUrBook </Text>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faAddressCard } color='#A8AFB9' size={24} style={{margin:5}}/>
@@ -112,7 +112,7 @@ const SignIn = ({navigation, route}) => {
                         )}
                     </Pressable>
                 </View>
-            </View>
+            </KeyboardAvoidingView >
         </View>
         
     )

@@ -84,6 +84,9 @@ const Account = ({navigation, userData}) => {
                 showFirstName = user["firstName"]
                 showLastName = user["lastName"][0].toUpperCase()+"."
             }
+        } else {
+            showFirstName = user["firstName"]
+            showLastName = user["lastName"]
         }
         return(
             <View style={styles.background}>

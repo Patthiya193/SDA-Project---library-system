@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Dimensions, ScrollView, Text, TextInput, StyleSheet, Button, Alert, Pressable } from "react-native";
+import { View, Dimensions, ScrollView, Text, TextInput, StyleSheet, Button, Alert, Pressable, KeyboardAvoidingView } from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUserCircle, faLock, faPencil,faEnvelope, faPeopleRoof, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { styles } from "./styles";
 import { registerUser, getUser, checkUserName } from "../../network/userService";
+import { platform } from "os";
 
 const Register = ({navigation}) => {
     const [firstName, setFirstName] = useState("");
@@ -63,7 +64,7 @@ const Register = ({navigation}) => {
                     <Text style={styles.iconText}> B </Text>
                 </View>
             </View>
-            <View style={styles.mainBody}>
+            <KeyboardAvoidingView behavior={"padding"} style={styles.mainBody}>
                 <Text style={styles.title}> Welcome ! </Text>
 
                 <View style={styles.inputContainer}>
@@ -120,7 +121,7 @@ const Register = ({navigation}) => {
                             </Text>
                         )}
                     </Pressable>  
-            </View>
+            </KeyboardAvoidingView >
         </View>
     
     )
