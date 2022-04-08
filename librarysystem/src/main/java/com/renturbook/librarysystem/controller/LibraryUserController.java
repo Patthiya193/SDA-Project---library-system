@@ -53,6 +53,11 @@ public class LibraryUserController {
         return userService.login(username, password).get();
     }
 
+    @GetMapping("/checkusername/")
+    public boolean checkUserName(@RequestParam String username) {
+        return userService.checkUsername(username);
+    }
+
     @PostMapping
     public void registerNewUser(@RequestBody LibraryUser newUser) {
         userService.addNewUser(newUser);

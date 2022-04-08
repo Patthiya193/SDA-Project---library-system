@@ -54,10 +54,11 @@ export const styles = StyleSheet.create({
         paddingLeft: 10,
         borderRadius: 16,
     },
-
     textInput: {
+        width: Dimensions.get('window').width * 0.6,
         fontWeight: 'bold',
         paddingLeft: 10,
+        margin: 5,
     },
 
     RegisterButtonStyle: {
@@ -68,6 +69,8 @@ export const styles = StyleSheet.create({
         borderRadius: 16,
         elevation: 3,
         backgroundColor: '#6C70EB',
+        marginTop: 30,
+        marginBottom: 20
     },
     ReText: {
         color: '#FFFFFF',

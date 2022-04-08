@@ -45,6 +45,7 @@ const SignIn = ({navigation, route}) => {
             setData(temp)
             setUserName("")
             setPassWord("")
+            console.log("send user", temp)
             navigation.navigate('Main', {"userData":temp})
         }
         
@@ -65,7 +66,7 @@ const SignIn = ({navigation, route}) => {
                     <TextInput placeholder='Username' style={styles.textInput} placeholderTextColor='#A8AFB9' 
                     onChangeText={newUserName => {
                         let value = newUserName
-					    value = value.replace(/[^A-Za-z0-9]/gi, "")
+					    value = value.replace(/[^A-Za-z0-9_]/gi, "")
                         setUserName(value)
                     }} 
                     value={username} />
@@ -75,7 +76,7 @@ const SignIn = ({navigation, route}) => {
                     <TextInput placeholder='Password' style={styles.textInput} placeholderTextColor='#A8AFB9' 
                     onChangeText={newPassWord => {
                         let value = newPassWord
-					    value = value.replace(/[^A-Za-z]/gi, "")
+					    value = value.replace(/[^A-Za-z0-9_]/gi, "")
                         setPassWord(value)
                     }} 
                     value={password}  secureTextEntry={true}/>
