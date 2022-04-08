@@ -9,6 +9,8 @@ import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 import { loginUser, getUser } from "../../network/loginService";
+import Register from "../Register";
+import Main from "../Main"
 
 
 
@@ -46,7 +48,7 @@ const SignIn = ({navigation, route}) => {
             setUserName("")
             setPassWord("")
             console.log("send user", temp)
-            navigation.navigate('Main', {"userData":temp})
+            navigation.navigate('MainLoggedIn', {"userData":temp})
         }
         
 
