@@ -113,7 +113,7 @@ const Home = ({navigation, route}) => {
                     </Pressable>
                 </View>
             </View>
-            <TabView style={{flex: 3.5}}
+            <TabView style={{flex: 4}}
                 navigationState={{ index, routes }}
                 renderScene={renderScene}
                 onIndexChange={setIndex}
