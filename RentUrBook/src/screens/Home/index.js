@@ -18,6 +18,7 @@ import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 
 import { TabView } from 'react-native-tab-view';
 
+//Temporary - delete when implement api
 const DATA = [{
     id: "1",
     title: "First item",
@@ -101,9 +102,15 @@ const Home = ({navigation, route}) => {
         <View style={styles.background}>
             <View style={styles.top}>
                 <Text style={styles.title}>Home</Text>
-                <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
-                    <TextInput placeholder='Search for books' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
+                <View style={styles.topContainer}>
+                    <View style={styles.inputContainer}>
+                        <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
+                        <TextInput placeholder='Search for books' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
+                    </View>
+                    <Pressable onPress={ console.log("search") } 
+                        style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#ffffff'}, styles.searchButton]}>
+                        <FontAwesomeIcon icon={ faSearch } color='#6C70EB' size={24}  />
+                    </Pressable>
                 </View>
             </View>
             <TabView style={{flex: 3.5}}
