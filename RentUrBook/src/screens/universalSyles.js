@@ -19,6 +19,13 @@ export const body = StyleSheet.create({
         paddingHorizontal: 30,
         paddingTop: 30,
     },
+    title: {
+        fontSize: 32,
+        fontWeight: 'bold',
+        color: 'white',
+        marginTop: 30,
+        marginBottom: 30,
+    },
 })
 export const searchBarStyle = StyleSheet.create({
     topContainer: {
