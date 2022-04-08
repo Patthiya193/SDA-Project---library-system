@@ -48,16 +48,17 @@ const Home = ({navigation, route, userData}) => {
 
     const [index, setIndex] = useState(0);
     const [routes] = useState([
-        { key: 'first', title: 'Art' },
-        { key: 'second', title: 'Cartoon' },
-        { key: 'third', title: 'Cooking' },
-        { key: 'fourth', title: 'Education' },
-        { key: 'fifth', title: 'Health' },
-        { key: 'sixth', title: 'History' },
-        { key: 'seventh', title: 'Magazine'},
-        { key: 'eighth', title: 'Novel' },
-        { key: 'ninth', title: 'Technology' },
-        { key: 'tenth', title: 'Travel' },
+        { key: 'ALL', title: 'All'},
+        { key: 'ART', title: 'Art' },
+        { key: 'CARTOON', title: 'Cartoon' },
+        { key: 'COOKING', title: 'Cooking' },
+        { key: 'EDUCATION', title: 'Education' },
+        { key: 'HEALTH', title: 'Health' },
+        { key: 'HISTORY', title: 'History' },
+        { key: 'MAGAZINE', title: 'Magazine'},
+        { key: 'NOVEL', title: 'Novel' },
+        { key: 'TECH', title: 'Technology' },
+        { key: 'TRAVEL', title: 'Travel' },
     ]);
 
     const renderBook = ({item, onPress}) => {

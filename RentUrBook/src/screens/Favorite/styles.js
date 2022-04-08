@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         backgroundColor: '#6C70EB',
     },
     top: {
-        flex: 1.35,
+        // flex: 1.35,
         alignItems: 'center',
         paddingTop: "10%",
     },

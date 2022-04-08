@@ -22,7 +22,7 @@ const Notifications = ({userData}) => {
                         <TextInput placeholder='Search for books' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
                     </View> */}
                 </View>
-                <View style={styles.mainBody}>
+                <View style={{flex:3.5}}>
                     <FlatList style={styles.mainBody}/>
                 </View>
                 
