@@ -17,10 +17,10 @@ const Favorite = ({userData}) => {
             <View style={styles.background}>
                 <View style={styles.top}>
                     <Text style={styles.title}>Favorite</Text>
-                    <View style={styles.inputContainer}>
+                    {/* <View style={styles.inputContainer}>
                         <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
                         <TextInput placeholder='Search for books' style={styles.textInput} placeholderTextColor='#A8AFB9'/>
-                    </View>
+                    </View> */}
                 </View>
                 <View style={styles.mainBody}>
                     <FlatList style={styles.mainBody}/>
