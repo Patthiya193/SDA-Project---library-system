@@ -83,15 +83,21 @@ export const styles = StyleSheet.create({
     textContainer: {
         flex: 1,
         paddingTop: StatusBar.currentHeight,
+        width: '100%',
+        height:'53%',
+
       },
       scrollView: {
         backgroundColor: '#F9FAFB',
         marginHorizontal: 5,
         marginTop: 30,
         marginBottom: 5,
+        
+        
       },
       text: {
         fontSize: 16,
+        textAlign: 'left',
       },
     bottomContainer:{
         flex: 0,
@@ -122,7 +128,8 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 20,
         color:'#EF5DA8',
-        marginBottom: 10
+        marginBottom: 10,
+        textAlign: 'left',
 
     },
 
