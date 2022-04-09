@@ -16,6 +16,6 @@ export const getAllBook = async () => {
     // const json = await response.json()
 
     
-    console.log( "GET all book json ", returnResp.data)
+    //console.log( "GET all book json ", returnResp.data)
     return returnResp.data
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { View, Text, TextInput, FlatList, Pressable } from "react-native";
 
@@ -85,28 +85,30 @@ const Home = ({navigation, route, userData}) => {
             // console.log(index)
             return <View/>;
         }
-        
-        var displayData = [];
-        bookData.forEach(book => {
-            let sub = "by "
-            book["authors"].forEach((author, i) => {
-                if ( i == book["authors"].length - 1) {
-                    sub = sub + author
-                }
-                else {
-                    sub = sub + author + ", "
 
-                }
-            })
-            displayData.push( 
-                {
-                    id: book["id"],
-                    title: book["bookName"],
-                    subtitle: sub,
-                    type: "1",
-                }
-            )
-        })
+        var displayData = [];
+        if ( bookData)
+        {
+                bookData.forEach(book => {
+                let sub = "by "
+                book["authors"].forEach((author, i) => {
+                    if ( i == book["authors"].length - 1) {
+                        sub = sub + author
+                    }
+                    else {
+                        sub = sub + author + ", "
+
+                    }
+                })
+                displayData.push( 
+                    {
+                        id: book["id"],
+                        title: book["bookName"],
+                        subtitle: sub,
+                        type: "1",
+                    }
+                )
+            })}
         // setBookDisplayData(displayData)
 
         return <FlatList data={displayData} 
@@ -116,8 +118,10 @@ const Home = ({navigation, route, userData}) => {
                 />;
     };
 
-    findBookData()
-
+    useEffect(() => {
+        // Update the document title using the browser API
+        //findBookData()
+    });
 
     return(
         <View style={body.background}>
