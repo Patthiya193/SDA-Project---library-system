@@ -8,13 +8,18 @@ import { faHeart, faHouse} from '@fortawesome/free-solid-svg-icons';
 import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { body, bookItemStyles } from "../universalSyles";
+import { CommonActions, StackActions } from "@react-navigation/core";
 
 import { BookPic } from "./BookPic";
+import { borrowBook } from "../../network/bookService"
+import { addFav, removeFav } from "../../network/userService"
 
 const BookDetail = ({navigation, route}) => {
     //console.log("Book data ", route.params)
     const [book, setBook] = useState(route.params["bookParam"])
-    const [userData, setUserData] = useState(route.params["userData"]["userData"])
+    const [userData, setUserData] = useState(route.params["userData"])
+    const [fav, setFav] = useState( route.params["favorite"])
+    const [favButtonColor, setFavButtonColor] = useState({"fav": "#FF8886", "not fav":"#A8AFB9"})
     console.log("Book", book, userData)
     var author = "by "
     book["authors"].forEach((a, i) => {
@@ -31,16 +36,41 @@ const BookDetail = ({navigation, route}) => {
         Alert.alert("Borrow", "Please pick the book up within today .", [{text: "OK"}])
         return
     }
-    const addFavoritos = async () => {
-        console.log("Add to favorite")
+    const addFavorites = () => {
+        if ( fav == "fav") {
+            setFav("not fav")
+            let ind = userData["favoriteBooks"].indexOf(book["id"])
+            userData["favoriteBooks"].splice(ind, 1)
+            removeFav( userData["id"],book["id"])
+
+        }
+        else {
+            setFav("fav")
+            userData["favoriteBooks"].push(book["id"])
+            addFav( userData["id"],book["id"])
+
+        }
+        console.log("type: ", typeof book["id"],typeof userData["id"])
+
+    }
+    
+    const onPressHome = () => {
+        // navigation.dispatch( StackActions.popToTop())
+        navigation.dispatch( StackActions.replace('MainLoggedIn', {"userData":userData}))
     }
 
     if (userData["userType"] == "normal" ){
         return(
             <View style={body.background}>
             <View style={styles.top}>
-                    
+                
+                <View style={styles.topContainer}>
+
+                <TouchableOpacity onPress={onPressHome}>
+                        <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  style={styles.iconStcyle}/>
+                    </TouchableOpacity>
                     <Text style={body.title}>Book Detail </Text>
+                </View>
             </View>
             <BookPic />
             
@@ -66,8 +96,8 @@ const BookDetail = ({navigation, route}) => {
                     <Pressable style = {styles.borrowButtonStyle} onPress = {onPressBorrow}>
                             <Text style={styles.borrowText}> Borrow </Text>
                     </Pressable>
-                    <TouchableOpacity onPress={() => addFavoritos()}>
-                    <FontAwesomeIcon icon={ faHeart } color='#A8AFB9' size={35} style={{margin:5}}/>
+                    <TouchableOpacity onPress={() => addFavorites()}>
+                    <FontAwesomeIcon icon={ faHeart } color={favButtonColor[fav]} size={35} style={{margin:5}}/>
                     </TouchableOpacity>
 
     
@@ -81,7 +111,7 @@ const BookDetail = ({navigation, route}) => {
        
         </View>
         )}
-        
+
     else if (userData["userType"] == "admin" ){
             return(
                 <View style={body.background}>
@@ -113,7 +143,7 @@ const BookDetail = ({navigation, route}) => {
                         <Pressable style = {styles.borrowButtonStyle} onPress = {onPressBorrow}>
                                 <Text style={styles.borrowText}> Borrow </Text>
                         </Pressable>
-                        <TouchableOpacity onPress={() => addFavoritos()}>
+                        <TouchableOpacity onPress={addFavorites}>
                         <FontAwesomeIcon icon={ faHeart } color='#A8AFB9' size={35} style={{margin:5}}/>
                         </TouchableOpacity>
     
@@ -173,9 +203,7 @@ const BookDetail = ({navigation, route}) => {
 export default BookDetail;
 
 //HOME
-/*<TouchableOpacity onPress={() => addFavoritos()}>
-                        <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={35} style={styles.iconStyle}/>
-                    </TouchableOpacity> */
+/* */
 //                    Ever since Harry Potter had come home for the summer, the Dursleys had been so mean and hideous that all Harry wanted was to get back to the Hogwarts School for Witchcraft and Wizardry. But just as he’s packing his bags, Harry receives a warning from a strange impish creature who says that if Harry returns to Hogwarts, disaster will strike.
 /*<View style = {styles.bottomContainer}>
                 <Pressable style = {styles.borrowButtonStyleNoFav} onPress = {onPressBorrow}>

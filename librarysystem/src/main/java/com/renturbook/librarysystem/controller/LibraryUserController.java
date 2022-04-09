@@ -84,7 +84,7 @@ public class LibraryUserController {
         userService.addNewUser( temp3);
     }
 
-    @PatchMapping("/addfav/")
+    @GetMapping("/addfav/")
     public void addFavBookById( @RequestParam Long userId, @RequestParam Long bookId) {
         LibraryUser user = getById(userId);
         if ( user.getFavoriteBooks().contains(bookId) ) {
@@ -93,7 +93,7 @@ public class LibraryUserController {
         userService.addFavBookById( userId, bookId );
     }
 
-    @PatchMapping("/removefav/")
+    @GetMapping("/removefav/")
     public void removeFavBookById( @RequestParam Long userId, @RequestParam Long bookId) {
         LibraryUser user = getById(userId);
         System.out.println("######################\n" +user.getFavoriteBooks());

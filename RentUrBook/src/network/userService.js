@@ -1,4 +1,4 @@
-import { userLoginApi, getUserApi, registerUserApi, getUserByIdApi, checkUserNameApi } from "../utils/ipaddr"; 
+import { userLoginApi, getUserApi, registerUserApi, getUserByIdApi, checkUserNameApi, addFavApi, removeFavApi} from "../utils/ipaddr"; 
 import { SALT } from "../utils/pwdcrypt";
 var bcrypt = require('bcryptjs')
 import axios from 'axios'
@@ -67,5 +67,14 @@ export const checkUserName = async (inUserName) => {
     
     console.log( "GET check username json ", returnResp.data)
     return returnResp.data
+    
+}
+
+export const addFav = (usrId, book) => {
+    axios.get(addFavApi, {params: {userId: usrId, bookId: book}}).catch(error => console.error(error))
+    
+}
+export const removeFav = (usrId, book) => {
+    axios.get(removeFavApi, {params: {userId: usrId, bookId: book}}).catch(error => console.error(error))
     
 }

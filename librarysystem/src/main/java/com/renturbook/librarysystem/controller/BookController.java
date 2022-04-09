@@ -93,7 +93,7 @@ public class BookController {
         bookService.removeGenreById( bookId, genre );
     }
 
-    @PatchMapping("/borrow")
+    @PatchMapping("/borrow/")
     @ResponseBody
     public Book borrowBook( @RequestParam Long bookId, @RequestParam Long callerID) {
         Book tempBook = bookService.getById(bookId);

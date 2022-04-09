@@ -4,11 +4,13 @@ import { StyleSheet, Dimensions, StatusBar } from "react-native";
 export const styles = StyleSheet.create({
 
     top: {
-        flex: 1.5,
-        alignItems: 'center',
-        paddingTop: "10%",
-        //flexDirection: 'row',
-        //marginTop: 0,
+        flex: 1.75,
+        // alignItems: 'center',
+        // paddingTop: "10%",
+        // justifyContent: 'space-between',
+        // flexDirection: 'row',
+        marginTop: 0,
+        
         
     },
     topContainer: {
@@ -16,13 +18,15 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: "10%",
         flexDirection: 'row',
-        marginTop: -150,
-        paddingLeft: "30%",
-    
+        // marginTop: -150,
+        marginLeft:30,
+        marginRight: Dimensions.get('window').width * 0.305,
+        justifyContent: 'space-between',
+
     },
     
     iconStyle:{
-        marginRight:80, 
+        marginRight: 10,
         margitLeft:10
     },
     
@@ -38,18 +42,19 @@ export const styles = StyleSheet.create({
     },
 
     borrowButtonStyle: {
-        // alignItems: ,
+        alignItems: 'center',
         // justifyContent: 'center',
-
+        width: Dimensions.get('window').width * 0.65,
         paddingVertical: 18,
         paddingHorizontal: 80,
         borderRadius: 16,
         backgroundColor: '#EF5DA8',
         marginTop: 15,
         marginBottom: 15, 
-        right: 50,
+        right: 30,
+        
        },
-       borrowButtonStyleNoFav: {
+    borrowButtonStyleNoFav: {
         alignItems:'center' ,
         // justifyContent: 'center',
         //textAlign: 'center',

@@ -1,4 +1,4 @@
-import { getAllBookApi } from "../utils/ipaddr"; 
+import { getAllBookApi, borrowBookApi } from "../utils/ipaddr"; 
 import { SALT } from "../utils/pwdcrypt";
 var bcrypt = require('bcryptjs')
 import axios from 'axios'
@@ -18,4 +18,31 @@ export const getAllBook = async () => {
     
     //console.log( "GET all book json ", returnResp.data)
     return returnResp.data
+}
+
+export const borrowBook = (bkId, usrId) => {
+    console.log("type: ", typeof bkId,typeof usrId)
+
+    axios.patch(borrowBookApi,{ params: {bookId:bkId, callerId:usrId}})
+    // .then(response => {
+    //     return response
+    // })
+    .catch(error => {
+        // console.log("GET ERROR", error)
+        console.error(error)
+    })
+    // const returnResp = axios.patch(borrowBookApi,{ params: {bookId:bkId, callerId:usrId}})
+    // .then(response => {
+    //     return response
+    // })
+    // .catch(error => {
+    //     // console.log("GET ERROR", error)
+    //     return []
+    // })
+    // console.log('GET Response is', response)
+    // const json = await response.json()
+
+    
+    //console.log( "GET all book json ", returnResp.data)
+    // return returnResp.data
 }

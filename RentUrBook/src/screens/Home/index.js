@@ -15,6 +15,7 @@ import { Item } from "../../components/render/item";
 
 import { TabView } from 'react-native-tab-view';
 import { getAllBook } from "../../network/bookService"
+import { CommonActions, StackActions } from "@react-navigation/core";
 
 //Temporary - delete when implement api
 const DATA = [{
@@ -72,9 +73,15 @@ const Home = ({navigation, route, userData}) => {
     const renderBook = ({item, onPress}) => {                
 
         return <Item item={item} onPress={() => {
-            
+            var fav = "not fav";
             console.log("item  +++++ press",item["bookObject"], userData["userData"])
-            navigation.navigate("BookDetail", {bookParam: item["bookObject"], userData:userData})}}/>
+            if (userData["userData"]["favoriteBooks"].includes(item["id"])) {
+                fav = "fav"
+            }
+            // navigation.dispatch( StackActions.popToTop())
+            navigation.dispatch( StackActions.replace("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], favorite:fav}))
+            // navigation.navigate("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], favorite:fav})
+        }}/>
     }
 
     const findBookData = async () => {
