@@ -23,7 +23,7 @@ export const getAllBook = async () => {
 export const borrowBook = (bkId, usrId) => {
     console.log("type: ", typeof bkId,typeof usrId)
 
-    axios.patch(borrowBookApi,{ params: {bookId:bkId, callerId:usrId}})
+    axios.get(borrowBookApi,{ params: {bookId:bkId, callerId:usrId}})
     // .then(response => {
     //     return response
     // })

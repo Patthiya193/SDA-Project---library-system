@@ -93,12 +93,12 @@ public class BookController {
         bookService.removeGenreById( bookId, genre );
     }
 
-    @PatchMapping("/borrow/")
+    @GetMapping("/borrow/")
     @ResponseBody
-    public Book borrowBook( @RequestParam Long bookId, @RequestParam Long callerID) {
+    public Book borrowBook( @RequestParam Long bookId, @RequestParam Long callerId) {
         Book tempBook = bookService.getById(bookId);
         tempBook.generateState();
-        tempBook.pressBorrow(callerID);
+        tempBook.pressBorrow(callerId);
         bookService.saveBook(tempBook);
         return tempBook;
     }

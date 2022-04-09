@@ -41,19 +41,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
-    borrowButtonStyle: {
-        alignItems: 'center',
-        // justifyContent: 'center',
-        width: Dimensions.get('window').width * 0.65,
-        paddingVertical: 18,
-        paddingHorizontal: 80,
-        borderRadius: 16,
-        backgroundColor: '#EF5DA8',
-        marginTop: 15,
-        marginBottom: 15, 
-        right: 30,
-        
-       },
+    
     borrowButtonStyleNoFav: {
         alignItems:'center' ,
         // justifyContent: 'center',
@@ -62,7 +50,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 18,
         paddingHorizontal: 80,
         borderRadius: 16,
-        backgroundColor: '#EF5DA8',
+        // backgroundColor: '#EF5DA8',
         marginTop: 15,
         marginBottom: 15, 
        },
@@ -137,7 +125,72 @@ export const styles = StyleSheet.create({
         textAlign: 'left',
 
     },
+    // borrowButtonStyle: {
+            
+    //     alignItems: 'center',
+    //     // justifyContent: 'center',
+    //     width: Dimensions.get('window').width * 0.65,
+    //     paddingVertical: 18,
+    //     paddingHorizontal: 80,
+    //     borderRadius: 16,
+    //     backgroundColor: '#EF5DA',
+    //     marginTop: 15,
+    //     marginBottom: 15, 
+    //     right: 30,
+                
+    //     },
+    borrowButtonStyle: {
+        "available":{
+            alignItems: 'center',
+            // justifyContent: 'center',
+            width: Dimensions.get('window').width * 0.65,
+            paddingVertical: 18,
+            paddingHorizontal: 80,
+            borderRadius: 16,
+            backgroundColor: '#EF5DA',
+            marginTop: 15,
+            marginBottom: 15, 
+            right: 30,
+            
+           },
+           "return":{
+            alignItems: 'center',
+            // justifyContent: 'center',
+            width: Dimensions.get('window').width * 0.65,
+            paddingVertical: 18,
+            paddingHorizontal: 80,
+            borderRadius: 16,
+            backgroundColor: '#C1D1DB',
+            marginTop: 15,
+            marginBottom: 15, 
+            right: 30,
+            
+           },"reserved":{
+            alignItems: 'center',
+            // justifyContent: 'center',
+            width: Dimensions.get('window').width * 0.65,
+            paddingVertical: 18,
+            paddingHorizontal: 80,
+            borderRadius: 16,
+            backgroundColor: '#999999',
+            marginTop: 15,
+            marginBottom: 15, 
+            right: 30,
+            
+           },"unavailable":{
+            alignItems: 'center',
+            // justifyContent: 'center',
+            width: Dimensions.get('window').width * 0.65,
+            paddingVertical: 18,
+            paddingHorizontal: 80,
+            borderRadius: 16,
+            backgroundColor: '#99999',
+            marginTop: 15,
+            marginBottom: 15, 
+            right: 30,
+            
+           },
+    },
 
     
-
 })

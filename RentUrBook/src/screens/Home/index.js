@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Text, TextInput, FlatList, Pressable } from "react-native";
+import { View, Text, TextInput, FlatList, Pressable ,Dimensions} from "react-native";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -74,12 +74,18 @@ const Home = ({navigation, route, userData}) => {
 
         return <Item item={item} onPress={() => {
             var fav = "not fav";
+            var borrowButton = item["bookObject"]["curState"]
             console.log("item  +++++ press",item["bookObject"], userData["userData"])
-            if (userData["userData"]["favoriteBooks"].includes(item["id"])) {
-                fav = "fav"
-            }
+            if ( userData["userData"]["favoriteBooks"])
+                {if (userData["userData"]["favoriteBooks"].includes(item["id"])) {
+                    fav = "fav"
+                }
+                if ( borrowButton == "reserved" && item["bookObject"]["borrowedBy"] == userData["userData"]["id"]) {
+                    borrowButton = "return"
+                } }
             // navigation.dispatch( StackActions.popToTop())
-            navigation.dispatch( StackActions.replace("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], favorite:fav}))
+            navigation.dispatch( StackActions.replace("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], 
+            favorite:fav, borrowButtonState: borrowButton}))
             // navigation.navigate("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], favorite:fav})
         }}/>
     }
