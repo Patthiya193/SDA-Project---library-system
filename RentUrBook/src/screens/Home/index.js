@@ -14,6 +14,7 @@ import { ItemDivider } from "../../components/render/itemDivider"
 import { Item } from "../../components/render/item";
 
 import { TabView } from 'react-native-tab-view';
+import { getAllBook } from "../../network/bookService"
 
 //Temporary - delete when implement api
 const DATA = [{
@@ -50,6 +51,8 @@ const DATA = [{
 
 const Home = ({navigation, route, userData}) => {
     console.log('Home: current user',userData)
+    const [bookData, setBookData] = useState([])
+    const [bookDisplayData, setBookDisplayData] = useState([])
 
     const [index, setIndex] = useState(0);
     const [routes] = useState([
@@ -69,6 +72,12 @@ const Home = ({navigation, route, userData}) => {
     const renderBook = ({item, onPress}) => {
         return <Item item={item} onPress={console.log("Pressed")}/>
     }
+
+    const findBookData = async () => {
+        var temp = await getAllBook()
+        setBookData(temp)
+    }
+    
     
     // Only render the scene for 2 routes at each sides (performance purpose)
     const renderScene = ({ route }) => {
@@ -77,7 +86,28 @@ const Home = ({navigation, route, userData}) => {
             return <View/>;
         }
         
-        const displayData = DATA;
+        var displayData = [];
+        bookData.forEach(book => {
+            let sub = "by "
+            book["authors"].forEach((author, i) => {
+                if ( i == book["authors"].length - 1) {
+                    sub = sub + author
+                }
+                else {
+                    sub = sub + author + ", "
+
+                }
+            })
+            displayData.push( 
+                {
+                    id: book["id"],
+                    title: book["bookName"],
+                    subtitle: sub,
+                    type: "1",
+                }
+            )
+        })
+        // setBookDisplayData(displayData)
 
         return <FlatList data={displayData} 
                 renderItem={renderBook}
@@ -85,6 +115,9 @@ const Home = ({navigation, route, userData}) => {
                 style={body.mainBody} 
                 />;
     };
+
+    findBookData()
+
 
     return(
         <View style={body.background}>
