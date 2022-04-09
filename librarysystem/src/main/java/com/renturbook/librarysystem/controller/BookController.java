@@ -57,15 +57,15 @@ public class BookController {
         return bookList;
     }
 
-    @GetMapping("/type/")
-    @ResponseBody
-    public List<Book> getBookByType( @RequestParam String type) {
-        List<Book> bookList = bookService.getByType(type);
-        for (Book b : bookList) {
-            b.generateState();
-        }
-        return bookList;
-    }
+//    @GetMapping("/type/")
+//    @ResponseBody
+//    public List<Book> getBookByType( @RequestParam String type) {
+//        List<Book> bookList = bookService.getByType(type);
+//        for (Book b : bookList) {
+//            b.generateState();
+//        }
+//        return bookList;
+//    }
 
     @GetMapping("/genre/")
     public List<Book> getBookByGenre( @RequestParam String genre ) {
@@ -110,10 +110,10 @@ public class BookController {
 
     @PostMapping("/test")
     public void addTestBook() {
-        Book temp = new Book("isbn", "test book","NOVEL", "this book so good",
-                "available", 0L, List.of("DRAMA", "SCI-FI"),List.of("author1", "author2"));
+        Book temp = new Book("isbn", "Test book", "this book so good",
+                "available", 0L, List.of("ART", "CARTOON"),List.of("author1", "author2"));
         bookService.saveBook(temp);
-        Book temp2 = new Book("isbn2", "私の最後の日","SONG BOOK",
+        Book temp2 = new Book("isbn2", "私の最後の日",
                 "原稿なんていらない\n" +
                         "だって到底　描ききれないや\n" +
                         "台本だっていらない\n" +
@@ -127,7 +127,7 @@ public class BookController {
                         "誤魔化して隠す　悪い癖\n" +
                         "「約束」なんて言えない\n" +
                         "束ねたまましまった\n"
-                , "available", 0L, List.of("SCI-FI"),List.of("author3"));
+                , "available", 0L, List.of("MAGAZINE"),List.of("yourness"));
         bookService.saveBook(temp2);
     }
 

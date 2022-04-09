@@ -50,7 +50,7 @@ const Main = ({navigation, route}) => {
         _handleIndexChange(tabIndex)
     }
     const _renderTabScene = BottomNavigation.SceneMap({
-        home: () => <Home userData={userData}/>,
+        home: () => <Home userData={userData} navigation={navigation}/>,
         favorite: () => <Favorite userData={userData} />,
         notifications: () => <Notifications userData={userData} />,
         account: () => <Account navigation={navigation} userData={userData}/>

@@ -26,7 +26,6 @@ public class Book {
     private Long id;
     private String isbn;
     private String bookName;
-    private String bookType;
     private Long borrowedBy;
     private String curState;
     private String description;
@@ -57,11 +56,10 @@ public class Book {
 
     }
 
-    public Book(String isbn,String bookName, String bookType, String description, String currentState, Long borrowedBy, List<String> genre, List<String> authors) {
+    public Book(String isbn,String bookName, String description, String currentState, Long borrowedBy, List<String> genre, List<String> authors) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.authors = authors;
-        this.bookType = bookType;
         this.description = description;
         this.genre = genre;
 //        this.coverImage = "";
@@ -142,20 +140,15 @@ public class Book {
         }
     }
 
-    public String getBookType() { return bookType; }
-
     public void pressBorrow(Long callerID ) {
         this.currentState.pressBorrow(callerID);
     }
-
-    public void setBookType( String newBookType) { this.bookType = newBookType; }
 
     @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
                 ", bookName='" + bookName + '\'' +
-                ", category='" + bookType + '\'' +
                 ", genre='" + genre + '\'' +
                 ", borrowedBy=" + borrowedBy +
                 ", curState='" + curState + '\'' +

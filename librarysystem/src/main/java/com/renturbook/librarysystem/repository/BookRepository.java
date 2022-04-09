@@ -19,8 +19,8 @@ public interface BookRepository
     @Query("SELECT b FROM Book b WHERE b.isbn = :isbn")
     List<Book> findBookByIsbn(String isbn);
 
-    @Query("SELECT b FROM Book b WHERE b.bookType = :type")
-    List<Book> findBookByType( String type);
+//    @Query("SELECT b FROM Book b WHERE b.bookType = :type")
+//    List<Book> findBookByType( String type);
 
     @Query("SELECT b FROM Book b JOIN b.genre gen WHERE :genre = gen")
     List<Book> findBookByGenre( String genre);

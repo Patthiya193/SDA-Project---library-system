@@ -50,7 +50,7 @@ const DATA = [{
 ]
 
 const Home = ({navigation, route, userData}) => {
-    console.log('Home: current user',userData)
+    //console.log('Home: current user',userData)
     const [bookData, setBookData] = useState([])
     const [bookDisplayData, setBookDisplayData] = useState([])
 
@@ -69,8 +69,12 @@ const Home = ({navigation, route, userData}) => {
         { key: 'TRAVEL', title: 'Travel' },
     ]);
 
-    const renderBook = ({item, onPress}) => {
-        return <Item item={item} onPress={console.log("Pressed")}/>
+    const renderBook = ({item, onPress}) => {                
+
+        return <Item item={item} onPress={() => {
+            
+            console.log("item  +++++ press",item["bookObject"], userData["userData"])
+            navigation.navigate("BookDetail", {bookParam: item["bookObject"], userData:userData})}}/>
     }
 
     const findBookData = async () => {
@@ -86,29 +90,36 @@ const Home = ({navigation, route, userData}) => {
             return <View/>;
         }
 
+
+
         var displayData = [];
         if ( bookData)
         {
                 bookData.forEach(book => {
-                let sub = "by "
-                book["authors"].forEach((author, i) => {
-                    if ( i == book["authors"].length - 1) {
-                        sub = sub + author
-                    }
-                    else {
-                        sub = sub + author + ", "
+                    if ( route["key"] == "ALL" || book["genre"].includes(route["key"]))
+                    {let sub = "by "
+                    book["authors"].forEach((author, i) => {
+                        if ( i == book["authors"].length - 1) {
+                            sub = sub + author
+                        }
+                        else {
+                            sub = sub + author + ", "
 
-                    }
+                        }
+                    })
+                    displayData.push( 
+                        {
+                            id: book["id"],
+                            title: book["bookName"],
+                            subtitle: sub,
+                            type: "1",
+                            bookObject: book
+                        }
+                    )}
                 })
-                displayData.push( 
-                    {
-                        id: book["id"],
-                        title: book["bookName"],
-                        subtitle: sub,
-                        type: "1",
-                    }
-                )
-            })}
+
+                
+            }
         // setBookDisplayData(displayData)
 
         return <FlatList data={displayData} 
@@ -120,7 +131,7 @@ const Home = ({navigation, route, userData}) => {
 
     useEffect(() => {
         // Update the document title using the browser API
-        //findBookData()
+        findBookData()
     });
 
     return(
@@ -132,7 +143,7 @@ const Home = ({navigation, route, userData}) => {
                         <FontAwesomeIcon icon={ faSearch } color='#A8AFB9' size={24}  />
                         <TextInput placeholder='Search for books' style={searchBarStyle.textInput} placeholderTextColor='#A8AFB9' clearButtonMode="while-editing"/>
                     </View>
-                    <Pressable onPress={ console.log("search") } 
+                    <Pressable onPress={() => console.log("search") } 
                         style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#ffffff'}, searchBarStyle.searchButton]}>
                         <FontAwesomeIcon icon={ faSearch } color='#6C70EB' size={24}  />
                     </Pressable>

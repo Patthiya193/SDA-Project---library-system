@@ -36,7 +36,7 @@ public class BookServiceImpl{
 
     public List<Book> getByIsbn( String isbn ) { return bookRepository.findBookByIsbn( isbn); }
 
-    public List<Book> getByType( String type ) { return bookRepository.findBookByType( type ); }
+//    public List<Book> getByType( String type ) { return bookRepository.findBookByType( type ); }
 
     public List<Book> getByGenre( String genre) {
 //        List<String> genreList = Arrays.asList(genres);
