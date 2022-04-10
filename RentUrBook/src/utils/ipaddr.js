@@ -11,3 +11,4 @@ export const getFavBookApi = `http://${ip}:8080/api/v1/user/favbook/`;
 
 export const getAllBookApi = `http://${ip}:8080/api/v1/book`;
 export const borrowBookApi = `http://${ip}:8080/api/v1/book/borrow/`;
+export const searchBookApi = `http://${ip}:8080/api/v1/book/name/`
