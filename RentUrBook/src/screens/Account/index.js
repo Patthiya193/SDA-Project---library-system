@@ -5,7 +5,7 @@ import { View, Text, TextInput, FlatList, TouchableHighlight, Alert } from "reac
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch, faPencil, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
-import { ItemDivider} from "./itemDivider"
+import { ItemDivider} from "../../components/render/itemDivider"
 import { styles } from "./styles";
 import { Item } from "./item"
 import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
