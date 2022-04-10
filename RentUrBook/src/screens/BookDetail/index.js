@@ -79,68 +79,6 @@ const BookDetail = ({navigation, route}) => {
         console.log(clr)
         return(
             <View style={body.background}>
-            <View style={styles.top}>
-                
-                <View style={styles.topContainer}>
-
-                <TouchableOpacity onPress={onPressHome}>
-                        <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  style={styles.iconStcyle}/>
-                    </TouchableOpacity>
-                    <Text style={body.title}>Book Detail </Text>
-                </View>
-            </View>
-            <BookPic />
-            
-            <View style={styles.mainBody}>
-                <View style={styles.bookContainer}>
-    
-                    {/* Book name */}
-                    <Text style = {styles.bookName}>{book["bookName"]} </Text> 
-                    {/* Book Author */}
-                    <Text style = {styles.bookAuthor}> {author} </Text> 
-                    
-                    
-                </View>
-                
-                <SafeAreaView style={styles.textContainer}>
-                    <ScrollView style={styles.scrollView}>
-                        {/* Book status */}
-                        <Text style = {styles.bookStatus}> Description: </Text> 
-                        <Text style={styles.text}>{book["description"]}</Text>
-                    </ScrollView>
-                </SafeAreaView>
-                <View style = {styles.bottomContainer}>
-                <Pressable style = {{alignItems: 'center',
-            // justifyContent: 'center',
-            width: Dimensions.get('window').width * 0.65,
-            paddingVertical: 18,
-            paddingHorizontal: 80,
-            borderRadius: 16,
-            backgroundColor: clr,
-            marginTop: 15,
-            marginBottom: 15, 
-            right: 30}} onPress = {onPressBorrow}>
-                            <Text style={styles.borrowText}> {borrowText[borrowButtonStatus]} </Text>
-                    </Pressable>
-                    <TouchableOpacity onPress={() => addFavorites()}>
-                    <FontAwesomeIcon icon={ faHeart } color={favButtonColor[fav]} size={35} style={{margin:5}}/>
-                    </TouchableOpacity>
-
-    
-                </View>
-                
-                
-            </View>
-            
-    
-    
-       
-        </View>
-        )}
-
-    else if (userData["userType"] == "admin" ){
-            return(
-                <View style={body.background}>
                 <View style={styles.top}>
                     
                     <View style={styles.topContainer}>
@@ -150,9 +88,11 @@ const BookDetail = ({navigation, route}) => {
                         </TouchableOpacity>
 
                         <Text style={body.title}>Book Detail </Text>
+                    </View>
+
                 </View>
                 <BookPic />
-                
+            
                 <View style={styles.mainBody}>
                     <View style={styles.bookContainer}>
         
@@ -161,6 +101,63 @@ const BookDetail = ({navigation, route}) => {
                         {/* Book Author */}
                         <Text style = {styles.bookAuthor}> {author} </Text> 
                         
+                        
+                    </View>
+                
+                    <SafeAreaView style={styles.textContainer}>
+                        <ScrollView style={styles.scrollView}>
+                            {/* Book status */}
+                            <Text style = {styles.bookStatus}> Description: </Text> 
+                            <Text style={styles.text}>{book["description"]}</Text>
+                        </ScrollView>
+                    </SafeAreaView>
+                    <View style = {styles.bottomContainer}>
+                        <Pressable style = {{alignItems: 'center',
+                            // justifyContent: 'center',
+                            width: Dimensions.get('window').width * 0.65,
+                            paddingVertical: 18,
+                            paddingHorizontal: 80,
+                            borderRadius: 16,
+                            backgroundColor: clr,
+                            marginTop: 15,
+                            marginBottom: 15, 
+                            right: 30}} onPress = {onPressBorrow}>
+                                    <Text style={styles.borrowText}> {borrowText[borrowButtonStatus]} </Text>
+                        </Pressable>
+                        <TouchableOpacity onPress={() => addFavorites()}>
+                            <FontAwesomeIcon icon={ faHeart } color={favButtonColor[fav]} size={35} style={{margin:5}}/>
+                        </TouchableOpacity>
+
+                    </View>        
+                
+                </View>
+            
+            </View>
+        )}
+
+    else if (userData["userType"] == "admin" ){
+        return(
+            <View style={body.background}>
+                <View style={styles.top}>
+                    
+                    <View style={styles.topContainer}>
+
+                        <TouchableOpacity onPress={onPressHome}>
+                            <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  style={styles.iconStcyle}/>
+                        </TouchableOpacity>
+
+                        <Text style={body.title}>Book Detail </Text>
+                    </View>
+                    
+                </View>
+                <BookPic />
+                <View style={styles.mainBody}>
+                    <View style={styles.bookContainer}>
+        
+                        {/* Book name */}
+                        <Text style = {styles.bookName}>{book["bookName"]} </Text> 
+                        {/* Book Author */}
+                        <Text style = {styles.bookAuthor}> {author} </Text> 
                         
                     </View>
                     
@@ -176,17 +173,12 @@ const BookDetail = ({navigation, route}) => {
                                 <Text style={styles.borrowText}> Edit </Text>
                         </Pressable>
     
-        
-                    </View>
-                    
+                    </View>    
                     
                 </View>
-                
-        
-        
-           
+            
             </View>
-            )}
+        )}
     else 
     {return(
         <View style={body.background}>
@@ -194,42 +186,36 @@ const BookDetail = ({navigation, route}) => {
                 
                 <View style={styles.topContainer}>
 
-                <TouchableOpacity onPress={onPressHome}>
+                    <TouchableOpacity onPress={onPressHome}>
                         <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  style={styles.iconStcyle}/>
                     </TouchableOpacity>
                     <Text style={body.title}>Book Detail </Text>
                 </View>
             </View>
-        <BookPic />
+            <BookPic />
         
-        <View style={styles.mainBody}>
-            <View style={styles.bookContainer}>
+            <View style={styles.mainBody}>
+                <View style={styles.bookContainer}>
 
-                {/* Book name */}
-                <Text style = {styles.bookName}>{book["bookName"]} </Text> 
-                {/* Book Author */}
-                <Text style = {styles.bookAuthor}> {author} </Text> 
+                    {/* Book name */}
+                    <Text style = {styles.bookName}>{book["bookName"]} </Text> 
+                    {/* Book Author */}
+                    <Text style = {styles.bookAuthor}> {author} </Text> 
                 
                 
+                </View>
+            
+                <SafeAreaView style={styles.textContainer}>
+                    <ScrollView style={styles.scrollView}>
+                        {/* Book status */}
+                        <Text style = {styles.bookStatus}> Description: </Text> 
+                        <Text style={styles.text}>{book["description"]}</Text>
+                    </ScrollView>
+                </SafeAreaView>
+            
             </View>
-            
-            <SafeAreaView style={styles.textContainer}>
-                <ScrollView style={styles.scrollView}>
-                    {/* Book status */}
-                    <Text style = {styles.bookStatus}> Description: </Text> 
-                    <Text style={styles.text}>{book["description"]}</Text>
-                </ScrollView>
-            </SafeAreaView>
-            
-            
-            
-            
-        </View>
-        
-
-
    
-    </View>
+        </View>
 
     )}
 }
