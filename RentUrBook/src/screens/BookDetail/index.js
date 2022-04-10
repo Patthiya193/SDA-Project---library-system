@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { View, ScrollView, Text, Button, Alert, KeyboardAvoidingView, SafeAreaView, TouchableOpacity,Dimensions } from "react-native";
+import { View, ScrollView, Text, Alert, KeyboardAvoidingView, SafeAreaView, TouchableOpacity,Dimensions } from "react-native";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHeart, faHouse} from '@fortawesome/free-solid-svg-icons';
