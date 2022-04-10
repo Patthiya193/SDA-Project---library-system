@@ -142,7 +142,13 @@ const BookDetail = ({navigation, route}) => {
             return(
                 <View style={body.background}>
                 <View style={styles.top}>
-                        
+                    
+                    <View style={styles.topContainer}>
+
+                        <TouchableOpacity onPress={onPressHome}>
+                            <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  style={styles.iconStcyle}/>
+                        </TouchableOpacity>
+
                         <Text style={body.title}>Book Detail </Text>
                 </View>
                 <BookPic />
