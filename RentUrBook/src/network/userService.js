@@ -1,4 +1,4 @@
-import { userLoginApi, getUserApi, registerUserApi, getUserByIdApi, checkUserNameApi, addFavApi, removeFavApi} from "../utils/ipaddr"; 
+import { userLoginApi, getFavBookApi, getUserApi, registerUserApi, getUserByIdApi, checkUserNameApi, addFavApi, removeFavApi} from "../utils/ipaddr"; 
 import { SALT } from "../utils/pwdcrypt";
 var bcrypt = require('bcryptjs')
 import axios from 'axios'
@@ -77,4 +77,21 @@ export const addFav = (usrId, book) => {
 export const removeFav = (usrId, book) => {
     axios.get(removeFavApi, {params: {userId: usrId, bookId: book}}).catch(error => console.error(error))
     
+}
+
+export const getFavBook = async (usrId) => {
+    const returnResp = await axios.get(getFavBookApi, { params: {userId:usrId}})
+    .then(response => {
+        return response
+    })
+    .catch(error => {
+        console.log("GET ERROR", error)
+        return []
+    })
+    // console.log('GET Response is', response)
+    // const json = await response.json()
+
+    
+    //console.log( "GET all book json ", returnResp.data)
+    return returnResp.data
 }

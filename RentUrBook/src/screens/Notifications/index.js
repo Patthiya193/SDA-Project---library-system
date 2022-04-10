@@ -8,38 +8,6 @@ import { body } from "../universalSyles";
 import { ItemDivider } from "../../components/render/itemDivider";
 import { Item } from "../../components/render/item";
 
-const DATA = [{
-    id: "1",
-    title: "First item",
-    subtitle: "subtitle",
-    type: "1",
-},
-{
-    id: "2",
-    title: "Second item",
-    subtitle: "subtitle",
-    type: "1",
-},
-{
-    id: "3",
-    title: "Third item",
-    subtitle: "subtitle",
-    type: "1",
-},
-{
-    id: "4",
-    title: "Forth item",
-    subtitle: "subtitle",
-    type: "1",
-},
-{
-    id: "5",
-    title: "Fifth item",
-    subtitle: "subtitle",
-    type: "1",
-},
-]
-
 const Notifications = ({userData}) => {
     console.log("Notifications: current user", userData)
     const [favBook, setFavBook] = useState(userData["userData"]["favoriteBooks"])

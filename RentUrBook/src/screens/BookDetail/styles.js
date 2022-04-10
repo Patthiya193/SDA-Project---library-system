@@ -17,9 +17,9 @@ export const styles = StyleSheet.create({
         paddingTop: "10%",
         flexDirection: 'row',
         // marginTop: -150,
-        // marginLeft:30,
-        // marginRight: Dimensions.get('window').width * 0.305,
-        justifyContent: 'center',
+        marginLeft:30,
+        marginRight: Dimensions.get('window').width * 0.305,
+        justifyContent: 'space-between',
 
     },
     
