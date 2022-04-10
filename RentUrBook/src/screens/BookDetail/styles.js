@@ -10,8 +10,6 @@ export const styles = StyleSheet.create({
         // justifyContent: 'space-between',
         // flexDirection: 'row',
         marginTop: 0,
-        
-        
     },
     topContainer: {
         flex: 0,
@@ -19,9 +17,9 @@ export const styles = StyleSheet.create({
         paddingTop: "10%",
         flexDirection: 'row',
         // marginTop: -150,
-        marginLeft:30,
-        marginRight: Dimensions.get('window').width * 0.305,
-        justifyContent: 'space-between',
+        // marginLeft:30,
+        // marginRight: Dimensions.get('window').width * 0.305,
+        justifyContent: 'center',
 
     },
     
@@ -39,6 +37,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 30,
         paddingTop: 30,
         alignItems: 'center',
+        justifyContent: 'center'
     },
 
     
@@ -50,7 +49,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 18,
         paddingHorizontal: 80,
         borderRadius: 16,
-        // backgroundColor: '#EF5DA8',
+        backgroundColor: '#EF5DA8',
         marginTop: 15,
         marginBottom: 15, 
        },
