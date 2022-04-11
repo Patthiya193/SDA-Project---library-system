@@ -28,6 +28,7 @@ public class BorrowOrder {
     private String returnDate;
     private String curState;
     private String borrowerUsername;
+    private String contactNumber;
 
     @Transient
     private OrderState borrowingState;
@@ -39,12 +40,13 @@ public class BorrowOrder {
 
     }
 
-    public BorrowOrder(Long bookId, String bookName, Long borrowerId, String borrowerUsername, String borrowDate, String curState) {
+    public BorrowOrder(Long bookId, String bookName, Long borrowerId, String borrowerUsername, String contactNumber, String borrowDate, String curState) {
         this.bookId = bookId;
         this.borrowedBy = borrowerId;
         this.bookName  = bookName;
         this.borrowDate = borrowDate;
         this.curState = curState;
+        this.contactNumber = contactNumber;
         this.returnDate = "";
         this.borrowerUsername = borrowerUsername;
         this.borrowingState = new BorrowingState(this);
@@ -96,6 +98,14 @@ public class BorrowOrder {
 
     public void setBorrowDate(String borrowDate) {
         this.borrowDate = borrowDate;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
     public String getBookName() {

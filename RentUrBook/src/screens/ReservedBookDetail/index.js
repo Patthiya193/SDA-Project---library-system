@@ -16,9 +16,10 @@ import { addFav, removeFav } from "../../network/userService"
 import { createOrder } from '../../network/orderService'
 
 const ReservedBookDetail = ({navigation, route}) => {
-    //console.log("Book data ", route.params)
+    console.log("Reserved Book data ", route.params)
     const [book, setBook] = useState(route.params["bookParam"])
     const [userData, setUserData] = useState(route.params["userData"])
+    const [contactNum, setContactNumber] = useState(route.params["contactNumber"])
     const [borrowButtonStatus, setBorrowButton] = useState( route.params["borrowButtonState"])
 
     const [borrowColor, setBorrowColor] = useState({"borrow": "#EF5DA8", "return":"#C1D1DB"})
@@ -54,6 +55,7 @@ const ReservedBookDetail = ({navigation, route}) => {
                 borrowDate : bDate,
                 curState : "borrowing",
                 returnDate : "",
+                contactNumber: contactNum,
                 borrowerUsername : book["reserverName"],
             })
             onPressHome()

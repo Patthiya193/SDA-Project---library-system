@@ -17,7 +17,7 @@ import { OrderItem } from "../../components/render/orderItem"
 import { TabView } from 'react-native-tab-view';
 import { getAllBook, getBookById } from "../../network/bookService"
 import { getAllOrder } from "../../network/orderService"
-import { getuserById } from "../../network/userService"
+import { getUserById } from "../../network/userService"
 import { CommonActions, StackActions, useFocusEffect } from "@react-navigation/core";
 
 
@@ -28,7 +28,8 @@ const History = ({userData, navigation}) => {
     const [orderData, setOrderData] = useState([])
     const [bookData, setBookData] = useState([])
     const [index, setIndex] = useState(0);
-
+    //const [orderContact, setOrderContact] = useState([])
+    const [reserveContact, setReserveContact] = useState([])
 
     const [routes] = useState([
         { key: 'ALL', title: 'All'},
@@ -38,13 +39,15 @@ const History = ({userData, navigation}) => {
 
     const renderBook = ({item, onPress}) => {                
 
-        return <Item item={item} onPress={() => {
+        return <Item item={item} onPress={ async () => {
             if ( userType == "admin") {
                 borrowButton = 'borrow'
             } else {
                 borrowButton = "return"
             }
-            navigation.dispatch( StackActions.replace("ReservedBookDetail", {bookParam: item["bookObject"], userData:userData["userData"], borrowButtonState: borrowButton}))
+            let temp = await getUserById(item["bookObject"]["reserverId"])
+            console.log("temp rees", temp)
+            navigation.dispatch( StackActions.replace("ReservedBookDetail", {contactNumber: temp["contactNumber"], bookParam: item["bookObject"], userData:userData["userData"], borrowButtonState: borrowButton}))
         }}/>
     }
 
@@ -54,21 +57,6 @@ const History = ({userData, navigation}) => {
             if ( userType == "admin" )
             {
                 navigation.dispatch( StackActions.replace("OrderDetail", {orderParam: item["orderObject"], userData:userData["userData"]}))
-
-                // var fav = "not fav";
-            // var borrowButton = item["bookObject"]["curState"]
-            // console.log("item  +++++ press",item["bookObject"], userData["userData"])
-            // if ( userData["userData"]["favoriteBooks"])
-            //     {if (userData["userData"]["favoriteBooks"].includes(item["id"])) {
-            //         fav = "fav"
-            //     }
-            //     if ( borrowButton == "reserved" && item["bookObject"]["reservedBy"] == userData["userData"]["id"]) {
-            //         borrowButton = "return"
-            //     } }
-            // // navigation.dispatch( StackActions.popToTop())
-            // navigation.dispatch( StackActions.replace("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], 
-            // favorite:fav, borrowButtonState: borrowButton}))
-            // // navigation.navigate("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], favorite:fav})
             }
         }}/>
     }
@@ -76,8 +64,27 @@ const History = ({userData, navigation}) => {
     const findOrderData = async () => {
         var temp = await getAllOrder()
         setOrderData(temp)
+        //var tempCon = []
+        /*orderData.forEach(order => {
+            let borrower = getuserById(order["borrowerId"])
+            let orderId = order["id"]
+            tempCon.push({ orderId :borrower["contactNumber"]})
+        })
+        setOrderContact(tempCon)*/
+
         var tempBook = await getAllBook()
         setBookData(tempBook)
+        var tempResCon = {}
+        tempBook.forEach(async book=> {
+            if (book["curState"]=="reserved")
+            {    console.log("\nreserverId", book["reserverId"])
+                let borrower = await getUserById(book["reserverId"])
+                console.log('borrower:',borrower)
+                let bookId = book["id"]
+                tempResCon[bookId] = borrower["contactNumber"]}
+        })
+        console.log('rescon', tempResCon)
+        setReserveContact(tempResCon)
 
     }
     
@@ -88,27 +95,34 @@ const History = ({userData, navigation}) => {
             return <View/>;
         }
         var displayData = [];
-        if ( bookData)
+        if ( bookData && route["key"] == "RESERVING")
         {
             if ( route["key"] == "RESERVING") {
+                console.log("reserveContact", reserveContact)
                 bookData.forEach(book => {
                     if (book["curState"] == "reserved"){
                         if ( userType == "admin" && book["reserverId"] != 0) {
                             let sub = "reserved by " + book["reserverName"]
+                            console.log("cont with book id",reserveContact[book["id"].toString()])
+
                             displayData.push( 
                                 {
                                     id: book["id"],
                                     title: book["bookName"],
                                     subtitle: sub,
+                                    contactNumber: reserveContact[book["id"].toString()],
                                     type: "1",
                                     bookObject: book
                                 }
                             )
-                        } else if (book["reserverId"] == userData['userData']["id"]) {
+                        } else if (book["reserverId"] == userData['userData']["id"] && book["reserverId"] != 0) {
+                            console.log("cont with book id",reserveContact[book["id"].toString()])
+
                             displayData.push( 
                                 {
                                     id: book["id"],
                                     title: book["bookName"],
+                                    contactNumber: reserveContact[book["id"].toString()],
                                     subtitle: "",
                                     type: "1",
                                     bookObject: book
@@ -119,7 +133,7 @@ const History = ({userData, navigation}) => {
                 })
             } 
         }
-        if (orderData) { 
+        if (orderData&& route["key"] != "RESERVING") { 
             if (route["key"] == "BORROWING") {
                 orderData.forEach(order => {
                     if (order["curState"] == "borrowing")
@@ -134,6 +148,7 @@ const History = ({userData, navigation}) => {
                             borrowedBy: order["borrowerUsername"],
                             status: stat,
                             borrowDate: bDate,
+                            contactNumber: order["contactNumber"],
                             orderObject: order
                         }
                     )}
@@ -146,6 +161,7 @@ const History = ({userData, navigation}) => {
                     let stat = "Status: "+order["curState"]
                     let bDate = 'Borrowed: ' + order["borrowDate"]
                     let rDate = "Returned: " + order["returnDate"]
+
                     displayData.push( 
                     {
                         id: order["id"],
@@ -154,6 +170,7 @@ const History = ({userData, navigation}) => {
                         status: stat,
                         borrowDate: bDate,
                         returnDate: rDate,
+                        contactNumber: order["contactNumber"],
                         orderObject: order
                     })}
                 })

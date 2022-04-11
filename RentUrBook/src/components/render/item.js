@@ -11,6 +11,8 @@ export const Item = ({item, onPress}) => (
         <View style={{justifyContent:'center'}}>
             <Text style={bookItemStyles.bookName}>{item.title}</Text>
             <Text style={bookItemStyles.bookAuthor}>{item.subtitle}</Text>
+            <Text style={bookItemStyles.bookAuthor}>Status: {item.bookObject["curState"]}</Text>
+
         </View>
     </TouchableOpacity>
 );

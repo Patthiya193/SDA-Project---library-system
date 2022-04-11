@@ -60,7 +60,8 @@ const OrderDetail = ({navigation, route}) => {
                             <Text style = {styles.bookStatus}>Borrowed by: {order["borrowerUsername"]}</Text> 
                             <Text style={styles.text}>Status: {order["curState"]}</Text>
                             <Text style={styles.text}>Borrow Date: {order["borrowDate"]}</Text>
-    
+                            <Text style={styles.text}>Contact: {order["contactNumber"]}</Text>
+
                         </ScrollView>
                     </SafeAreaView>
                     <View style = {styles.bottomContainer}>
@@ -96,7 +97,6 @@ const OrderDetail = ({navigation, route}) => {
                         {/* Book name */}
                         <Text style = {styles.bookName}>{order["bookName"]}</Text> 
                         {/* Book Author */}
-                        <Text style = {styles.bookAuthor}>{author}</Text> 
                         
                     </View>
                     
@@ -107,7 +107,8 @@ const OrderDetail = ({navigation, route}) => {
                             <Text style={styles.text}>Status: {order["curState"]}</Text>
                             <Text style={styles.text}>Borrow Date: {order["borrowDate"]}</Text>
                             <Text style={styles.text}>Return Date: {order["returnDate"]}</Text>
-    
+                            <Text style={styles.text}>Contact: {order["contactNumber"]}</Text>
+
                         </ScrollView>
                     </SafeAreaView> 
                     
