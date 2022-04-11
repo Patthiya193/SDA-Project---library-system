@@ -81,7 +81,7 @@ const Favorite = ({navigation, userData}) => {
                 <View style={body.top}>
                     <Text style={body.title}>Favorite</Text>
                 </View>
-                <View style={{flex: 4.5}}>
+                <View style={{flex: 7}}>
                     <FlatList data={displayData} 
                         renderItem={renderBook}
                         ItemSeparatorComponent={ItemDivider}
