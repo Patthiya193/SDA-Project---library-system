@@ -88,6 +88,7 @@ export const bookItemStyles = StyleSheet.create({
         margin: 10,
     },
     bookContainer: {
+        flexDirection: 'row',
         paddingLeft: 0,
         padding: '10%',
     }, 
