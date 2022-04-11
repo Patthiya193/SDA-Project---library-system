@@ -126,7 +126,6 @@ public class BorrowOrder {
     public void setCurrentState(OrderState currentState) {
         this.currentState = currentState;
         this.curState = this.currentState.toString();
-
     }
 
     public void setState(String state ) {

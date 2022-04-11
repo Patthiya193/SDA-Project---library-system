@@ -13,9 +13,11 @@ import java.util.List;
 public class OrderController {
 
     private final OrderServiceImpl orderService;
+    private final BookServiceImpl bookService;
 
     @Autowired
-    public OrderController(OrderServiceImpl oService ){
+    public OrderController(OrderServiceImpl oService, BookServiceImpl bookService ){
+        this.bookService = bookService;
         this.orderService = oService;
     }
 
@@ -53,6 +55,9 @@ public class OrderController {
     public BorrowOrder returnBook( @RequestParam Long orderId, @RequestParam Long callerId) {
         BorrowOrder tempOrder = orderService.getById(orderId);
         tempOrder.generateState();
+        Book temp = bookService.getById(tempOrder.getBookId());
+        temp.generateState();
+        temp.setCurrentState(temp.getAvailableState());
         tempOrder.pressBorrow(callerId);
         orderService.saveOrder(tempOrder);
         return tempOrder;
@@ -60,12 +65,22 @@ public class OrderController {
 
     @PostMapping
     public void addOrder(@RequestBody BorrowOrder newOrder) {
+        Book temp = bookService.getById(newOrder.getBookId());
+        temp.setReservedBy(0L);
+        temp.generateState();
+        temp.setCurrentState(temp.getUnavailableState());
+        bookService.saveBook(temp);
         orderService.saveOrder(newOrder);
     }
 
     @PostMapping("/test")
     public void addTestBook() {
         BorrowOrder temp = new BorrowOrder(1L, 1L, "2017/11/06 12:11:58","borrowing");
+        Book tempBook = bookService.getById(temp.getBookId());
+        tempBook.setReservedBy(0L);
+        tempBook.generateState();
+        tempBook.setCurrentState(tempBook.getUnavailableState());
+        bookService.saveBook(tempBook);
         orderService.saveOrder(temp);
     }
 
