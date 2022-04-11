@@ -5,41 +5,25 @@ export const styles = StyleSheet.create({
 
     top: {
         flex: 1.75,
-        // alignItems: 'center',
-        // paddingTop: "10%",
-        // justifyContent: 'space-between',
-        // flexDirection: 'row',
-        marginTop: 0,
     },
     topContainer: {
-        flex: 0,
         alignItems: 'center',
         paddingTop: "10%",
         flexDirection: 'row',
         // marginTop: -150,
-        marginLeft:30,
-        marginRight: Dimensions.get('window').width * 0.305,
-        justifyContent: 'space-between',
+        // marginLeft:30,
+        // marginRight: Dimensions.get('window').width * 0.305,
+        justifyContent: 'center',
 
     },
     
     iconStyle:{
-        marginRight: 10,
-        margitLeft:10
+        // marginRight: 10,
+        // margitLeft: 10,
+        position: 'absolute',
+        top: -15,
+        right: 40,
     },
-    
-    mainBody: {
-        flex: 3,
-        backgroundColor: '#F9FAFB',
-        borderTopLeftRadius: 44,
-        borderTopRightRadius: 44,
-        paddingVertical: 20,
-        paddingHorizontal: 30,
-        paddingTop: 30,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
     
     borrowButtonStyleNoFav: {
         alignItems:'center' ,
@@ -61,7 +45,7 @@ export const styles = StyleSheet.create({
     },
 
     mainBody:{
-        flex: 4.5,
+        flex: 3,
         backgroundColor: '#F9FAFB',  
         borderTopLeftRadius: 44,
         borderTopRightRadius: 44,
