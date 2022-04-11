@@ -112,7 +112,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'lightgrey',
         marginTop: 5,
-        marginBottom: 30,
+        marginBottom: 20,
         textAlign: 'left',
         paddingRight: 20,
         paddingLeft: 10
@@ -123,5 +123,6 @@ export const styles = StyleSheet.create({
         paddingLeft: 0,
         paddingRight: 0,
         padding: '1%',
-    }
+    },
+    
 })

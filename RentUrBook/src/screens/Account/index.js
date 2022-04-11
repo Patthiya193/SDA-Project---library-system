@@ -98,7 +98,9 @@ const Account = ({navigation, userData}) => {
                     <View style={styles.rowText}>
                         <Text style={styles.idText}>ID: {user["id"]}</Text>
                         <Text style={styles.idText}>Username: {user["username"]}</Text>
-
+                    </View>
+                    <View style={styles.rowText}>
+                        <Text style={styles.idText}>Contact: {user["contactNumber"]}</Text>
                     </View>
                 </View>
                 <View style={{flex:3.5}}>
