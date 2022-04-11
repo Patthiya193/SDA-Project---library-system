@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LibraryUserRepository
-        extends JpaRepository<LibraryUser, String> {
+        extends JpaRepository<LibraryUser, Long> {
 
     @Query("SELECT u FROM LibraryUser u WHERE u.username = ?1")
     Optional<LibraryUser> findLibraryUserByUsername(String username);

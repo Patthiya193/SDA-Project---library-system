@@ -9,7 +9,7 @@ public class UnavailableState implements BookState {
         this.book = book;
     }
 
-    public void pressBorrow( Long callerID ) {
+    public void pressReserve(Long callerID ) {
         return;
     }
 

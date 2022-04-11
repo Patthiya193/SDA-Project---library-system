@@ -98,7 +98,7 @@ public class BookController {
     public Book borrowBook( @RequestParam Long bookId, @RequestParam Long callerId) {
         Book tempBook = bookService.getById(bookId);
         tempBook.generateState();
-        tempBook.pressBorrow(callerId);
+        tempBook.pressReserve(callerId);
         bookService.saveBook(tempBook);
         return tempBook;
     }

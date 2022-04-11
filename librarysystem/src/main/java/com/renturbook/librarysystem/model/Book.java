@@ -140,8 +140,8 @@ public class Book {
         }
     }
 
-    public void pressBorrow(Long callerID ) {
-        this.currentState.pressBorrow(callerID);
+    public void pressReserve(Long callerID ) {
+        this.currentState.pressReserve(callerID);
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookRepository
-        extends JpaRepository<Book, String> {
+        extends JpaRepository<Book, Long> {
 
     @Query("SELECT b FROM Book b WHERE b.bookName LIKE %:bookName%")
     List<Book> findBookByName(String bookName);
