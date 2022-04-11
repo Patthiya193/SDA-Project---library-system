@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { View, Dimensions, ScrollView, Text, TextInput, StyleSheet, Button, Alert, Pressable, KeyboardAvoidingView } from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faUserCircle, faLock, faPencil,faEnvelope, faPeopleRoof, faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faLock, faPencil,faEnvelope, faPeopleRoof, faAddressCard, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { styles } from "./styles";
 import { registerUser, getUser, checkUserName } from "../../network/userService";
 import { platform } from "os";
@@ -85,6 +85,10 @@ const Register = ({navigation}) => {
 					    value = value.replace(/[^A-Za-z]/gi, "")
                         setLastName(value)
                     }} value={lastName}/>
+                </View>
+                <View style={styles.inputContainer}>
+                    <FontAwesomeIcon icon={ faPhone } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='Phone Number' style={styles.textInput}/>
                 </View>
 
                 <View style={styles.inputContainer}>

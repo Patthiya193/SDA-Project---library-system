@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     mainBody: {
-        flex: 3,
+        flex: 4,
         backgroundColor: '#F9FAFB',
         borderTopLeftRadius: 44,
         borderTopRightRadius: 44,
