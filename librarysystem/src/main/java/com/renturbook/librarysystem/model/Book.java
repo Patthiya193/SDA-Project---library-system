@@ -26,7 +26,7 @@ public class Book {
     private Long id;
     private String isbn;
     private String bookName;
-    private Long borrowedBy;
+    private Long reservedBy;
     private String curState;
     private String description;
 
@@ -56,7 +56,7 @@ public class Book {
 
     }
 
-    public Book(String isbn,String bookName, String description, String currentState, Long borrowedBy, List<String> genre, List<String> authors) {
+    public Book(String isbn, String bookName, String description, String currentState, Long reservedBy, List<String> genre, List<String> authors) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.authors = authors;
@@ -66,7 +66,7 @@ public class Book {
         this.availableState = new AvailableState(this);
         this.unavailableState = new UnavailableState(this);
         this.reservedState = new ReservedState(this);
-        this.borrowedBy = borrowedBy;
+        this.reservedBy = reservedBy;
         switch( currentState ) {
             case "available":
                 this.currentState = this.availableState;
@@ -150,7 +150,7 @@ public class Book {
                 "id=" + id +
                 ", bookName='" + bookName + '\'' +
                 ", genre='" + genre + '\'' +
-                ", borrowedBy=" + borrowedBy +
+                ", borrowedBy=" + reservedBy +
                 ", curState='" + curState + '\'' +
                 ", authors=" + authors +
                 ", availableState=" + availableState +
@@ -160,12 +160,12 @@ public class Book {
                 '}';
     }
 
-    public Long getBorrowedBy() {
-        return borrowedBy;
+    public Long getReservedBy() {
+        return reservedBy;
     }
 
-    public void setBorrowedBy(Long borrowedBy) {
-        this.borrowedBy = borrowedBy;
+    public void setReservedBy(Long borrowedBy) {
+        this.reservedBy = borrowedBy;
     }
 //
 //    public String getCoverImage() {

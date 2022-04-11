@@ -9,7 +9,7 @@ public class AvailableState implements BookState {
     }
 
     public void pressBorrow(Long callerID) {
-        book.setBorrowedBy(callerID);
+        book.setReservedBy(callerID);
         book.setCurrentState(book.getReservedState());
 
     }

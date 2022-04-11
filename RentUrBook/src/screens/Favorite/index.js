@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 
 import { styles } from "./styles";
-import { body } from "../universalSyles";
+import { body } from "../universalStyles";
 
 import { ItemDivider } from "../../components/render/itemDivider"
 import { Item } from "../../components/render/item";
@@ -24,7 +24,7 @@ const Favorite = ({navigation, userData}) => {
                 {if (userData["userData"]["favoriteBooks"].includes(item["id"])) {
                     fav = "fav"
                 }
-                if ( borrowButton == "reserved" && item["bookObject"]["borrowedBy"] == userData["userData"]["id"]) {
+                if ( borrowButton == "reserved" && item["bookObject"]["reservedBy"] == userData["userData"]["id"]) {
                     borrowButton = "return"
                 } }
             // navigation.dispatch( StackActions.popToTop())

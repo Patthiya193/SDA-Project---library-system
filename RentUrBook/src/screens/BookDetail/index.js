@@ -7,7 +7,7 @@ import { faHeart, faHouse} from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
-import { body, bookItemStyles } from "../universalSyles";
+import { body, bookItemStyles } from "../universalStyles";
 import { CommonActions, StackActions } from "@react-navigation/core";
 
 import { BookPic } from "./BookPic";

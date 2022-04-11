@@ -10,9 +10,9 @@ public class ReservedState implements BookState {
     }
 
     public void pressBorrow(Long callerID) {
-        if (callerID == book.getBorrowedBy()){
+        if (callerID == book.getReservedBy()){
             book.setCurrentState(book.getAvailableState());
-            book.setBorrowedBy(0L);
+            book.setReservedBy(0L);
         }
 
     }

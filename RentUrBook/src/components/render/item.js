@@ -3,7 +3,7 @@ import React from "react";
 import { TouchableOpacity, Text, View } from "react-native";
 import { BookIcon } from "../../screens/Home/bookIcon";
 
-import { bookItemStyles } from "../../screens/universalSyles";
+import { bookItemStyles } from "../../screens/universalStyles";
 
 export const Item = ({item, onPress}) => (
     <TouchableOpacity style={bookItemStyles.bookContainer} onPress = {onPress}>

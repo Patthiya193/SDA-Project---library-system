@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, FlatList } from "react-native";
 
 import { styles } from "./styles";
-import { body } from "../universalSyles";
+import { body } from "../universalStyles";
 
 import { ItemDivider } from "../../components/render/itemDivider";
 import { Item } from "../../components/render/item";

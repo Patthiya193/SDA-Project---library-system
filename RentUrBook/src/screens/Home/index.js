@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
-import { body, searchBarStyle } from "../universalSyles";
+import { body, searchBarStyle } from "../universalStyles";
 
 import { renderTabBar } from "./renderTabBar";
 
@@ -48,7 +48,7 @@ const Home = ({navigation, route, userData}) => {
                 {if (userData["userData"]["favoriteBooks"].includes(item["id"])) {
                     fav = "fav"
                 }
-                if ( borrowButton == "reserved" && item["bookObject"]["borrowedBy"] == userData["userData"]["id"]) {
+                if ( borrowButton == "reserved" && item["bookObject"]["reservedBy"] == userData["userData"]["id"]) {
                     borrowButton = "return"
                 } }
             // navigation.dispatch( StackActions.popToTop())
