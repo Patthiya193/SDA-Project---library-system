@@ -26,9 +26,10 @@ public class Book {
     private Long id;
     private String isbn;
     private String bookName;
-    private Long reservedBy;
+    private Long reserverId;
     private String curState;
     private String description;
+    private String reserverName;
 
     @Lob
     private Blob coverImage;
@@ -56,7 +57,7 @@ public class Book {
 
     }
 
-    public Book(String isbn, String bookName, String description, String currentState, Long reservedBy, List<String> genre, List<String> authors) {
+    public Book(String isbn, String bookName, String description, String currentState, Long reserverId, String reserverName, List<String> genre, List<String> authors) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.authors = authors;
@@ -66,7 +67,8 @@ public class Book {
         this.availableState = new AvailableState(this);
         this.unavailableState = new UnavailableState(this);
         this.reservedState = new ReservedState(this);
-        this.reservedBy = reservedBy;
+        this.reserverId = reserverId;
+        this.reserverName = reserverName;
         switch( currentState ) {
             case "available":
                 this.currentState = this.availableState;
@@ -124,7 +126,15 @@ public class Book {
         return this.curState;
     }
 
-    public void setState( String state ) {
+    public String getReserverName() {
+        return reserverName;
+    }
+
+    public void setReserverName(String reserverName) {
+        this.reserverName = reserverName;
+    }
+
+    public void setState(String state ) {
         switch( state ) {
             case "available":
                 setCurrentState(this.availableState);
@@ -140,8 +150,8 @@ public class Book {
         }
     }
 
-    public void pressReserve(Long callerID ) {
-        this.currentState.pressReserve(callerID);
+    public void pressReserve(Long callerID, String callerName) {
+        this.currentState.pressReserve(callerID, callerName);
     }
 
     @Override
@@ -150,7 +160,7 @@ public class Book {
                 "id=" + id +
                 ", bookName='" + bookName + '\'' +
                 ", genre='" + genre + '\'' +
-                ", borrowedBy=" + reservedBy +
+                ", borrowedBy=" + reserverId +
                 ", curState='" + curState + '\'' +
                 ", authors=" + authors +
                 ", availableState=" + availableState +
@@ -160,12 +170,12 @@ public class Book {
                 '}';
     }
 
-    public Long getReservedBy() {
-        return reservedBy;
+    public Long getReserverId() {
+        return reserverId;
     }
 
-    public void setReservedBy(Long borrowedBy) {
-        this.reservedBy = borrowedBy;
+    public void setReserverId(Long borrowedBy) {
+        this.reserverId = borrowedBy;
     }
 //
 //    public String getCoverImage() {

@@ -14,7 +14,7 @@ import { BookPic } from "./BookPic";
 import { borrowBook } from "../../network/bookService"
 import { addFav, removeFav } from "../../network/userService"
 
-const BookDetail = ({navigation, route}) => {
+const ReservedBookDetail = ({navigation, route}) => {
     //console.log("Book data ", route.params)
     const [book, setBook] = useState(route.params["bookParam"])
     const [userData, setUserData] = useState(route.params["userData"])
@@ -41,7 +41,7 @@ const BookDetail = ({navigation, route}) => {
     })
     const onPressBorrow = () => {
         if ( borrowButtonStatus != "unavailable" && borrowButtonStatus != "reserved") {
-            borrowBook(book["id"],userData["id"], userData['username'])
+            borrowBook(book["id"],userData["id"],userData["username"])
             if (borrowButtonStatus == "available") {
                 setBorrowButton("return")
     
@@ -220,7 +220,7 @@ const BookDetail = ({navigation, route}) => {
     )}
 }
 
-export default BookDetail;
+export default ReservedBookDetail;
 
 //HOME
 /* */

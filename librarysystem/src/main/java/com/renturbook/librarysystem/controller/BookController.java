@@ -95,10 +95,10 @@ public class BookController {
 
     @GetMapping("/borrow/")
     @ResponseBody
-    public Book borrowBook( @RequestParam Long bookId, @RequestParam Long callerId) {
+    public Book borrowBook( @RequestParam Long bookId, @RequestParam Long callerId, @RequestParam String callerName) {
         Book tempBook = bookService.getById(bookId);
         tempBook.generateState();
-        tempBook.pressReserve(callerId);
+        tempBook.pressReserve(callerId, callerName);
         bookService.saveBook(tempBook);
         return tempBook;
     }
@@ -111,7 +111,7 @@ public class BookController {
     @PostMapping("/test")
     public void addTestBook() {
         Book temp = new Book("isbn", "Test book", "this book so good",
-                "available", 0L, List.of("ART", "CARTOON"),List.of("author1", "author2"));
+                "available", 0L, "", List.of("ART", "CARTOON"),List.of("author1", "author2"));
         bookService.saveBook(temp);
         Book temp2 = new Book("isbn2", "私の最後の日",
                 "原稿なんていらない\n" +
@@ -127,7 +127,7 @@ public class BookController {
                         "誤魔化して隠す　悪い癖\n" +
                         "「約束」なんて言えない\n" +
                         "束ねたまましまった\n"
-                , "available", 0L, List.of("MAGAZINE"),List.of("yourness"));
+                , "available", 0L, "", List.of("MAGAZINE"),List.of("yourness"));
         bookService.saveBook(temp2);
     }
 

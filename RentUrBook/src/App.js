@@ -10,7 +10,8 @@ import SignIn from "./screens/SignIn"
 import Register from "./screens/Register";
 import Main from "./screens/Main"
 import BookDetail from './screens/BookDetail';
-
+import OrderDetail from './screens/OrderDetail'
+import ReservedBookDetail from './screens/ReservedBookDetail'
 const AuthStack = createStackNavigator();
 
 const App = () => {
@@ -23,6 +24,9 @@ const App = () => {
             <AuthStack.Screen name = "MainGuest" component = {Main} initialParams={{userData:{}}}/>
             <AuthStack.Screen name = "MainLoggedIn" component = {Main} />
             <AuthStack.Screen name = "BookDetail" component ={BookDetail} initialParams ={{bookParam:{}}}/>
+            <AuthStack.Screen name = "OrderDetail" component ={OrderDetail} initialParams ={{orderParam:{}}}/>
+            <AuthStack.Screen name = "ReservedBookDetail" component ={ReservedBookDetail} initialParams ={{bookParam:{}}}/>
+
         </AuthStack.Navigator>
     </NavigationContainer>
 

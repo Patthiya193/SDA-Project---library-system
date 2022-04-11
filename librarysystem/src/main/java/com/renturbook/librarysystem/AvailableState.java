@@ -8,8 +8,9 @@ public class AvailableState implements BookState {
         this.book = book;
     }
 
-    public void pressReserve(Long callerID) {
-        book.setReservedBy(callerID);
+    public void pressReserve(Long callerID, String callerName) {
+        book.setReserverId(callerID);
+        book.setReserverName(callerName);
         book.setCurrentState(book.getReservedState());
 
     }

@@ -14,11 +14,9 @@ import { BookPic } from "./BookPic";
 import { borrowBook } from "../../network/bookService"
 import { addFav, removeFav } from "../../network/userService"
 
-const BookDetail = ({navigation, route}) => {
+const OrderDetail = ({navigation, route}) => {
     //console.log("Book data ", route.params)
-    const [book, setBook] = useState(route.params["bookParam"])
-    const [userData, setUserData] = useState(route.params["userData"])
-    const [fav, setFav] = useState( route.params["favorite"])
+    const [book, setBook] = useState(route.params["orderParam"])
     const [borrowButtonStatus, setBorrowButton] = useState( route.params["borrowButtonState"])
 
     const [favButtonColor, setFavButtonColor] = useState({"fav": "#FF8886", "not fav":"#A8AFB9"})
@@ -220,7 +218,7 @@ const BookDetail = ({navigation, route}) => {
     )}
 }
 
-export default BookDetail;
+export default OrderDetail;
 
 //HOME
 /* */

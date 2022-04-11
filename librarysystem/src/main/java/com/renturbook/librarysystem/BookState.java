@@ -1,5 +1,5 @@
 package com.renturbook.librarysystem;
 
 public interface BookState {
-    public void pressReserve(Long callerID);
+    public void pressReserve(Long callerID, String callerName);
 }

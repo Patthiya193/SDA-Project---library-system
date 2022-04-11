@@ -66,7 +66,7 @@ public class OrderController {
     @PostMapping
     public void addOrder(@RequestBody BorrowOrder newOrder) {
         Book temp = bookService.getById(newOrder.getBookId());
-        temp.setReservedBy(0L);
+        temp.setReserverId(0L);
         temp.generateState();
         temp.setCurrentState(temp.getUnavailableState());
         bookService.saveBook(temp);
@@ -77,7 +77,7 @@ public class OrderController {
     public void addTestBook() {
         BorrowOrder temp = new BorrowOrder(1L, "Test book", 1L, "username", "2017/11/06 12:11:58","borrowing");
         Book tempBook = bookService.getById(temp.getBookId());
-        tempBook.setReservedBy(0L);
+        tempBook.setReserverId(0L);
         tempBook.generateState();
         tempBook.setCurrentState(tempBook.getUnavailableState());
         bookService.saveBook(tempBook);

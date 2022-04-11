@@ -9,10 +9,10 @@ public class ReservedState implements BookState {
         this.book = book;
     }
 
-    public void pressReserve(Long callerID) {
-        if (callerID == book.getReservedBy()){
+    public void pressReserve(Long callerID, String callerName) {
+        if (callerID == book.getReserverId()){
             book.setCurrentState(book.getAvailableState());
-            book.setReservedBy(0L);
+            book.setReserverId(0L);
         }
 
     }
