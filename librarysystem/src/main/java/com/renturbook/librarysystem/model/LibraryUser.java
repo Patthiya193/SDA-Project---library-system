@@ -25,6 +25,7 @@ public class LibraryUser {
     private String username;
     private String password;
     private String firstName;
+    private String contactNumber;
 
     public String getUserType() {
         return userType;
@@ -40,12 +41,13 @@ public class LibraryUser {
     @ElementCollection
     private List<Long> favoriteBooks; // list of book ids
 
-    public LibraryUser(String username, String password , String firstName, String lastName, List<Long> favoriteBooks) {
+    public LibraryUser(String username, String password , String firstName, String lastName, String contactNumber, List<Long> favoriteBooks) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.favoriteBooks = favoriteBooks;
         this.password = password;
+        this.contactNumber = contactNumber;
         this.userType = "normal";
     }
 
@@ -54,6 +56,14 @@ public class LibraryUser {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
     public void setUsername(String username) {
