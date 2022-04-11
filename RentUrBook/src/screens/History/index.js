@@ -44,7 +44,7 @@ const History = ({userData, navigation}) => {
             } else {
                 borrowButton = "return"
             }
-            navigation.dispatch( StackActions.replace("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], borrowButtonState: borrowButton}))
+            navigation.dispatch( StackActions.replace("ReservedBookDetail", {bookParam: item["bookObject"], userData:userData["userData"], borrowButtonState: borrowButton}))
         }}/>
     }
 
@@ -52,7 +52,10 @@ const History = ({userData, navigation}) => {
 
         return <OrderItem item={item} onPress={() => {
             if ( userType == "admin" )
-            {// var fav = "not fav";
+            {
+                navigation.dispatch( StackActions.replace("OrderDetail", {orderParam: item["orderObject"], userData:userData["userData"]}))
+
+                // var fav = "not fav";
             // var borrowButton = item["bookObject"]["curState"]
             // console.log("item  +++++ press",item["bookObject"], userData["userData"])
             // if ( userData["userData"]["favoriteBooks"])
@@ -65,7 +68,8 @@ const History = ({userData, navigation}) => {
             // // navigation.dispatch( StackActions.popToTop())
             // navigation.dispatch( StackActions.replace("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], 
             // favorite:fav, borrowButtonState: borrowButton}))
-            // // navigation.navigate("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], favorite:fav})}
+            // // navigation.navigate("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], favorite:fav})
+            }
         }}/>
     }
 
@@ -89,8 +93,8 @@ const History = ({userData, navigation}) => {
             if ( route["key"] == "RESERVING") {
                 bookData.forEach(book => {
                     if (book["curState"] == "reserved"){
-                        if ( userType == "admin" && book["reservedBy"] != 0) {
-                            let sub = "reserved by " + book["reservedBy"]
+                        if ( userType == "admin" && book["reserverId"] != 0) {
+                            let sub = "reserved by " + book["reserverName"]
                             displayData.push( 
                                 {
                                     id: book["id"],
@@ -100,7 +104,7 @@ const History = ({userData, navigation}) => {
                                     bookObject: book
                                 }
                             )
-                        } else if (book["reservedBy"] == userData['userData']["id"]) {
+                        } else if (book["reserverId"] == userData['userData']["id"]) {
                             displayData.push( 
                                 {
                                     id: book["id"],
@@ -115,14 +119,33 @@ const History = ({userData, navigation}) => {
                 })
             } 
         }
-        if (orderData) 
-        { if (route["key"] == "BORROWING") {
-            orderData.forEach(order => {
-                if (order["curState"] == "borrowing")
-                {
+        if (orderData) { 
+            if (route["key"] == "BORROWING") {
+                orderData.forEach(order => {
+                    if (order["curState"] == "borrowing")
+                    {
+                        if ( userType == "admin" || order["borrowerId"] == userData["userData"]["id"]) {
+                        let stat = "Status: "+order["curState"]
+                        let bDate = 'Borrowed: ' + order["borrowDate"]
+                        displayData.push( 
+                        {
+                            id: order["id"],
+                            title: order["bookName"],
+                            borrowedBy: order["borrowerUsername"],
+                            status: stat,
+                            borrowDate: bDate,
+                            orderObject: order
+                        }
+                    )}
+                    }
+                })
+                
+            } else {
+                orderData.forEach(order => {
                     if ( userType == "admin" || order["borrowerId"] == userData["userData"]["id"]) {
                     let stat = "Status: "+order["curState"]
                     let bDate = 'Borrowed: ' + order["borrowDate"]
+                    let rDate = "Returned: " + order["returnDate"]
                     displayData.push( 
                     {
                         id: order["id"],
@@ -130,29 +153,13 @@ const History = ({userData, navigation}) => {
                         borrowedBy: order["borrowerUsername"],
                         status: stat,
                         borrowDate: bDate,
-                    }
-                )}
-                }
-            })
-            
-        } else {
-            orderData.forEach(order => {
-                if ( userType == "admin" || order["borrowerId"] == userData["userData"]["id"]) {
-                let stat = "Status: "+order["curState"]
-                let bDate = 'Borrowed: ' + order["borrowDate"]
-                let rDate = "Returned: " + order["returnDate"]
-                displayData.push( 
-                {
-                    id: order["id"],
-                    title: order["bookName"],
-                    borrowedBy: order["borrowerUsername"],
-                    status: stat,
-                    borrowDate: bDate,
-                    returnDate: rDate
-                })}
-            })
-            
-        }}
+                        returnDate: rDate,
+                        orderObject: order
+                    })}
+                })
+                
+            }
+        }
         if ( route["key"] == "RESERVING") {
             return <FlatList data={displayData} 
                 renderItem={renderBook}

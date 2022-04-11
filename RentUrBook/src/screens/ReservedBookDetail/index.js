@@ -39,7 +39,7 @@ const ReservedBookDetail = ({navigation, route}) => {
     })
     const onPressBorrow = () => {
         if ( borrowButtonStatus == "borrow") {
-            let currentDate = new Date()
+            let currentdate = new Date()
             let bDate =  currentdate.getFullYear() + "/"
             + (currentdate.getMonth()+1)  + "/" 
             + currentdate.getDate() + " "  
@@ -49,14 +49,14 @@ const ReservedBookDetail = ({navigation, route}) => {
 
             createOrder({
                 bookId : book["id"],
-                borrowedBy : userData["id"],
+                borrowedBy : book["reserverId"],
                 bookName  : book["bookName"],
                 borrowDate : bDate,
                 curState : "borrowing",
                 returnDate : "",
-                borrowerUsername : userData["username"],
+                borrowerUsername : book["reserverName"],
             })
-
+            onPressHome()
         } else {
             reserveBook(book["id"],userData["id"],userData["username"])
             onPressHome()

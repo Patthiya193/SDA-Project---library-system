@@ -27,7 +27,7 @@ export const createOrder = (newOrder) => {
 
 export const returnBook = (oId) => {
 
-    axios.get(borrowBookApi,{ params: {orderId:oId}})
+    axios.get(returnBookApi,{ params: {orderId:oId}})
     // .then(response => {
     //     return response
     // })

@@ -48,7 +48,7 @@ const Home = ({navigation, route, userData}) => {
                 {if (userData["userData"]["favoriteBooks"].includes(item["id"])) {
                     fav = "fav"
                 }
-                if ( borrowButton == "reserved" && item["bookObject"]["reservedBy"] == userData["userData"]["id"]) {
+                if ( borrowButton == "reserved" && item["bookObject"]["reserverId"] == userData["userData"]["id"]) {
                     borrowButton = "return"
                 } }
             // navigation.dispatch( StackActions.popToTop())

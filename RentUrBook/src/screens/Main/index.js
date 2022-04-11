@@ -52,7 +52,7 @@ const Main = ({navigation, route}) => {
     const _renderTabScene = BottomNavigation.SceneMap({
         home: () => <Home userData={userData} navigation={navigation}/>,
         favorite: () => <Favorite navigation={navigation} userData={userData} />,
-        history: () => <History userData={userData} />,
+        history: () => <History userData={userData} navigation={navigation} />,
         account: () => <Account navigation={navigation} userData={userData}/>
     })
 
