@@ -12,6 +12,7 @@ const Register = ({navigation}) => {
     const [lastName, setLastName] = useState("");
     const [username, setUserName] = useState("");
     const [password, setPassWord] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
 
     const onPressRegister = async () => {
         if ( firstName.length == 0) {
@@ -32,6 +33,9 @@ const Register = ({navigation}) => {
         } else if ( password.length < 8) {
             Alert.alert("Invalid Registration", "Password should be at least 8 characters long.", [{text: "OK"}])
             return
+        } else if ( phoneNumber.length < 9) {
+            Alert.alert("Invalid Registration", "Please enter your phone number.", [{text: "OK"}])
+            return
         } 
         var tempFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase()
         var tempLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase()
@@ -46,12 +50,14 @@ const Register = ({navigation}) => {
             "username": username,
             "password":password,
             "userType":"normal",
+            "contactNumber":phoneNumber,
             "favoriteBooks":[]})
             Alert.alert("You are all set!", "Congratulations, your account has been successfully created!", [{text: "OK"}])
             setFirstName("")
             setLastName("")
             setUserName("")
             setPassWord("")
+            setPhoneNumber("")
             navigation.navigate("SignIn")
         }   
         
@@ -88,7 +94,13 @@ const Register = ({navigation}) => {
                 </View>
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faPhone } color='#A8AFB9' size={24} style={{margin:5}}/>
-                    <TextInput placeholder='Phone Number' style={styles.textInput}/>
+                    <TextInput placeholder='Phone Number' style={styles.textInput}
+                    onChangeText={newPhone => {
+                        let value = newPhone
+					    if ( newPhone.length <= 10) {
+                            setPhoneNumber(value)
+                        }
+                    }} value={phoneNumber}/>
                 </View>
 
                 <View style={styles.inputContainer}>
