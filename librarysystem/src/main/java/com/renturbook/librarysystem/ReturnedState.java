@@ -1,6 +1,4 @@
 package com.renturbook.librarysystem;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
 import com.renturbook.librarysystem.model.BorrowOrder;
 
 public class ReturnedState implements OrderState {
@@ -10,7 +8,7 @@ public class ReturnedState implements OrderState {
         this.borrowOrder = borrowOrder;
     }
 
-    public void pressBorrow(Long callerID) {
+    public void pressReturnBook() {
     }
 
     public String toString() {

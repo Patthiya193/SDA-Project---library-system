@@ -11,19 +11,17 @@ import { body, bookItemStyles } from "../universalStyles";
 import { CommonActions, StackActions } from "@react-navigation/core";
 
 import { BookPic } from "./BookPic";
-import { borrowBook } from "../../network/bookService"
+import { reserveBook } from "../../network/bookService"
 import { addFav, removeFav } from "../../network/userService"
+import { createOrder } from '../../network/orderService'
 
 const ReservedBookDetail = ({navigation, route}) => {
     //console.log("Book data ", route.params)
     const [book, setBook] = useState(route.params["bookParam"])
     const [userData, setUserData] = useState(route.params["userData"])
-    const [fav, setFav] = useState( route.params["favorite"])
     const [borrowButtonStatus, setBorrowButton] = useState( route.params["borrowButtonState"])
 
-    const [favButtonColor, setFavButtonColor] = useState({"fav": "#FF8886", "not fav":"#A8AFB9"})
-    const [borrowColor, setBorrowColor] = useState({"available": "#EF5DA8", "return":"#C1D1DB", "reserved":"#999999", "unavailable":"#AAAAA"})
-    const [borrowText, setBorrowText] = useState({"available": "Reserve", "return":"Cancel", "reserved":"Reserved", "unavailable":"Unavailable"})
+    const [borrowColor, setBorrowColor] = useState({"borrow": "#EF5DA8", "return":"#C1D1DB"})
     console.log("borrow", borrowButtonStatus)
 
     var clr = borrowColor[borrowButtonStatus]
@@ -40,34 +38,31 @@ const ReservedBookDetail = ({navigation, route}) => {
         }
     })
     const onPressBorrow = () => {
-        if ( borrowButtonStatus != "unavailable" && borrowButtonStatus != "reserved") {
-            borrowBook(book["id"],userData["id"],userData["username"])
-            if (borrowButtonStatus == "available") {
-                setBorrowButton("return")
-    
-            } else if (borrowButtonStatus == "return") {
-                setBorrowButton("available")
-            }
+        if ( borrowButtonStatus == "borrow") {
+            let currentDate = new Date()
+            let bDate =  currentdate.getFullYear() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getDate() + " "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
+
+            createOrder({
+                bookId : book["id"],
+                borrowedBy : userData["id"],
+                bookName  : book["bookName"],
+                borrowDate : bDate,
+                curState : "borrowing",
+                returnDate : "",
+                borrowerUsername : userData["username"],
+            })
+
+        } else {
+            reserveBook(book["id"],userData["id"],userData["username"])
+            onPressHome()
         }
         
         clr = borrowColor[borrowButtonStatus]
-    }
-    const addFavorites = () => {
-        if ( fav == "fav") {
-            setFav("not fav")
-            let ind = userData["favoriteBooks"].indexOf(book["id"])
-            userData["favoriteBooks"].splice(ind, 1)
-            removeFav( userData["id"],book["id"])
-
-        }
-        else {
-            setFav("fav")
-            userData["favoriteBooks"].push(book["id"])
-            addFav( userData["id"],book["id"])
-
-        }
-        console.log("type: ", typeof book["id"],typeof userData["id"])
-
     }
     
     const onPressHome = () => {
@@ -122,11 +117,9 @@ const ReservedBookDetail = ({navigation, route}) => {
                             marginTop: 15,
                             marginBottom: 15,
                             marginRight: 30, }} onPress = {onPressBorrow}>
-                                    <Text style={styles.borrowText}>{borrowText[borrowButtonStatus]}</Text>
+                                    <Text style={styles.borrowText}>Cancel</Text>
                         </Pressable>
-                        <TouchableOpacity onPress={() => addFavorites()}>
-                            <FontAwesomeIcon icon={ faHeart } color={favButtonColor[fav]} size={35} style={{margin:5}}/>
-                        </TouchableOpacity>
+                        
 
                     </View>        
                 
@@ -134,8 +127,8 @@ const ReservedBookDetail = ({navigation, route}) => {
             
             </View>
         )}
-
-    else if (userData["userType"] == "admin" ){
+//ADMIN
+    else {
         return(
             <View style={body.background}>
                 <View style={styles.top}>
@@ -164,13 +157,22 @@ const ReservedBookDetail = ({navigation, route}) => {
                     <SafeAreaView style={styles.textContainer}>
                         <ScrollView style={styles.scrollView}>
                             {/* Book status */}
-                            <Text style = {styles.bookStatus}>Description:</Text> 
-                            <Text style={styles.text}>{book["description"]}</Text>
+                            <Text style = {styles.bookStatus}>Reserved by:</Text> 
+                            <Text style={styles.text}>{book["reserverName"]}</Text>
                         </ScrollView>
                     </SafeAreaView>
                     <View style = {styles.bottomContainer}>
-                        <Pressable style = {styles.borrowButtonStyleNoFav} onPress = {onPressBorrow}>
-                                <Text style={styles.borrowText}>Edit</Text>
+                        <Pressable style = {{alignItems: 'center',
+                            justifyContent: 'center',
+                            width: Dimensions.get('window').width * 0.75,
+                            paddingVertical: 18,
+                            paddingHorizontal: 80,
+                            borderRadius: 16,
+                            backgroundColor: clr,
+                            marginTop: 15,
+                            marginBottom: 15,
+                            marginRight: 30, }} onPress = {onPressBorrow}>
+                                <Text style={styles.borrowText}>Allow Borrowing</Text>
                         </Pressable>
     
                     </View>    
@@ -179,45 +181,6 @@ const ReservedBookDetail = ({navigation, route}) => {
             
             </View>
         )}
-    else 
-    {return(
-        <View style={body.background}>
-            <View style={styles.top}>
-                
-                <View style={styles.topContainer}>
-
-                    <TouchableOpacity onPress={onPressHome}>
-                        <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  style={styles.iconStyle}/>
-                    </TouchableOpacity>
-                    <Text style={body.title}>Book Detail </Text>
-                </View>
-            </View>
-            <BookPic />
-        
-            <View style={styles.mainBody}>
-                <View style={styles.bookContainer}>
-
-                    {/* Book name */}
-                    <Text style = {styles.bookName}>{book["bookName"]} </Text> 
-                    {/* Book Author */}
-                    <Text style = {styles.bookAuthor}> {author} </Text> 
-                
-                
-                </View>
-            
-                <SafeAreaView style={styles.textContainer}>
-                    <ScrollView style={styles.scrollView}>
-                        {/* Book status */}
-                        <Text style = {styles.bookStatus}>Description:</Text> 
-                        <Text style={styles.text}>{book["description"]}</Text>
-                    </ScrollView>
-                </SafeAreaView>
-            
-            </View>
-   
-        </View>
-
-    )}
 }
 
 export default ReservedBookDetail;

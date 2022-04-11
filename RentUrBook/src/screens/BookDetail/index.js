@@ -11,7 +11,7 @@ import { body, bookItemStyles } from "../universalStyles";
 import { CommonActions, StackActions } from "@react-navigation/core";
 
 import { BookPic } from "./BookPic";
-import { borrowBook } from "../../network/bookService"
+import { reserveBook } from "../../network/bookService"
 import { addFav, removeFav } from "../../network/userService"
 
 const BookDetail = ({navigation, route}) => {
@@ -41,7 +41,7 @@ const BookDetail = ({navigation, route}) => {
     })
     const onPressBorrow = () => {
         if ( borrowButtonStatus != "unavailable" && borrowButtonStatus != "reserved") {
-            borrowBook(book["id"],userData["id"], userData['username'])
+            reserveBook(book["id"],userData["id"], userData['username'])
             if (borrowButtonStatus == "available") {
                 setBorrowButton("return")
     

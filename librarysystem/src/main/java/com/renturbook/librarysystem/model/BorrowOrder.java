@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.util.List;
 
 @Entity
 @Table
@@ -157,8 +156,8 @@ public class BorrowOrder {
                 this.currentState = this.borrowingState;
         }
     }
-    public void pressBorrow(Long callerID ) {
-        this.currentState.pressBorrow(callerID);
+    public void pressReturnBook( ) {
+        this.currentState.pressReturnBook();
     }
 
     @Override

@@ -10,14 +10,12 @@ public class BorrowingState implements OrderState {
         this.borrowOrder = borrowOrder;
     }
 
-    public void pressBorrow(Long callerID) {
+    public void pressReturnBook() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        if ( borrowOrder.getBorrowedBy() == callerID)
-        {
-            borrowOrder.setReturnDate(dtf.format(now));
-            borrowOrder.setCurrentState(borrowOrder.getReturnedState());
-        }
+        borrowOrder.setReturnDate(dtf.format(now));
+        borrowOrder.setCurrentState(borrowOrder.getReturnedState());
+
     }
 
     public String toString() {

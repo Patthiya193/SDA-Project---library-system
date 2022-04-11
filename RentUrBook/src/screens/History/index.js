@@ -39,27 +39,20 @@ const History = ({userData, navigation}) => {
     const renderBook = ({item, onPress}) => {                
 
         return <Item item={item} onPress={() => {
-            var fav = "not fav";
-            var borrowButton = item["bookObject"]["curState"]
-            console.log("item  +++++ press",item["bookObject"], userData["userData"])
-            if ( userData["userData"]["favoriteBooks"])
-                {if (userData["userData"]["favoriteBooks"].includes(item["id"])) {
-                    fav = "fav"
-                }
-                if ( borrowButton == "reserved" && item["bookObject"]["reservedBy"] == userData["userData"]["id"]) {
-                    borrowButton = "return"
-                } }
-            // navigation.dispatch( StackActions.popToTop())
-            navigation.dispatch( StackActions.replace("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], 
-            favorite:fav, borrowButtonState: borrowButton}))
-            // navigation.navigate("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], favorite:fav})
+            if ( userType == "admin") {
+                borrowButton = 'borrow'
+            } else {
+                borrowButton = "return"
+            }
+            navigation.dispatch( StackActions.replace("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], borrowButtonState: borrowButton}))
         }}/>
     }
 
     const renderOrder = ({item, onPress}) => {                
 
         return <OrderItem item={item} onPress={() => {
-            // var fav = "not fav";
+            if ( userType == "admin" )
+            {// var fav = "not fav";
             // var borrowButton = item["bookObject"]["curState"]
             // console.log("item  +++++ press",item["bookObject"], userData["userData"])
             // if ( userData["userData"]["favoriteBooks"])
@@ -72,7 +65,7 @@ const History = ({userData, navigation}) => {
             // // navigation.dispatch( StackActions.popToTop())
             // navigation.dispatch( StackActions.replace("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], 
             // favorite:fav, borrowButtonState: borrowButton}))
-            // // navigation.navigate("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], favorite:fav})
+            // // navigation.navigate("BookDetail", {bookParam: item["bookObject"], userData:userData["userData"], favorite:fav})}
         }}/>
     }
 
@@ -88,7 +81,6 @@ const History = ({userData, navigation}) => {
     // Only render the scene for 2 routes at each sides (performance purpose)
     const renderScene = ({ route }) => {
         if (Math.abs(index - routes.indexOf(route)) > 2) {
-            // console.log(index)
             return <View/>;
         }
         var displayData = [];
@@ -121,12 +113,8 @@ const History = ({userData, navigation}) => {
                         }
                     } 
                 })
-
-
             } 
-                
         }
-        // console.log(orderData)
         if (orderData) 
         { if (route["key"] == "BORROWING") {
             orderData.forEach(order => {
@@ -182,7 +170,8 @@ const History = ({userData, navigation}) => {
         // Update the document title using the browser API
         React.useCallback(() => {
             findOrderData()
-        }, [userData])    );
+        }, [userData])    
+    );
 
     if (userType) {
         return(

@@ -15,3 +15,5 @@ export const borrowBookApi = `http://${ip}:8080/api/v1/book/borrow/`;
 export const searchBookApi = `http://${ip}:8080/api/v1/book/name/`
 
 export const getAllOrderApi = `http://${ip}:8080/api/v1/order`;
+export const createOrderApi = `http://${ip}:8080/api/v1/order`;
+export const returnBookApi = `http://${ip}:8080/api/v1/order/return/`;

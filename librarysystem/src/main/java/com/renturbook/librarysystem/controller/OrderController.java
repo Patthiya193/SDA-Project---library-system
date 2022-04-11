@@ -52,13 +52,13 @@ public class OrderController {
 
     @GetMapping("/return/")
     @ResponseBody
-    public BorrowOrder returnBook( @RequestParam Long orderId, @RequestParam Long callerId) {
+    public BorrowOrder returnBook( @RequestParam Long orderId) {
         BorrowOrder tempOrder = orderService.getById(orderId);
         tempOrder.generateState();
         Book temp = bookService.getById(tempOrder.getBookId());
         temp.generateState();
         temp.setCurrentState(temp.getAvailableState());
-        tempOrder.pressBorrow(callerId);
+        tempOrder.pressReturnBook();
         orderService.saveOrder(tempOrder);
         return tempOrder;
     }

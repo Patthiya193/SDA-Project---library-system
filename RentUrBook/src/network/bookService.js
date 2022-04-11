@@ -54,7 +54,7 @@ export const getBookById = async (book) => {
     return returnResp.data
 }
 
-export const borrowBook = (bkId, usrId, usrName) => {
+export const reserveBook = (bkId, usrId, usrName) => {
     console.log("type: ", typeof bkId,typeof usrId)
 
     axios.get(borrowBookApi,{ params: {bookId:bkId, callerId:usrId, callerName:usrName}})
