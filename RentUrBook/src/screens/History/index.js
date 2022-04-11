@@ -18,7 +18,7 @@ import { TabView } from 'react-native-tab-view';
 import { getAllBook, getBookById } from "../../network/bookService"
 import { getAllOrder } from "../../network/orderService"
 import { getuserById } from "../../network/userService"
-import { CommonActions, StackActions } from "@react-navigation/core";
+import { CommonActions, StackActions, useFocusEffect } from "@react-navigation/core";
 
 
 const History = ({userData, navigation}) => {
@@ -178,10 +178,11 @@ const History = ({userData, navigation}) => {
         }
     };
 
-    useEffect(() => {
+    useFocusEffect(
         // Update the document title using the browser API
-        findOrderData()
-    });
+        React.useCallback(() => {
+            findOrderData()
+        }, [userData])    );
 
     if (userType) {
         return(

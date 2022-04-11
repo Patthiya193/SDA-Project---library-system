@@ -13,7 +13,7 @@ import { CommonActions, StackActions } from "@react-navigation/core";
 
 const Account = ({navigation, userData}) => {
     const [user, setUser] = useState(userData['userData'])
-    console.log("Account: current user", user)
+    // console.log("Account: current user", user)
 
     const onPressLogin = () => {
         navigation.navigate("SignIn")

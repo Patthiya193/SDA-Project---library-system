@@ -15,7 +15,7 @@ import { Item } from "../../components/render/item";
 
 import { TabView } from 'react-native-tab-view';
 import { getAllBook, searchBook } from "../../network/bookService"
-import { CommonActions, StackActions } from "@react-navigation/core";
+import { CommonActions, StackActions, useFocusEffect } from "@react-navigation/core";
 
 const Home = ({navigation, route, userData}) => {
     //console.log('Home: current user',userData)
@@ -122,10 +122,12 @@ const Home = ({navigation, route, userData}) => {
                 />;
     };
 
-    useEffect(() => {
+    useFocusEffect(
         // Update the document title using the browser API
-        findBookData()
-    });
+        React.useCallback(() => {
+            findBookData()
+        }, [userData])
+    );
 
     return(
         <View style={body.background}>
