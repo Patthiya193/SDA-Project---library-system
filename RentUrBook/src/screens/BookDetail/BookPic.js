@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         zIndex: 1,
         left: (Dimensions.get('window').width / 2) - 80,
-        top: 130,
+        top: (Dimensions.get('window').height / 2) - 220,
         width: 160,
         height: 200,
         borderRadius: 16,
