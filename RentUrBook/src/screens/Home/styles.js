@@ -5,6 +5,13 @@ export const styles = StyleSheet.create({
     footer: {
         backgroundColor: 'white',
     },
+    imageContainer: {
+        width: 100,
+        height: 100,
+        borderRadius: 16,
+        backgroundColor: 'pink',
+        marginRight: 16,
+    },
 })
 
 export const tabBarStyles = StyleSheet.create({
