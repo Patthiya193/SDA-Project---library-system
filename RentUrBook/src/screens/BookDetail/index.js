@@ -23,7 +23,7 @@ const BookDetail = ({navigation, route}) => {
 
     const [favButtonColor, setFavButtonColor] = useState({"fav": "#FF8886", "not fav":"#A8AFB9"})
     const [borrowColor, setBorrowColor] = useState({"available": "#EF5DA8", "return":"#C1D1DB", "reserved":"#999999", "unavailable":"#AAAAA"})
-    const [borrowText, setBorrowText] = useState({"available": "Borrow", "return":"Return", "reserved":"Reserved", "unavailable":"Unavailable"})
+    const [borrowText, setBorrowText] = useState({"available": "Reserve", "return":"Cancel", "reserved":"Reserved", "unavailable":"Unavailable"})
     console.log("borrow", borrowButtonStatus)
 
     var clr = borrowColor[borrowButtonStatus]

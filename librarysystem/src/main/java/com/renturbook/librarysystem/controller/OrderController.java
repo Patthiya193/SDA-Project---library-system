@@ -75,7 +75,7 @@ public class OrderController {
 
     @PostMapping("/test")
     public void addTestBook() {
-        BorrowOrder temp = new BorrowOrder(1L, 1L, "2017/11/06 12:11:58","borrowing");
+        BorrowOrder temp = new BorrowOrder(1L, "Test book", 1L, "username", "2017/11/06 12:11:58","borrowing");
         Book tempBook = bookService.getById(temp.getBookId());
         tempBook.setReservedBy(0L);
         tempBook.generateState();

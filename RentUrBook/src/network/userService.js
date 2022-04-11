@@ -95,3 +95,20 @@ export const getFavBook = async (usrId) => {
     //console.log( "GET all book json ", returnResp.data)
     return returnResp.data
 }
+
+export const getUserById = async (id) => {
+    const returnResp = await axios.get(getUserByIdApi, {params:{userId:id}})
+    .then(response => {
+        return response
+    })
+    .catch(error => {
+        // console.log("GET ERROR", error)
+        return []
+    })
+    // console.log('GET Response is', response)
+    // const json = await response.json()
+
+    
+    //console.log( "GET all book json ", returnResp.data)
+    return returnResp.data
+}

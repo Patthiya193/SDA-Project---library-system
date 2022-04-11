@@ -8,7 +8,7 @@ import { BottomNavigation } from "react-native-paper";
 import Home from "../Home"
 import TabBar, { iconTypes } from "react-native-fluidbottomnavigation";
 import Favorite from "../Favorite"
-import Notifications from "../Notifications"
+import History from "../History"
 import Account from "../Account"
 
 
@@ -31,8 +31,8 @@ const Main = ({navigation, route}) => {
               title: 'Favorite',
             },
             {
-              key: 'notifications',
-              title: 'Notifications',
+              key: 'history',
+              title: 'History',
             },
             {
               key: 'account',
@@ -52,7 +52,7 @@ const Main = ({navigation, route}) => {
     const _renderTabScene = BottomNavigation.SceneMap({
         home: () => <Home userData={userData} navigation={navigation}/>,
         favorite: () => <Favorite navigation={navigation} userData={userData} />,
-        notifications: () => <Notifications userData={userData} />,
+        history: () => <History userData={userData} />,
         account: () => <Account navigation={navigation} userData={userData}/>
     })
 
@@ -79,7 +79,7 @@ const Main = ({navigation, route}) => {
                 values={[
                     { title: "Home", icon: "home", isIcon: true, iconType: iconTypes.Entypo },
                     { title: "Favorites", icon: "heart", isIcon: true, iconType: iconTypes.FontAwesome },
-                    { title: "Notification", icon: "notifications", isIcon: true, iconType: iconTypes.MaterialIcons },
+                    { title: "History", icon: "notifications", isIcon: true, iconType: iconTypes.MaterialIcons },
                     { title: "Account", icon: "user-alt", isIcon: true, iconType: iconTypes.FontAwesome5 }
                 ]}
             />

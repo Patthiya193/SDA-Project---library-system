@@ -10,5 +10,8 @@ export const removeFavApi = `http://${ip}:8080/api/v1/user/removefav/`;
 export const getFavBookApi = `http://${ip}:8080/api/v1/user/favbook/`;
 
 export const getAllBookApi = `http://${ip}:8080/api/v1/book`;
+export const getBookByIdApi = `http://${ip}:8080/api/v1/book/id/`;
 export const borrowBookApi = `http://${ip}:8080/api/v1/book/borrow/`;
 export const searchBookApi = `http://${ip}:8080/api/v1/book/name/`
+
+export const getAllOrderApi = `http://${ip}:8080/api/v1/order`;
