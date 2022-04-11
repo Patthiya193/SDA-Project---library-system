@@ -1,12 +1,16 @@
 
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, View } from "react-native";
+import { BookIcon } from "../../screens/Home/bookIcon";
 
 import { bookItemStyles } from "../../screens/universalSyles";
 
 export const Item = ({item, onPress}) => (
     <TouchableOpacity style={bookItemStyles.bookContainer} onPress = {onPress}>
-        <Text style={bookItemStyles.bookName}>{item.title}</Text>
-        <Text style={bookItemStyles.bookAuthor}>{item.subtitle}</Text>
+        <BookIcon/>
+        <View style={{justifyContent:'center'}}>
+            <Text style={bookItemStyles.bookName}>{item.title}</Text>
+            <Text style={bookItemStyles.bookAuthor}>{item.subtitle}</Text>
+        </View>
     </TouchableOpacity>
 );
