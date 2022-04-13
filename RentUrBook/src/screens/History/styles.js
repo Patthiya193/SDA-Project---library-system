@@ -23,10 +23,6 @@ export const tabBarStyles = StyleSheet.create({
     tabBar: {
         backgroundColor: 'transparent',
         marginBottom: '5%',
-        // paddingLeft: "10%",
-    },
-    tabBarStyle: {
-        width: 'auto',
     },
     tabBarIndicator: {
         backgroundColor: '#ffffff',
