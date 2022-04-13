@@ -4,14 +4,14 @@ import { useState } from "react";
 
 
 
-export const BookPic = () => {
+export const BookPic = (image) => {
 
-    const [img, setImg] = useState();
+    const [img, setImg] = useState(image);
 
     return (
 
         <Image style = {styles.container} 
-        sorce = {img} />
+        source={{uri: `data:image/jpeg;base64,${img['image']}`}} />
         //<TouchableOpacity style = {styles.container} />
 
     );

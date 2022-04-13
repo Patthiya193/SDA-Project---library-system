@@ -11,7 +11,7 @@ import { body, bookItemStyles } from "../universalStyles";
 import { CommonActions, StackActions } from "@react-navigation/core";
 
 import { BookPic } from "./BookPic";
-import { reserveBook } from "../../network/bookService"
+import { reserveBook, deleteBook } from "../../network/bookService"
 import { addFav, removeFav } from "../../network/userService"
 
 const BookDetail = ({navigation, route}) => {
@@ -52,6 +52,28 @@ const BookDetail = ({navigation, route}) => {
         
         clr = borrowColor[borrowButtonStatus]
     }
+
+    const onPressDelete = () => {
+        Alert.alert(
+            "Comfirm",
+            "Are you really want to delete this book?",
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "OK", onPress: () => {
+                  deleteBook(book["id"])
+                  navigation.dispatch( StackActions.replace('MainLoggedIn', {"userData":userData}))
+
+              } }
+            ]
+          );    }
+
+    const onPressEdit = () => {
+        navigation.navigate("AddBook", {bookData:book, state:"edit",userData:userData})
+    }
     const addFavorites = () => {
         if ( fav == "fav") {
             setFav("not fav")
@@ -91,7 +113,7 @@ const BookDetail = ({navigation, route}) => {
                     </View>
 
                 </View>
-                <BookPic />
+                <BookPic image ={book["coverImage"]} />
             
                 <View style={styles.mainBody}>
                     <View style={styles.bookContainer}>
@@ -150,7 +172,7 @@ const BookDetail = ({navigation, route}) => {
                     </View>
                     
                 </View>
-                <BookPic />
+                <BookPic image ={book["coverImage"]} />
                 <View style={styles.mainBody}>
                     <View style={styles.bookContainer}>
         
@@ -169,10 +191,12 @@ const BookDetail = ({navigation, route}) => {
                         </ScrollView>
                     </SafeAreaView>
                     <View style = {styles.bottomContainer}>
-                        <Pressable style = {styles.borrowButtonStyleNoFav} onPress = {onPressBorrow}>
+                        <Pressable style = {styles.borrowButtonStyleNoFav} onPress = {onPressEdit}>
                                 <Text style={styles.borrowText}>Edit</Text>
                         </Pressable>
-    
+                        <Pressable style = {styles.deleteButton} onPress = {onPressDelete}>
+                                <Text style={styles.borrowText}>Delete</Text>
+                        </Pressable>
                     </View>    
                     
                 </View>
@@ -192,7 +216,7 @@ const BookDetail = ({navigation, route}) => {
                     <Text style={body.title}>Book Detail </Text>
                 </View>
             </View>
-            <BookPic />
+            <BookPic image ={book["coverImage"]} />
         
             <View style={styles.mainBody}>
                 <View style={styles.bookContainer}>

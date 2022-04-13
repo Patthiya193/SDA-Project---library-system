@@ -12,6 +12,7 @@ import Main from "./screens/Main"
 import BookDetail from './screens/BookDetail';
 import OrderDetail from './screens/OrderDetail'
 import ReservedBookDetail from './screens/ReservedBookDetail'
+import AddBook from './screens/AddBook'
 const AuthStack = createStackNavigator();
 
 const App = () => {
@@ -26,7 +27,8 @@ const App = () => {
             <AuthStack.Screen name = "BookDetail" component ={BookDetail} initialParams ={{bookParam:{}}}/>
             <AuthStack.Screen name = "OrderDetail" component ={OrderDetail} initialParams ={{orderParam:{}}}/>
             <AuthStack.Screen name = "ReservedBookDetail" component ={ReservedBookDetail} initialParams ={{bookParam:{}}}/>
-
+            <AuthStack.Screen name = "AddBook" component = {AddBook} />
+            
         </AuthStack.Navigator>
     </NavigationContainer>
 

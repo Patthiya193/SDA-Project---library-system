@@ -63,4 +63,12 @@ public class BookServiceImpl{
         book.addGenre(genre);
         bookRepository.save(book);
     }
+
+    public void deleteBook(Long bookId) {
+        bookRepository.deleteById(bookId);
+    }
+
+    public void updateBook( Book updatedBook) {
+        bookRepository.save(updatedBook);
+    }
 }

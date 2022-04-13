@@ -9,8 +9,6 @@ import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 import { loginUser, getUser } from "../../network/userService";
-import Register from "../Register";
-import Main from "../Main"
 import { CommonActions, StackActions } from "@react-navigation/core";
 
 

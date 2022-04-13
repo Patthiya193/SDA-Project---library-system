@@ -32,7 +32,7 @@ public class Book {
     private String reserverName;
 
     @Lob
-    private Blob coverImage;
+    private byte[] coverImage;
 
 //    @Column(nullable = true, length = 64)
 //    private String coverImage;
@@ -185,10 +185,10 @@ public class Book {
 //    public void setCoverImage(String coverImage) {
 //        this.coverImage = coverImage;
 //    }
-    public void setCoverImage(Blob coverImage) {
+    public void setCoverImage(byte[] coverImage) {
         this.coverImage = coverImage;
     }
-    public Blob getCoverImage() {
+    public byte[] getCoverImage() {
         return this.coverImage;
     }
 

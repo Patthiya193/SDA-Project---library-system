@@ -88,7 +88,7 @@ const ReservedBookDetail = ({navigation, route}) => {
                     </View>
 
                 </View>
-                <BookPic />
+                <BookPic image ={book["coverImage"]} />
             
                 <View style={styles.mainBody}>
                     <View style={styles.bookContainer}>
@@ -145,7 +145,7 @@ const ReservedBookDetail = ({navigation, route}) => {
                     </View>
                     
                 </View>
-                <BookPic />
+                <BookPic image ={book["coverImage"]} />
                 <View style={styles.mainBody}>
                     <View style={styles.bookContainer}>
         

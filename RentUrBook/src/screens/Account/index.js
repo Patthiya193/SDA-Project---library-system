@@ -57,7 +57,7 @@ const Account = ({navigation, userData}) => {
         key: "addbook",
         icon: faPencil,
         onPress: () => {
-            Alert.alert("add book")
+            navigation.navigate("AddBook", {userData:user, state:"add",bookData:{ bookName:"", authors:[''], description:'', coverImage:''}})
         }
     },{
         id: "1",

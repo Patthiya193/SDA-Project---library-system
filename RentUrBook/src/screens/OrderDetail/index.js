@@ -45,7 +45,7 @@ const OrderDetail = ({navigation, route}) => {
                     </View>
                     
                 </View>
-                <BookPic />
+                <BookPic image ={book["coverImage"]} />
                 <View style={styles.mainBody}>
                     <View style={styles.bookContainer}>
         
@@ -90,7 +90,7 @@ const OrderDetail = ({navigation, route}) => {
                     </View>
                     
                 </View>
-                <BookPic />
+                <BookPic image ={book["coverImage"]} />
                 <View style={styles.mainBody}>
                     <View style={styles.bookContainer}>
         

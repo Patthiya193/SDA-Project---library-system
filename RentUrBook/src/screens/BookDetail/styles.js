@@ -29,11 +29,23 @@ export const styles = StyleSheet.create({
         alignItems:'center' ,
         // justifyContent: 'center',
         //textAlign: 'center',
-        width: Dimensions.get('window').width * 0.75,
+        width: Dimensions.get('window').width * 0.4,
         paddingVertical: 18,
-        paddingHorizontal: 80,
+        paddingHorizontal: 10,
         borderRadius: 16,
-        backgroundColor: '#EF5DA8',
+        backgroundColor: '#7AA0CB',
+        marginTop: 15,
+        marginBottom: 15, 
+       },
+       deleteButton: {
+        alignItems:'center' ,
+        // justifyContent: 'center',
+        //textAlign: 'center',
+        width: Dimensions.get('window').width * 0.4,
+        paddingVertical: 18,
+        paddingHorizontal: 10,
+        borderRadius: 16,
+        backgroundColor: '#FF7974',
         marginTop: 15,
         marginBottom: 15, 
        },
@@ -44,6 +56,7 @@ export const styles = StyleSheet.create({
         fontSize:18,
     },
 
+    
     mainBody:{
         flex: 3,
         backgroundColor: '#F9FAFB',  
@@ -81,6 +94,9 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 0,
         marginBottom: 0,
+        paddingLeft: 10,
+        paddingRight: 10
+        
     },
 
     bookContainer:{

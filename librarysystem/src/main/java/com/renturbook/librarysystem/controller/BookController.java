@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.renturbook.librarysystem.service.BookServiceImpl;
 import com.renturbook.librarysystem.model.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -103,8 +104,15 @@ public class BookController {
         return tempBook;
     }
 
+//    @PostMapping
+//    public void addBook(@RequestBody Book newBook) {
+////        System.out.println(newBook.getCoverImage());
+//        bookService.saveBook(newBook);
+//    }
     @PostMapping
     public void addBook(@RequestBody Book newBook) {
+    //        System.out.println(newBook.getCoverImage());
+
         bookService.saveBook(newBook);
     }
 
@@ -131,4 +139,13 @@ public class BookController {
         bookService.saveBook(temp2);
     }
 
+    @DeleteMapping
+    public void deleteBook(@RequestParam Long bookId) {
+        bookService.deleteBook(bookId);
+    }
+
+    @PutMapping("/edit")
+    public void updateBook(@RequestBody Book updatedBook) {
+        bookService.updateBook(updatedBook);
+    }
 }
