@@ -5,11 +5,10 @@ import { tabBarStyles } from './styles';
 export const renderTabBar = (props) => (
     <TabBar
         {...props}
-        scrollEnabled={true}
+        scrollEnabled={false}
         indicatorContainerStyle={tabBarStyles.tabBarIndicatorContainer}
         indicatorStyle={tabBarStyles.tabBarIndicator}
         labelStyle={tabBarStyles.tabBarLabel}
-        tabStyle={tabBarStyles.tabBarStyle}
         style={tabBarStyles.tabBar}
     />
 );
