@@ -33,8 +33,8 @@ const History = ({userData, navigation}) => {
 
     const [routes] = useState([
         { key: 'ALL', title: 'All'},
-        { key: 'BORROWING', title: 'Borrowing' },
-        { key: 'RESERVING', title: 'Reserving' },
+        { key: 'BORROWING', title: 'Borrowed' },
+        { key: 'RESERVING', title: 'Reserved' },
     ]);
 
     const renderBook = ({item, onPress}) => {                
