@@ -272,6 +272,8 @@ PODS:
   - React-jsinspector (0.67.3)
   - React-logger (0.67.3):
     - glog
+  - react-native-fetch-blob (0.10.6):
+    - React-Core
   - react-native-image-picker (4.7.3):
     - React-Core
   - react-native-pager-view (5.4.15):
@@ -432,6 +434,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-fetch-blob (from `../node_modules/react-native-fetch-blob`)
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -507,6 +510,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-fetch-blob:
+    :path: "../node_modules/react-native-fetch-blob"
   react-native-image-picker:
     :path: "../node_modules/react-native-image-picker"
   react-native-pager-view:
@@ -583,6 +588,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 15ea57ead631a11fad57634ff69f78e797113a39
   React-jsinspector: 1e1e03345cf6d47779e2061d679d0a87d9ae73d8
   React-logger: 1e10789cb84f99288479ba5f20822ce43ced6ffe
+  react-native-fetch-blob: 0cbdf9764c75d9438c162427395f4bc35a857d5a
   react-native-image-picker: 4e6008ad8c2321622affa2c85432a5ebd02d480c
   react-native-pager-view: b1914469643f40042e65d78cbf3d3dfebd6fb0d9
   react-native-safe-area-context: f98b0b16d1546d208fc293b4661e3f81a895afd9
@@ -609,4 +615,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 51ae466abde8c28f37d1ccde86c111a40f0c7292
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
