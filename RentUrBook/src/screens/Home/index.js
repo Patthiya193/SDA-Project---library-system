@@ -86,7 +86,7 @@ const Home = ({navigation, route, userData}) => {
 
 
         var displayData = [];
-        if ( bookData)
+        if ( bookData )
         {
                 bookData.forEach(book => {
                     if ( route["key"] == "ALL" || book["genre"].includes(route["key"]))
@@ -105,6 +105,7 @@ const Home = ({navigation, route, userData}) => {
                             id: book["id"],
                             title: book["bookName"],
                             subtitle: sub,
+                            isbn: book["isbn"],
                             type: "1",
                             bookObject: book
                         }
