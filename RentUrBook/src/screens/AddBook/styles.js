@@ -59,6 +59,7 @@ export const styles = StyleSheet.create({
 
     mainBody:{
         flex: 7,
+        flexGrow: 1,
         backgroundColor: '#F9FAFB',  
         borderTopLeftRadius: 44,
         borderTopRightRadius: 44,
@@ -72,10 +73,11 @@ export const styles = StyleSheet.create({
 
     bottomContainer:{
         flex: 0,
-        flexDirection: 'row',
+        backgroundColor: '#F9FAFB',  
+        //lexDirection: 'row',
         alignItems: 'center',
         marginTop: 0,
-        marginBottom: 30,
+        marginBottom: 0,
     },
 
     inputContainer: {
