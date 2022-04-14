@@ -30,15 +30,17 @@ const BookDetail = ({navigation, route}) => {
 
     console.log("Book", book, userData)
     var author = "by "
+    var isbn = "isbn: " + book["isbn"]
+
     book["authors"].forEach((a, i) => {
         if ( i == book["authors"].length - 1) {
             author = author + a
         }
         else {
             author = author + a + ", "
-
         }
-    })
+    });
+
     const onPressBorrow = () => {
         if ( borrowButtonStatus != "unavailable" && borrowButtonStatus != "reserved") {
             reserveBook(book["id"],userData["id"], userData['username'])
