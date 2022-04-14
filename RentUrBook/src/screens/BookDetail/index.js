@@ -137,17 +137,9 @@ const BookDetail = ({navigation, route}) => {
                         </ScrollView>
                     </SafeAreaView>
                     <View style = {styles.bottomContainer}>
-                        <Pressable style = {{alignItems: 'center',
-                            justifyContent: 'center',
-                            width: Dimensions.get('window').width * 0.65,
-                            paddingVertical: 18,
-                            paddingHorizontal: 80,
-                            borderRadius: 16,
-                            backgroundColor: clr,
-                            marginTop: 15,
-                            marginBottom: 15,
-                            marginRight: 30, }} onPress = {onPressBorrow}>
-                                    <Text style={styles.borrowText}>{borrowText[borrowButtonStatus]}</Text>
+                        <Pressable style = {[styles.borrowButtonStyle, {backgroundColor: clr}]} 
+                            onPress = {onPressBorrow}>
+                            <Text style={styles.borrowText}>{borrowText[borrowButtonStatus]}</Text>
                         </Pressable>
                         <TouchableOpacity onPress={() => addFavorites()}>
                             <FontAwesomeIcon icon={ faHeart } color={favButtonColor[fav]} size={35} style={{margin:5}}/>
