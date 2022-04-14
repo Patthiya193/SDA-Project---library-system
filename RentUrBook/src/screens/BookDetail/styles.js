@@ -93,10 +93,10 @@ export const styles = StyleSheet.create({
         zIndex: 999,
         margin: 5,
     },
-    bookAuthor: {
+    bookDetails: {
         fontSize: 18,
         color: '#8C9199',
-        marginBottom:8,
+        marginBottom: 5,
     },
     bookStatus:{
         fontWeight: 'bold',
