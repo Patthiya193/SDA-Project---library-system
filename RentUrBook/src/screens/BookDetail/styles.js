@@ -106,18 +106,17 @@ export const styles = StyleSheet.create({
         textAlign: 'left',
 
     },
-    // borrowButtonStyle: {
+    borrowButtonStyle: {
             
-    //     alignItems: 'center',
-    //     // justifyContent: 'center',
-    //     width: Dimensions.get('window').width * 0.65,
-    //     paddingVertical: 18,
-    //     paddingHorizontal: 80,
-    //     borderRadius: 16,
-    //     backgroundColor: '#EF5DA',
-    //     marginTop: 15,
-    //     marginBottom: 15, 
-    //     right: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: Dimensions.get('window').width * 0.65,
+        paddingVertical: 18,
+        paddingHorizontal: 80,
+        borderRadius: 16,
+        marginTop: 15,
+        marginBottom: 15,
+        marginRight: 30, 
                 
     //     },
     borrowButtonStyle: {
