@@ -188,10 +188,10 @@ const BookDetail = ({navigation, route}) => {
                         </ScrollView>
                     </SafeAreaView>
                     <View style = {styles.bottomContainer}>
-                        <Pressable style = {styles.borrowButtonStyleNoFav} onPress = {onPressEdit}>
+                        <Pressable style = {[styles.adminButton, {backgroundColor: '#76d938'}]} onPress = {onPressEdit}>
                                 <Text style={styles.borrowText}>Edit</Text>
                         </Pressable>
-                        <Pressable style = {styles.deleteButton} onPress = {onPressDelete}>
+                        <Pressable style = {[styles.adminButton, {backgroundColor: '#FF7974'}]} onPress = {onPressDelete}>
                                 <Text style={styles.borrowText}>Delete</Text>
                         </Pressable>
                     </View>    
@@ -231,6 +231,7 @@ const BookDetail = ({navigation, route}) => {
                         {/* Book status */}
                         <Text style = {styles.bookStatus}>Description:</Text> 
                         <Text style={styles.text}>{book["description"]}</Text>
+                        
                     </ScrollView>
                 </SafeAreaView>
             
