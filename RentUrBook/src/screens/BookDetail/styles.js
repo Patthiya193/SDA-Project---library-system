@@ -29,10 +29,8 @@ export const styles = StyleSheet.create({
         paddingVertical: 18,
         paddingHorizontal: 10,
         borderRadius: 16,
-        backgroundColor: '#FF7974',
-        marginTop: 15,
-        marginBottom: 15, 
-       },
+        margin: 15,
+    },
 
     borrowText: {
         color: '#FFFFFF',
