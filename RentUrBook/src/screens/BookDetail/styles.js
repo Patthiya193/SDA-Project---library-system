@@ -22,23 +22,9 @@ export const styles = StyleSheet.create({
         bottom: 37,
         left: 40,
     },
-    
-    borrowButtonStyleNoFav: {
-        alignItems:'center' ,
-        // justifyContent: 'center',
-        //textAlign: 'center',
-        width: Dimensions.get('window').width * 0.4,
-        paddingVertical: 18,
-        paddingHorizontal: 10,
-        borderRadius: 16,
-        backgroundColor: '#7AA0CB',
-        marginTop: 15,
-        marginBottom: 15, 
-       },
-       deleteButton: {
-        alignItems:'center' ,
-        // justifyContent: 'center',
-        //textAlign: 'center',
+
+    adminButton: {
+        alignItems:'center',
         width: Dimensions.get('window').width * 0.4,
         paddingVertical: 18,
         paddingHorizontal: 10,
