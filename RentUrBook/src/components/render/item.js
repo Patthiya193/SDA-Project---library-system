@@ -22,9 +22,9 @@ export const Item = ({item, onPress}) =>{
         <Image source={{uri: `data:image/jpeg;base64,${item.bookObject["coverImage"]}`}} style={{width: 100, height: 150, paddingBottom:10}} />
         <View style={{justifyContent:'center'}}>
             <Text style={bookItemStyles.bookName}>{item.title}</Text>
-            <Text style={bookItemStyles.bookAuthor}>{item.subtitle}</Text>
-            <Text style={bookItemStyles.bookAuthor}>Status: {item.bookObject["curState"]}</Text>
-
+            <Text style={bookItemStyles.bookDetails}>{item.subtitle}</Text>
+            <Text style={bookItemStyles.bookDetails}>{item.isbn}</Text>
+            <Text style={bookItemStyles.bookDetails}>Status: {item.bookObject["curState"]}</Text>
         </View>
     </TouchableOpacity>
 );}

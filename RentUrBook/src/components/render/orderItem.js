@@ -10,10 +10,10 @@ export const OrderItem = ({item, onPress}) => (
         <BookIcon/>
         <View style={{justifyContent:'center'}}>
             <Text style={bookItemStyles.bookName}>{item.title}</Text>
-            <Text style={bookItemStyles.bookAuthor}>Borrowed by: {item.borrowedBy}</Text>
-            <Text style={bookItemStyles.bookAuthor}>{item.status}</Text>
-            <Text style={bookItemStyles.bookAuthor}>{item.borrowDate}</Text>
-            <Text style={bookItemStyles.bookAuthor}>{item.returnDate}</Text>
+            <Text style={bookItemStyles.bookDetails}>Borrowed by: {item.borrowedBy}</Text>
+            <Text style={bookItemStyles.bookDetails}>{item.status}</Text>
+            <Text style={bookItemStyles.bookDetails}>{item.borrowDate}</Text>
+            <Text style={bookItemStyles.bookDetails}>{item.returnDate}</Text>
 
         </View>
     </TouchableOpacity>
