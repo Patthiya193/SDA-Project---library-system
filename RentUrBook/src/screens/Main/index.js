@@ -79,7 +79,7 @@ const Main = ({navigation, route}) => {
                 values={[
                     { title: "Home", icon: "home", isIcon: true, iconType: iconTypes.Entypo },
                     { title: "Favorites", icon: "heart", isIcon: true, iconType: iconTypes.FontAwesome },
-                    { title: "History", icon: "notifications", isIcon: true, iconType: iconTypes.MaterialIcons },
+                    { title: "History", icon: "history", isIcon: true, iconType: iconTypes.FontAwesome5 },
                     { title: "Account", icon: "user-alt", isIcon: true, iconType: iconTypes.FontAwesome5 }
                 ]}
             />
