@@ -118,59 +118,6 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
         marginRight: 30, 
                 
-    //     },
-    borrowButtonStyle: {
-        "available":{
-            alignItems: 'center',
-            // justifyContent: 'center',
-            width: Dimensions.get('window').width * 0.65,
-            paddingVertical: 18,
-            paddingHorizontal: 80,
-            borderRadius: 16,
-            backgroundColor: '#EF5DA',
-            marginTop: 15,
-            marginBottom: 15, 
-            right: 30,
-            
-           },
-           "return":{
-            alignItems: 'center',
-            // justifyContent: 'center',
-            width: Dimensions.get('window').width * 0.65,
-            paddingVertical: 18,
-            paddingHorizontal: 80,
-            borderRadius: 16,
-            backgroundColor: '#C1D1DB',
-            marginTop: 15,
-            marginBottom: 15, 
-            right: 30,
-            
-           },"reserved":{
-            alignItems: 'center',
-            // justifyContent: 'center',
-            width: Dimensions.get('window').width * 0.65,
-            paddingVertical: 18,
-            paddingHorizontal: 80,
-            borderRadius: 16,
-            backgroundColor: '#999999',
-            marginTop: 15,
-            marginBottom: 15, 
-            right: 30,
-            
-           },"unavailable":{
-            alignItems: 'center',
-            // justifyContent: 'center',
-            width: Dimensions.get('window').width * 0.65,
-            paddingVertical: 18,
-            paddingHorizontal: 80,
-            borderRadius: 16,
-            backgroundColor: '#99999',
-            marginTop: 15,
-            marginBottom: 15, 
-            right: 30,
-            
-           },
     },
-
     
 })
