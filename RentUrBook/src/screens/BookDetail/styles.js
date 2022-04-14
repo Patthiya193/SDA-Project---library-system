@@ -89,7 +89,7 @@ export const styles = StyleSheet.create({
     },
     bookName: {
         fontWeight: 'bold',
-        fontSize: 35,
+        fontSize: 30,
         zIndex: 999,
         margin: 5,
     },
