@@ -216,7 +216,7 @@ const History = ({userData, navigation}) => {
         return(
             <View style={body.background}>
                 <View style={body.top}>
-                    <Text style={body.title}>Notifications</Text>
+                    <Text style={body.title}>History</Text>
                     <View style={{flex:1,justifyContent: "center",alignItems: "center"}}>
                         <Text style={styles.warnLabel}>Please login to use this feature.</Text>
 
