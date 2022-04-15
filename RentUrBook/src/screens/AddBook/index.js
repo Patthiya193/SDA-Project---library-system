@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 
 import { View, ScrollView, Text, TextInput, Alert, KeyboardAvoidingView, SafeAreaView, TouchableOpacity,Dimensions, StatusBar, keyboadType } from "react-native";
 
@@ -7,6 +7,8 @@ import { faBars, faHouse, faBookReader, faPencil, faUserEdit, faBookOpen} from '
 
 import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
+import MultiSelect from 'react-native-multiple-select';
+
 import { body, bookItemStyles } from "../universalStyles";
 import { CommonActions, StackActions, useFocusEffect } from "@react-navigation/core";
 import { addBook, editBook} from "../../network/bookService"
@@ -18,6 +20,8 @@ if (!global.atob) { global.atob = decode }
 var ImagePicker = require('react-native-image-picker');
 
 const AddBook = ({navigation, route}) => {
+
+
     const [userData, setUserData] = useState(route.params["userData"])
 
     const [bookData, setBookData] = useState(route.params["bookData"])
@@ -166,6 +170,41 @@ const AddBook = ({navigation, route}) => {
     //         }
     //     })
     // );
+    const items = [{
+        id: '92iijs7yta',
+        name: 'Art'
+      }, {
+        id: 'a0s0a8ssbsd',
+        name: 'Cartoon'
+      }, {
+        id: '16hbajsabsd',
+        name: 'Education'
+      }, {
+        id: 'nahs75a5sg',
+        name: 'Health'
+      }, {
+        id: '667atsas',
+        name: 'History'
+      }, {
+        id: 'hsyasajs',
+        name: 'Magazine'
+      }, {
+        id: 'djsjudksjd',
+        name: 'Novel'
+      }, {
+        id: 'sdhyaysdj',
+        name: 'Technology'
+      }, {
+        id: 'suudydjsjd',
+        name: 'Travel'
+    }];
+
+    const [selectedItems, setSelectedItems] = useState([]);
+
+    const onSelectedItemsChange = (selectedItems) => {
+      // Set Selected Items
+      setSelectedItems(selectedItems);
+    };
 
     return(
         <View style={body.background}>
@@ -220,17 +259,8 @@ const AddBook = ({navigation, route}) => {
                     }} 
                     value={bookAuthor} />
                 </View>
-                <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faBars } color='#A8AFB9' size={24} style={{margin:5}}/>
-                    <TextInput placeholder='Genre' style={styles.textInput} placeholderTextColor='#A8AFB9' 
-                    onChangeText={newBookGenre => {
-                        let value = newBookGenre
-                        value = value.replace(/[^A-Za-z0-9_ ,]/gi, "")
-                        setBookGenre(value)
-                    }} 
-                    value={bookGenre} />
-                </View>
-                
+             
+        
 
                 <View style={styles.inputContainer}>
                     <FontAwesomeIcon icon={ faBookReader } color='#A8AFB9' size={24} style={{margin:5}}/>
@@ -256,6 +286,33 @@ const AddBook = ({navigation, route}) => {
                     }} 
                     value={bookDes} />
                 </View>
+                <SafeAreaView style={styles.inputContainer}>
+                <View style={styles.container}>
+                    <Text style={styles.titleText}>
+                    Select Genre 
+                    </Text>
+                    <MultiSelect
+                    hideTags
+                    items={items}
+                    uniqueKey="id"
+                    onSelectedItemsChange={onSelectedItemsChange}
+                    selectedItems={selectedItems}
+                    selectText="Pick Genre"
+                    searchInputPlaceholderText="Search ..."
+                    onChangeInput={(text) => console.log(text)}
+                    tagRemoveIconColor="#A8AFB9"
+                    tagBorderColor="#A8AFB9"
+                    tagTextColor="#A8AFB9"
+                    selectedItemTextColor="#EF5DA8"
+                    selectedItemIconColor="#EF5DA8"
+                    itemTextColor="#000"
+                    displayKey="name"
+                    searchInputStyle={{color: '#A8AFB9'}}
+                    submitButtonColor="#6C70EB"
+                    submitButtonText="Submit"
+                    />
+                </View>
+                </SafeAreaView>
             </View>
             </KeyboardAvoidingView >
             </ScrollView>

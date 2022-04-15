@@ -120,5 +120,19 @@ export const styles = StyleSheet.create({
         textAlign: 'left',
     },
 
+    container: {
+        flex: 1,
+        backgroundColor: 'white',
+        padding: 10,
+      },
+      titleText: {
+        padding: 8,
+        fontSize: 16,
+        textAlign: 'center',
+        fontWeight: 'bold',
+      },
+      headingText: {
+        padding: 8,
+      },
     
 })
