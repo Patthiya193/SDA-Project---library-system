@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 
-import { View, ScrollView, Text, TextInput, Alert, KeyboardAvoidingView, SafeAreaView, TouchableOpacity,Dimensions } from "react-native";
+import { View, ScrollView, Text, TextInput, Alert, KeyboardAvoidingView, SafeAreaView, TouchableOpacity,Dimensions, StatusBar, keyboadType } from "react-native";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faHeart, faHouse, faAddressCard, faPencil, faUserEdit, faBookOpen} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faHouse, faBookReader, faPencil, faUserEdit, faBookOpen} from '@fortawesome/free-solid-svg-icons';
 
 import { styles } from "./styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
+import MultiSelect from 'react-native-multiple-select';
+
 import { body, bookItemStyles } from "../universalStyles";
 import { CommonActions, StackActions, useFocusEffect } from "@react-navigation/core";
 import { addBook, editBook} from "../../network/bookService"
@@ -18,6 +20,8 @@ if (!global.atob) { global.atob = decode }
 var ImagePicker = require('react-native-image-picker');
 
 const AddBook = ({navigation, route}) => {
+
+
     const [userData, setUserData] = useState(route.params["userData"])
 
     const [bookData, setBookData] = useState(route.params["bookData"])
@@ -166,97 +170,165 @@ const AddBook = ({navigation, route}) => {
     //         }
     //     })
     // );
+    const items = [{
+        id: '92iijs7yta',
+        name: 'Art'
+      }, {
+        id: 'a0s0a8ssbsd',
+        name: 'Cartoon'
+      }, {
+        id: '16hbajsabsd',
+        name: 'Education'
+      }, {
+        id: 'nahs75a5sg',
+        name: 'Health'
+      }, {
+        id: '667atsas',
+        name: 'History'
+      }, {
+        id: 'hsyasajs',
+        name: 'Magazine'
+      }, {
+        id: 'djsjudksjd',
+        name: 'Novel'
+      }, {
+        id: 'sdhyaysdj',
+        name: 'Technology'
+      }, {
+        id: 'suudydjsjd',
+        name: 'Travel'
+    }];
+
+    const [selectedItems, setSelectedItems] = useState([]);
+
+    const onSelectedItemsChange = (selectedItems) => {
+      // Set Selected Items
+      setSelectedItems(selectedItems);
+    };
 
     return(
         <View style={body.background}>
-                <View style={styles.top}>
-                    
-                    <View style={styles.topContainer}>
-{/* 
-                        <TouchableOpacity onPress={onPressHome}>
-                            <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  style={styles.iconStyle}/>
-                        </TouchableOpacity> */}
-
-                        <Text style={body.title}>Add Book</Text>
-                    </View>
-                    
-                </View>
         
+            <ScrollView style = {{flexGrow: 1}} >
+            <View style={styles.top}>
                 
-                <KeyboardAvoidingView behavior={"padding"} style={styles.mainBody}>
-                <View style={styles.mainBody}>
-                <Pressable style = {{
-                    alignItems:'center' ,
-                    width: Dimensions.get('window').width * 0.75,
-                    paddingVertical: 18,
-                    paddingHorizontal: 80,
-                    borderRadius: 16,
-                    backgroundColor: addImageColor,
-                    marginTop: 15,
-                    marginBottom: 15, 
-                }} onPress = {onPressAddImg}>
-                                <Text style={styles.btnText}>{addImageText}</Text>
-                        </Pressable>
+                <View style={styles.topContainer}>
+{/* 
+                    <TouchableOpacity onPress={onPressHome}>
+                        <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  style={styles.iconStyle}/>
+                    </TouchableOpacity> */}
 
-                    <View style={styles.inputContainer}>
-                        <FontAwesomeIcon icon={ faPencil } color='#A8AFB9' size={24} style={{margin:5}}/>
-                        <TextInput placeholder='Book Title' style={styles.textInput} placeholderTextColor='#A8AFB9' 
-                        onChangeText={newBookTitle => {
-                            let value = newBookTitle
-                            // value = value.replace(/[^A-Za-z0-9_ ]/gi, "")
-                            setBookTitle(value)
-                        }} 
-                        value={bookTitle} />
-                    </View>
-                    <View style={styles.inputContainer}>
-                        <FontAwesomeIcon icon={ faUserEdit } color='#A8AFB9' size={24} style={{margin:5}}/>
-                        <TextInput placeholder='Author' style={styles.textInput} placeholderTextColor='#A8AFB9' 
-                        onChangeText={newBookAuthor => {
-                            let value = newBookAuthor
-                            value = value.replace(/[^A-Za-z0-9_ ,]/gi, "")
-                            setBookAuthor(value)
-                        }} 
-                        value={bookAuthor} />
-                    </View>
-                    <View style={styles.inputContainer}>
-                        <FontAwesomeIcon icon={ faUserEdit } color='#A8AFB9' size={24} style={{margin:5}}/>
-                        <TextInput placeholder='ISBN' style={styles.textInput} placeholderTextColor='#A8AFB9' 
-                        onChangeText={newIsbn => {
-                            let value = newIsbn
-                            value = value.replace(/[^0-9]/gi, "")
-                            if (value.length < 13) {setBookIsbn(value)}
-                        }} 
-                        value={bookIsbn} />
-                    </View>
-                    <View style={styles.desContainer}>
-                        <FontAwesomeIcon icon={ faBookOpen } color='#A8AFB9' size={24} style={{margin:5}}/>
-                        <TextInput placeholder='Description' style={styles.destextInput} placeholderTextColor='#A8AFB9' 
-                        multiline={true}
-                        numberOfLines={100}
-                        onChangeText={newBookDes => {
-                            let value = newBookDes
-                            //value = value.replace(/[^a-z0-9_]/gi, "")
-                            setBookDes(value)
-                        }} 
-                        value={bookDes} />
-                    </View>
+                    <Text style={body.title}>Add Book</Text>
                 </View>
-                <View style = {styles.bottomContainer}>
-                        <Pressable style = {styles.addbuttonStyle} onPress = {onPressAdd}>
-                                <Text style={styles.btnText}>Add Book</Text>
-                        </Pressable>
+                
+            </View>
     
-                </View>   
-                </KeyboardAvoidingView >
-
-        
-               
             
-                    
-                  
-                 
-                    
+            <KeyboardAvoidingView behavior={"padding"} style={styles.mainBody}>
+            <View style={styles.mainBody}>
+            <Pressable style = {{
+                alignItems:'center' ,
+                width: Dimensions.get('window').width * 0.75,
+                paddingVertical: 18,
+                paddingHorizontal: 80,
+                borderRadius: 16,
+                backgroundColor: addImageColor,
+                marginTop: 15,
+                marginBottom: 15, 
+            }} onPress = {onPressAddImg}>
+                            <Text style={styles.btnText}>{addImageText}</Text>
+                    </Pressable>
+
+                <View style={styles.inputContainer}>
+                    <FontAwesomeIcon icon={ faPencil } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='Book Title' style={styles.textInput} placeholderTextColor='#A8AFB9' 
+                    onChangeText={newBookTitle => {
+                        let value = newBookTitle
+                        // value = value.replace(/[^A-Za-z0-9_ ]/gi, "")
+                        setBookTitle(value)
+                    }} 
+                    value={bookTitle} />
                 </View>
+                <View style={styles.inputContainer}>
+                    <FontAwesomeIcon icon={ faUserEdit } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='Author' style={styles.textInput} placeholderTextColor='#A8AFB9' 
+                    onChangeText={newBookAuthor => {
+                        let value = newBookAuthor
+                        value = value.replace(/[^A-Za-z0-9_ ,]/gi, "")
+                        setBookAuthor(value)
+                    }} 
+                    value={bookAuthor} />
+                </View>
+             
+        
+
+                <View style={styles.inputContainer}>
+                    <FontAwesomeIcon icon={ faBookReader } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='ISBN' style={styles.textInput} placeholderTextColor='#A8AFB9' 
+                    
+                    onChangeText={newIsbn => {
+                        let value = newIsbn
+                        value = value.replace(/[^0-9]/gi, "")
+                        if (value.length < 13) {setBookIsbn(value)}
+                    }} 
+                    value={bookIsbn}
+                    keyboardType = "number-pad" />
+                </View>
+                <View style={styles.desContainer}>
+                    <FontAwesomeIcon icon={ faBookOpen } color='#A8AFB9' size={24} style={{margin:5}}/>
+                    <TextInput placeholder='Description' style={styles.destextInput} placeholderTextColor='#A8AFB9' 
+                    multiline={true}
+                    numberOfLines={100}
+                    onChangeText={newBookDes => {
+                        let value = newBookDes
+                        //value = value.replace(/[^a-z0-9_]/gi, "")
+                        setBookDes(value)
+                    }} 
+                    value={bookDes} />
+                </View>
+                <SafeAreaView style={styles.inputContainer}>
+                <View style={styles.container}>
+                    <Text style={styles.titleText}>
+                    Select Genre 
+                    </Text>
+                    <MultiSelect
+                    hideTags
+                    items={items}
+                    uniqueKey="id"
+                    onSelectedItemsChange={onSelectedItemsChange}
+                    selectedItems={selectedItems}
+                    selectText="Pick Genre"
+                    searchInputPlaceholderText="Search ..."
+                    onChangeInput={(text) => console.log(text)}
+                    tagRemoveIconColor="#A8AFB9"
+                    tagBorderColor="#A8AFB9"
+                    tagTextColor="#A8AFB9"
+                    selectedItemTextColor="#EF5DA8"
+                    selectedItemIconColor="#EF5DA8"
+                    itemTextColor="#000"
+                    displayKey="name"
+                    searchInputStyle={{color: '#A8AFB9'}}
+                    submitButtonColor="#6C70EB"
+                    submitButtonText="Submit"
+                    />
+                </View>
+                </SafeAreaView>
+            </View>
+            </KeyboardAvoidingView >
+            </ScrollView>
+            
+
+            <View style = {styles.bottomContainer}>
+                <Pressable style = {styles.addbuttonStyle} onPress = {onPressAdd}>
+                        <Text style={styles.btnText}>Add Book</Text>
+                </Pressable>
+
+            </View>  
+            
+
+         
+                    
+        </View>
             
             
         
