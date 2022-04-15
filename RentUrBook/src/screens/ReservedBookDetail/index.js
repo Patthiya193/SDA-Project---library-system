@@ -5,7 +5,8 @@ import { View, ScrollView, Text, Alert, KeyboardAvoidingView, SafeAreaView, Touc
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHeart, faHouse} from '@fortawesome/free-solid-svg-icons';
 
-import { styles } from "./styles";
+// import { styles } from "./styles";
+import { styles } from "../BookDetail/styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { body, bookItemStyles } from "../universalStyles";
 import { CommonActions, StackActions } from "@react-navigation/core";
