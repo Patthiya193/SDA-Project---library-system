@@ -30,6 +30,7 @@ const ReservedBookDetail = ({navigation, route}) => {
 
     console.log("Book", book, userData)
     var author = "by "
+    var isbn = "isbn: " + book["isbn"]
     book["authors"].forEach((a, i) => {
         if ( i == book["authors"].length - 1) {
             author = author + a
