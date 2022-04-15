@@ -5,14 +5,6 @@ import { BookIcon } from "../../screens/Home/bookIcon";
 
 import { bookItemStyles } from "../../screens/universalStyles";
 
-function blobToBase64(blob) {
-    return new Promise((resolve, _) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    });
-  }
-
 export const Item = ({item, onPress}) =>{ 
     // console.log(item.bookObject)
     // let imageUri = blobToBase64(item.bookObject["coverImage"]);

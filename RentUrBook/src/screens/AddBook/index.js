@@ -38,6 +38,7 @@ const AddBook = ({navigation, route}) => {
     const [bookGenre, setBookGenre] = useState(bookData["genre"])
     const [addImageText, setAddImageText] = useState("Add Image")
     const [addImageColor, setAddImageColor] = useState('#EF5DA8')
+    const [selectedItems, setSelectedItems] = useState(bookData["genre"]);
 
     const onPressHome = () => {
         // navigation.dispatch( StackActions.popToTop())
@@ -126,14 +127,6 @@ const AddBook = ({navigation, route}) => {
             setAddImageColor("#8FD0CA")
         }
         var base64 = result['assets'][0]['base64']
-        // const byteCharacters = atob(base64);
-        // const byteNumbers = new Array(byteCharacters.length);
-        // for (let i = 0; i < byteCharacters.length; i++) {
-        //     byteNumbers[i] = byteCharacters.charCodeAt(i);
-        // }
-        // const byteArray = new Uint8Array(byteNumbers);
-        // const blob = new Blob([byteArray], {type:"image/png"});
-
         var binary_string = window.atob(base64);
         var len = binary_string.length;
         var bytes = new Uint8Array(len);
@@ -141,8 +134,6 @@ const AddBook = ({navigation, route}) => {
             bytes[i] = binary_string.charCodeAt(i);
         }
 
-        // console.log(byteArray)
-        // console.log(blob)
         console.log(bytes.buffer)
         const byteArray = []
         Object.keys(bytes).forEach((key) =>{
@@ -155,55 +146,43 @@ const AddBook = ({navigation, route}) => {
 
     }
 
-    // useFocusEffect(
-    //     // Update the document title using the browser API
-    //     React.useCallback(() => {
-    //         if (bookData) {
-    //             let ath = bookData["authors"][0]
-    //             bookData['authors'].slice(1).forEach(a => {
-    //                 ath += ", " + a
-    //             })
-    //             setBookAuthor(ath)
-    //             setBookTitle(bookData["bookName"])
-    //             setBookDes(bookData["description"])
-    //             setBookCover(bookData["coverImage"])
-    //         }
-    //     })
-    // );
     const items = [{
-        id: '92iijs7yta',
+        id: 'ART',
         name: 'Art'
       }, {
-        id: 'a0s0a8ssbsd',
+        id: 'CARTOON',
         name: 'Cartoon'
       }, {
-        id: '16hbajsabsd',
+          id: 'COOKING',
+          name: 'Cooking'
+      } ,{
+        id: 'EDUCATION',
         name: 'Education'
       }, {
-        id: 'nahs75a5sg',
+        id: 'HEALTH',
         name: 'Health'
       }, {
-        id: '667atsas',
+        id: 'HISTORY',
         name: 'History'
       }, {
-        id: 'hsyasajs',
+        id: 'MAGAZINE',
         name: 'Magazine'
       }, {
-        id: 'djsjudksjd',
+        id: 'NOVEL',
         name: 'Novel'
       }, {
-        id: 'sdhyaysdj',
+        id: 'TECH',
         name: 'Technology'
       }, {
-        id: 'suudydjsjd',
+        id: 'TRAVEL',
         name: 'Travel'
     }];
 
-    const [selectedItems, setSelectedItems] = useState([]);
 
     const onSelectedItemsChange = (selectedItems) => {
       // Set Selected Items
       setSelectedItems(selectedItems);
+      setBookGenre(selectedItems);
     };
 
     return(
