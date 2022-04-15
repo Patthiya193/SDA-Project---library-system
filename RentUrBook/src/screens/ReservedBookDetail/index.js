@@ -98,8 +98,9 @@ const ReservedBookDetail = ({navigation, route}) => {
                         {/* Book name */}
                         <Text style = {styles.bookName}>{book["bookName"]}</Text> 
                         {/* Book Author */}
-                        <Text style = {styles.bookAuthor}>{author}</Text> 
-                        
+                        <Text style = {styles.bookDetails}>{author}</Text> 
+                        {/* ISBN number */}
+                        <Text style = {styles.bookDetails}>{isbn}</Text>
                         
                     </View>
                 
