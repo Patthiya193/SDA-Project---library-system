@@ -68,6 +68,7 @@ const Favorite = ({navigation, userData}) => {
                             id: book["id"],
                             title: book["bookName"],
                             subtitle: sub,
+                            isbn: book["isbn"],
                             type: "1",
                             bookObject: book
                         }
