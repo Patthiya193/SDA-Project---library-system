@@ -3,7 +3,7 @@ import { StyleSheet, Dimensions, StatusBar } from "react-native";
 export const styles = StyleSheet.create({
 
     top: {
-        flex: 1.75,
+        flex: 1,
     },
     topContainer: {
         alignItems: 'center',
@@ -58,8 +58,8 @@ export const styles = StyleSheet.create({
     },
 
     mainBody:{
-        flex: 7,
-        flexGrow: 1,
+        flex: 3,
+        flexGrow: 4,
         backgroundColor: '#F9FAFB',  
         borderTopLeftRadius: 44,
         borderTopRightRadius: 44,
@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
     },
     desContainer: {
         width: Dimensions.get('window').width * 0.75,
-        height: Dimensions.get('window').height * 0.325,
+        height: Dimensions.get('window').height * 0.225,
         marginTop: 10,
         marginBottom: 10,
         flexDirection: 'row',
@@ -121,18 +121,22 @@ export const styles = StyleSheet.create({
     },
 
     container: {
-        flex: 1,
+        flex: 0.2,
+        width: Dimensions.get('window').width * 0.75,
+        height: Dimensions.get('window').height * 0.05,
         backgroundColor: 'white',
         padding: 10,
-      },
-      titleText: {
+        borderRadius: 16,
+    },
+
+    titleText: {
         padding: 8,
         fontSize: 16,
         textAlign: 'center',
         fontWeight: 'bold',
-      },
-      headingText: {
+    },
+    headingText: {
         padding: 8,
-      },
+    },
     
 })

@@ -5,7 +5,8 @@ import { View, ScrollView, Text, Alert, KeyboardAvoidingView, SafeAreaView, Touc
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHeart, faHouse} from '@fortawesome/free-solid-svg-icons';
 
-import { styles } from "./styles";
+// import { styles } from "./styles";
+import { styles } from "../BookDetail/styles";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { body, bookItemStyles } from "../universalStyles";
 import { CommonActions, StackActions } from "@react-navigation/core";
@@ -29,6 +30,7 @@ const ReservedBookDetail = ({navigation, route}) => {
 
     console.log("Book", book, userData)
     var author = "by "
+    var isbn = "isbn: " + book["isbn"]
     book["authors"].forEach((a, i) => {
         if ( i == book["authors"].length - 1) {
             author = author + a
@@ -80,8 +82,8 @@ const ReservedBookDetail = ({navigation, route}) => {
                     
                     <View style={styles.topContainer}>
 
-                        <TouchableOpacity onPress={onPressHome}>
-                            <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  style={styles.iconStyle}/>
+                        <TouchableOpacity onPress={onPressHome} style={styles.iconContainerStyle}>
+                            <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}/>
                         </TouchableOpacity>
 
                         <Text style={body.title}>Book Detail</Text>
@@ -96,8 +98,9 @@ const ReservedBookDetail = ({navigation, route}) => {
                         {/* Book name */}
                         <Text style = {styles.bookName}>{book["bookName"]}</Text> 
                         {/* Book Author */}
-                        <Text style = {styles.bookAuthor}>{author}</Text> 
-                        
+                        <Text style = {styles.bookDetails}>{author}</Text> 
+                        {/* ISBN number */}
+                        <Text style = {styles.bookDetails}>{isbn}</Text>
                         
                     </View>
                 
@@ -109,17 +112,8 @@ const ReservedBookDetail = ({navigation, route}) => {
                         </ScrollView>
                     </SafeAreaView>
                     <View style = {styles.bottomContainer}>
-                        <Pressable style = {{alignItems: 'center',
-                            justifyContent: 'center',
-                            width: Dimensions.get('window').width * 0.65,
-                            paddingVertical: 18,
-                            paddingHorizontal: 80,
-                            borderRadius: 16,
-                            backgroundColor: clr,
-                            marginTop: 15,
-                            marginBottom: 15,
-                            marginRight: 30, }} onPress = {onPressBorrow}>
-                                    <Text style={styles.borrowText}>Cancel</Text>
+                        <Pressable style = {[styles.borrowButtonStyle, {backgroundColor: clr}]} onPress = {onPressBorrow}>
+                            <Text style={styles.borrowText}>Cancel</Text>
                         </Pressable>
                         
 

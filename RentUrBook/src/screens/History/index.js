@@ -104,12 +104,12 @@ const History = ({userData, navigation}) => {
                         if ( userType == "admin" && book["reserverId"] != 0) {
                             let sub = "reserved by " + book["reserverName"]
                             console.log("cont with book id",reserveContact[book["id"].toString()])
-
                             displayData.push( 
                                 {
                                     id: book["id"],
                                     title: book["bookName"],
                                     subtitle: sub,
+                                    isbn: book["isbn"],
                                     contactNumber: reserveContact[book["id"].toString()],
                                     type: "1",
                                     bookObject: book
@@ -117,13 +117,23 @@ const History = ({userData, navigation}) => {
                             )
                         } else if (book["reserverId"] == userData['userData']["id"] && book["reserverId"] != 0) {
                             console.log("cont with book id",reserveContact[book["id"].toString()])
-
+                            var sub = "by "
+                            book["authors"].forEach((author, i) => {
+                                if ( i == book["authors"].length - 1) {
+                                    sub = sub + author
+                                }
+                                else {
+                                    sub = sub + author + ", "
+        
+                                }
+                            })
                             displayData.push( 
                                 {
                                     id: book["id"],
                                     title: book["bookName"],
                                     contactNumber: reserveContact[book["id"].toString()],
-                                    subtitle: "",
+                                    subtitle: sub,
+                                    isbn: book["isbn"],
                                     type: "1",
                                     bookObject: book
                                 }

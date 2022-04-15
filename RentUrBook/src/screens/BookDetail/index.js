@@ -142,7 +142,7 @@ const BookDetail = ({navigation, route}) => {
                             <Text style={styles.borrowText}>{borrowText[borrowButtonStatus]}</Text>
                         </Pressable>
                         <TouchableOpacity onPress={() => addFavorites()}>
-                            <FontAwesomeIcon icon={ faHeart } color={favButtonColor[fav]} size={35} style={{margin:5}}/>
+                            <FontAwesomeIcon icon={ faHeart } color={favButtonColor[fav]} size={35} style={{marginLeft: 20}}/>
                         </TouchableOpacity>
 
                     </View>        

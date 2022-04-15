@@ -112,11 +112,9 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         width: Dimensions.get('window').width * 0.65,
         paddingVertical: 18,
-        paddingHorizontal: 80,
         borderRadius: 16,
         marginTop: 15,
         marginBottom: 15,
-        marginRight: 30, 
                 
     },
     

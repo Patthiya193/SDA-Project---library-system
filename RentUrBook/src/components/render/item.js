@@ -15,7 +15,7 @@ export const Item = ({item, onPress}) =>{
         <View style={{justifyContent:'center'}}>
             <Text style={bookItemStyles.bookName}>{item.title}</Text>
             <Text style={bookItemStyles.bookDetails}>{item.subtitle}</Text>
-            <Text style={bookItemStyles.bookDetails}>{item.isbn}</Text>
+            <Text style={bookItemStyles.bookDetails}>isbn: {item.isbn}</Text>
             <Text style={bookItemStyles.bookDetails}>Status: {item.bookObject["curState"]}</Text>
         </View>
     </TouchableOpacity>
