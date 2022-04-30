@@ -266,7 +266,7 @@ const AddBook = ({navigation, route}) => {
                                     onChangeText={newIsbn => {
                                         let value = newIsbn
                                         value = value.replace(/[^0-9]/gi, "")
-                                        if (value.length < 13) {setBookIsbn(value)}
+                                        if (value.length < 14) {setBookIsbn(value)}
                                     }} 
                                     value={bookIsbn}
                                     keyboardType = "number-pad" />
