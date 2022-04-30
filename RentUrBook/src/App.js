@@ -1,4 +1,5 @@
 import React from 'react';
+import { LogBox } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -16,6 +17,8 @@ import AddBook from './screens/AddBook'
 const AuthStack = createStackNavigator();
 
 const App = () => {
+
+  LogBox.ignoreAllLogs();
 
   return (
     <NavigationContainer>
