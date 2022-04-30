@@ -121,9 +121,7 @@ export const styles = StyleSheet.create({
     },
 
     container: {
-        flex: 0.2,
         width: Dimensions.get('window').width * 0.75,
-        height: Dimensions.get('window').height * 0.05,
         backgroundColor: 'white',
         padding: 10,
         borderRadius: 16,
