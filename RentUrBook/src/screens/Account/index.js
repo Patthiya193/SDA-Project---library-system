@@ -5,9 +5,13 @@ import { View, Text, TextInput, FlatList, TouchableHighlight, Alert } from "reac
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch, faPencil, faUnlock } from '@fortawesome/free-solid-svg-icons';
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
+
 import { ItemDivider} from "../../components/render/itemDivider"
 import { styles } from "./styles";
+import { body } from "../universalStyles";
 import { Item } from "./item"
+
+
 import { faUserCircle, faLock } from '@fortawesome/free-solid-svg-icons';
 import { CommonActions, StackActions } from "@react-navigation/core";
 
@@ -95,11 +99,13 @@ const Account = ({navigation, userData}) => {
                         <Text style={styles.nameText}>{showFirstName} </Text>
                         <Text style={styles.nameText}>{showLastName}</Text>
                     </View>
-                    <View style={styles.rowText}>
+                    <View style={[styles.rowText, {marginTop: 10}]}>
                         <Text style={styles.idText}>ID: {user["id"]}</Text>
-                        <Text style={styles.idText}>Username: {user["username"]}</Text>
                     </View>
                     <View style={styles.rowText}>
+                        <Text style={styles.idText}>Username: {user["username"]}</Text>
+                    </View>
+                    <View style={[styles.rowText, {marginBottom: 20}]}>
                         <Text style={styles.idText}>Contact: {user["contactNumber"]}</Text>
                     </View>
                 </View>
