@@ -210,16 +210,16 @@ const History = ({userData, navigation}) => {
     if (userType) {
         return(
             <View style={body.background}>
-            <View style={body.top}>
-                <Text style={body.title}>History</Text>
+                <View style={body.top}>
+                    <Text style={body.title}>History</Text>
+                </View>
+                <TabView style={{flex: 6.5}}
+                    navigationState={{ index, routes }}
+                    renderScene={renderScene}
+                    onIndexChange={setIndex}
+                    renderTabBar={renderTabBar}
+                />
             </View>
-            <TabView style={{flex: 6.5}}
-                navigationState={{ index, routes }}
-                renderScene={renderScene}
-                onIndexChange={setIndex}
-                renderTabBar={renderTabBar}
-            />
-        </View>
         )
     }
     else {
