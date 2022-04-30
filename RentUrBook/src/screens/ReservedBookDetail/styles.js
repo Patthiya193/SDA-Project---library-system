@@ -17,12 +17,10 @@ export const styles = StyleSheet.create({
 
     },
     
-    iconStyle:{
-        // marginRight: 10,
-        // margitLeft: 10,
+    iconContainerStyle: {
         position: 'absolute',
-        top: -15,
-        right: 40,
+        bottom: 37,
+        left: 40,
     },
     
     borrowButtonStyleNoFav: {
