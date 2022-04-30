@@ -126,7 +126,8 @@ const Register = ({navigation}) => {
                 <Pressable style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#6C70EB'}, styles.RegisterButtonStyle]} onPress = {onPressRegister}>
                     <Text style={styles.ReText}>Register</Text>
                 </Pressable>
-                <Text style={styles.signinContainer}>Already have an account ? </Text>
+                <View style={styles.signinContainer}>
+                    <Text>Already have an account ? </Text>
                     <Pressable onPress={() => {
                             navigation.navigate('SignIn')
                         }}>
@@ -136,6 +137,8 @@ const Register = ({navigation}) => {
                             </Text>
                         )}
                     </Pressable>  
+                </View>
+                
             </KeyboardAvoidingView >
         </View>
     
