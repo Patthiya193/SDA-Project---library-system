@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 
-import { View, ScrollView, Text, TextInput, Alert, KeyboardAvoidingView, SafeAreaView, TouchableOpacity,Dimensions, StatusBar, keyboadType } from "react-native";
+import { View, ScrollView, Text, TextInput, Alert, KeyboardAvoidingView, SafeAreaView, TouchableOpacity,Dimensions, StatusBar, keyboadType, FlatList, VirtualizedList, YellowBox } from "react-native";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBars, faHouse, faBookReader, faPencil, faUserEdit, faBookOpen} from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,9 @@ import { CommonActions, StackActions, useFocusEffect } from "@react-navigation/c
 import { addBook, editBook} from "../../network/bookService"
 import {decode, encode} from 'base-64'
 
+
+
+
 if (!global.btoa) {  global.btoa = encode }
 
 if (!global.atob) { global.atob = decode }
@@ -21,6 +24,9 @@ var ImagePicker = require('react-native-image-picker');
 
 const AddBook = ({navigation, route}) => {
 
+    useEffect(() => {
+        YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
+    }, [])
 
     const [userData, setUserData] = useState(route.params["userData"])
 
@@ -189,6 +195,10 @@ const AddBook = ({navigation, route}) => {
         <View style={body.background}>
         
             
+
+           
+            <SafeAreaView style = {{flex:1}}>
+            <ScrollView style = {{flexGrow: 1, width: '100%', height: '100%'}} keyboardShouldPersistTaps={true} horizontal={false} >
             <View style={styles.top}>
                 
                 <View style={styles.topContainer}>
@@ -294,6 +304,36 @@ const AddBook = ({navigation, route}) => {
                 </ScrollView>
             </View>
             </KeyboardAvoidingView >
+                    hideTags
+                    items={items}
+                    uniqueKey="id"
+                    onSelectedItemsChange={onSelectedItemsChange}
+                    selectedItems={selectedItems}
+                    selectText="Pick Genre"
+                    searchInputPlaceholderText="Search ..."
+                    onChangeInput={(text) => console.log(text)}
+                    tagRemoveIconColor="#A8AFB9"
+                    tagBorderColor="#A8AFB9"
+                    tagTextColor="#A8AFB9"
+                    selectedItemTextColor="#EF5DA8"
+                    selectedItemIconColor="#EF5DA8"
+                    itemTextColor="#000"
+                    displayKey="name"
+                    searchInputStyle={{color: '#A8AFB9'}}
+                    submitButtonColor="#6C70EB"
+                    submitButtonText="Submit"
+                    fixedHeight={true}
+                    hideDropdown={true}
+        
+                    />
+                </View>
+                </SafeAreaView>
+
+            </View>
+            </KeyboardAvoidingView >
+            </ScrollView>
+            </SafeAreaView>
+
             
 
             <View style = {styles.bottomContainer}>
