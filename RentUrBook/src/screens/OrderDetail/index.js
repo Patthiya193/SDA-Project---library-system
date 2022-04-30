@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useFocusEffect } from "react";
 
 import { View, ScrollView, Text, Alert, KeyboardAvoidingView, SafeAreaView, TouchableOpacity,Dimensions } from "react-native";
 
@@ -30,7 +30,7 @@ const OrderDetail = ({navigation, route}) => {
         // navigation.dispatch( StackActions.popToTop())
         navigation.dispatch( StackActions.replace('MainLoggedIn', {"userData":userData}))
     }
-    useFocusEffect(() => {
+    useEffect(() => {
         getBookById(order["bookId"])
         .then(book => setImage(book["coverImage"]))
         
@@ -51,7 +51,7 @@ const OrderDetail = ({navigation, route}) => {
                     </View>
                     
                 </View>
-                { image ? (<></>) : (<BookPic image ={image} />)}
+                { image ? (<BookPic image ={image} />) : (<></>)}
                 
                 <View style={styles.mainBody}>
                     <View style={styles.bookContainer}>
