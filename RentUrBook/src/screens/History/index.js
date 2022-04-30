@@ -32,7 +32,7 @@ const History = ({userData, navigation}) => {
     const [reserveContact, setReserveContact] = useState([])
 
     const [routes] = useState([
-        { key: 'ALL', title: 'All'},
+        { key: 'HISTORY', title: 'HISTORY'},
         { key: 'BORROWING', title: 'Borrowed' },
         { key: 'RESERVING', title: 'Reserved' },
     ]);
@@ -148,7 +148,7 @@ const History = ({userData, navigation}) => {
                 orderData.forEach(order => {
                     if (order["curState"] == "borrowing")
                     {
-                        if ( userType == "admin" || order["borrowerId"] == userData["userData"]["id"]) {
+                        if ( userType == "admin" || order["borrowedBy"] == userData["userData"]["id"]) {
                         let stat = "Status: "+order["curState"]
                         let bDate = 'Borrowed: ' + order["borrowDate"]
                         displayData.push( 
@@ -164,10 +164,9 @@ const History = ({userData, navigation}) => {
                     )}
                     }
                 })
-                
             } else {
                 orderData.forEach(order => {
-                    if ( userType == "admin" || order["borrowerId"] == userData["userData"]["id"]) {
+                    if ( userType == "admin" || order["borrowedBy"] == userData["userData"]["id"]) {
                     let stat = "Status: "+order["curState"]
                     let bDate = 'Borrowed: ' + order["borrowDate"]
                     let rDate = "Returned: " + order["returnDate"]
