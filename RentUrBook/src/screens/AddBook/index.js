@@ -188,7 +188,7 @@ const AddBook = ({navigation, route}) => {
     return(
         <View style={body.background}>
         
-            <ScrollView style = {{flexGrow: 1}} >
+            
             <View style={styles.top}>
                 
                 <View style={styles.topContainer}>
@@ -204,97 +204,96 @@ const AddBook = ({navigation, route}) => {
     
             
             <KeyboardAvoidingView behavior={"padding"} style={styles.mainBody}>
+                
             <View style={styles.mainBody}>
-            <Pressable style = {{
-                alignItems:'center' ,
-                width: Dimensions.get('window').width * 0.75,
-                paddingVertical: 18,
-                paddingHorizontal: 80,
-                borderRadius: 16,
-                backgroundColor: addImageColor,
-                marginTop: 15,
-                marginBottom: 15, 
-            }} onPress = {onPressAddImg}>
-                            <Text style={styles.btnText}>{addImageText}</Text>
-                    </Pressable>
-
-                <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faPencil } color='#A8AFB9' size={24} style={{margin:5}}/>
-                    <TextInput placeholder='Book Title' style={styles.textInput} placeholderTextColor='#A8AFB9' 
-                    onChangeText={newBookTitle => {
-                        let value = newBookTitle
-                        // value = value.replace(/[^A-Za-z0-9_ ]/gi, "")
-                        setBookTitle(value)
-                    }} 
-                    value={bookTitle} />
-                </View>
-                <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faUserEdit } color='#A8AFB9' size={24} style={{margin:5}}/>
-                    <TextInput placeholder='Author' style={styles.textInput} placeholderTextColor='#A8AFB9' 
-                    onChangeText={newBookAuthor => {
-                        let value = newBookAuthor
-                        value = value.replace(/[^A-Za-z0-9_ ,]/gi, "")
-                        setBookAuthor(value)
-                    }} 
-                    value={bookAuthor} />
-                </View>
-             
-        
-
-                <View style={styles.inputContainer}>
-                    <FontAwesomeIcon icon={ faBookReader } color='#A8AFB9' size={24} style={{margin:5}}/>
-                    <TextInput placeholder='ISBN' style={styles.textInput} placeholderTextColor='#A8AFB9' 
-                    
-                    onChangeText={newIsbn => {
-                        let value = newIsbn
-                        value = value.replace(/[^0-9]/gi, "")
-                        if (value.length < 13) {setBookIsbn(value)}
-                    }} 
-                    value={bookIsbn}
-                    keyboardType = "number-pad" />
-                </View>
-                <View style={styles.desContainer}>
-                    <FontAwesomeIcon icon={ faBookOpen } color='#A8AFB9' size={24} style={{margin:5}}/>
-                    <TextInput placeholder='Description' style={styles.destextInput} placeholderTextColor='#A8AFB9' 
-                    multiline={true}
-                    numberOfLines={100}
-                    onChangeText={newBookDes => {
-                        let value = newBookDes
-                        //value = value.replace(/[^a-z0-9_]/gi, "")
-                        setBookDes(value)
-                    }} 
-                    value={bookDes} />
-                </View>
-                <SafeAreaView style={styles.inputContainer}>
                 <View style={styles.container}>
-                    <Text style={styles.titleText}>
-                    Select Genre 
-                    </Text>
+                    <Text style={styles.titleText}>Select Genre</Text>
                     <MultiSelect
-                    hideTags
-                    items={items}
-                    uniqueKey="id"
-                    onSelectedItemsChange={onSelectedItemsChange}
-                    selectedItems={selectedItems}
-                    selectText="Pick Genre"
-                    searchInputPlaceholderText="Search ..."
-                    onChangeInput={(text) => console.log(text)}
-                    tagRemoveIconColor="#A8AFB9"
-                    tagBorderColor="#A8AFB9"
-                    tagTextColor="#A8AFB9"
-                    selectedItemTextColor="#EF5DA8"
-                    selectedItemIconColor="#EF5DA8"
-                    itemTextColor="#000"
-                    displayKey="name"
-                    searchInputStyle={{color: '#A8AFB9'}}
-                    submitButtonColor="#6C70EB"
-                    submitButtonText="Submit"
+                        hideTags
+                        items={items}
+                        uniqueKey="id"
+                        onSelectedItemsChange={onSelectedItemsChange}
+                        selectedItems={selectedItems}
+                        selectText="Pick Genre"
+                        searchInputPlaceholderText="Search ..."
+                        onChangeInput={(text) => console.log(text)}
+                        tagRemoveIconColor="#A8AFB9"
+                        tagBorderColor="#A8AFB9"
+                        tagTextColor="#A8AFB9"
+                        selectedItemTextColor="#EF5DA8"
+                        selectedItemIconColor="#EF5DA8"
+                        itemTextColor="#000"
+                        displayKey="name"
+                        searchInputStyle={{color: '#A8AFB9'}}
+                        submitButtonColor="#6C70EB"
+                        submitButtonText="Submit"
                     />
                 </View>
-                </SafeAreaView>
+                <ScrollView style = {{flex: 1, width: '100%'}} >
+
+                    <View style={styles.inputContainer}>
+                        <FontAwesomeIcon icon={ faPencil } color='#A8AFB9' size={24} style={{margin:5}}/>
+                        <TextInput placeholder='Book Title' style={styles.textInput} placeholderTextColor='#A8AFB9' 
+                        onChangeText={newBookTitle => {
+                            let value = newBookTitle
+                            // value = value.replace(/[^A-Za-z0-9_ ]/gi, "")
+                            setBookTitle(value)
+                        }} 
+                        value={bookTitle} />
+                    </View>
+                    <View style={styles.inputContainer}>
+                        <FontAwesomeIcon icon={ faUserEdit } color='#A8AFB9' size={24} style={{margin:5}}/>
+                        <TextInput placeholder='Author' style={styles.textInput} placeholderTextColor='#A8AFB9' 
+                        onChangeText={newBookAuthor => {
+                            let value = newBookAuthor
+                            value = value.replace(/[^A-Za-z0-9_ ,]/gi, "")
+                            setBookAuthor(value)
+                        }} 
+                        value={bookAuthor} />
+                    </View>
+                
+            
+
+                    <View style={styles.inputContainer}>
+                        <FontAwesomeIcon icon={ faBookReader } color='#A8AFB9' size={24} style={{margin:5}}/>
+                        <TextInput placeholder='ISBN' style={styles.textInput} placeholderTextColor='#A8AFB9' 
+                        
+                        onChangeText={newIsbn => {
+                            let value = newIsbn
+                            value = value.replace(/[^0-9]/gi, "")
+                            if (value.length < 13) {setBookIsbn(value)}
+                        }} 
+                        value={bookIsbn}
+                        keyboardType = "number-pad" />
+                    </View>
+                    <View style={styles.desContainer}>
+                        <FontAwesomeIcon icon={ faBookOpen } color='#A8AFB9' size={24} style={{margin:5}}/>
+                        <TextInput placeholder='Description' style={styles.destextInput} placeholderTextColor='#A8AFB9' 
+                        multiline={true}
+                        numberOfLines={100}
+                        onChangeText={newBookDes => {
+                            let value = newBookDes
+                            //value = value.replace(/[^a-z0-9_]/gi, "")
+                            setBookDes(value)
+                        }} 
+                        value={bookDes} />
+                    </View>
+
+                    <Pressable style = {{
+                        alignItems:'center' ,
+                        width: Dimensions.get('window').width * 0.75,
+                        paddingVertical: 18,
+                        paddingHorizontal: 80,
+                        borderRadius: 16,
+                        backgroundColor: addImageColor,
+                        marginTop: 15,
+                        marginBottom: 15, 
+                        }} onPress = {onPressAddImg}>
+                        <Text style={styles.btnText}>{addImageText}</Text>
+                    </Pressable>
+                </ScrollView>
             </View>
             </KeyboardAvoidingView >
-            </ScrollView>
             
 
             <View style = {styles.bottomContainer}>
