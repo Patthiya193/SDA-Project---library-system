@@ -11,7 +11,7 @@ import { body, bookItemStyles } from "../universalStyles";
 import { CommonActions, StackActions } from "@react-navigation/core";
 
 import { BookPic } from "./BookPic";
-import { reserveBook } from "../../network/bookService"
+import { reserveBook, getBookById } from "../../network/bookService"
 import { addFav, removeFav } from "../../network/userService"
 import { returnBook} from "../../network/orderService"
 
@@ -19,6 +19,7 @@ const OrderDetail = ({navigation, route}) => {
     //console.log("Book data ", route.params)
     const [order, setOrder] = useState(route.params["orderParam"])
     const [userData, setUserData] = useState(route.params["userData"])
+    const [image, setImage] = useState(null)
 
     const onPressReturnBook = () => {
         returnBook(order["id"])
@@ -29,6 +30,10 @@ const OrderDetail = ({navigation, route}) => {
         // navigation.dispatch( StackActions.popToTop())
         navigation.dispatch( StackActions.replace('MainLoggedIn', {"userData":userData}))
     }
+    useEffect(() => {
+        var book = await getBookById(order["bookId"])
+        setImage(book["coverImage"])
+    }, [])
 
     if ( order["curState"] == "borrowing") {
         return(
@@ -45,7 +50,8 @@ const OrderDetail = ({navigation, route}) => {
                     </View>
                     
                 </View>
-                <BookPic image ={order["coverImage"]} />
+                { image ? (<></>) : (<BookPic image ={image} />)}
+                
                 <View style={styles.mainBody}>
                     <View style={styles.bookContainer}>
         
