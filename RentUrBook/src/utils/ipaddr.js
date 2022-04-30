@@ -1,4 +1,4 @@
-const ip = "192.168.0.108"
+const ip = "192.168.0.106"
 
 export const userLoginApi = `http://${ip}:8080/api/v1/user/login/`;
 export const getUserApi = `http://${ip}:8080/api/v1/user`;

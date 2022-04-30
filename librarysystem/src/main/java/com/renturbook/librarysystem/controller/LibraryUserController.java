@@ -65,10 +65,9 @@ public class LibraryUserController {
 
     @PostMapping("/test")
     public void addTestUser() {
-        LibraryUser temp = new LibraryUser("username", "password", "Fname", "Lname", "0813942837", List.of(1L,2L));
+        LibraryUser temp = new LibraryUser("username", "password", "Fname", "Lname", "0813942837", new ArrayList<>());
         userService.addNewUser( temp );
         LibraryUser temp2 = new LibraryUser("username2", "password2", "First2", "Last2", "0913834921",new ArrayList<>());
-        temp2.addFavoriteBooks(2L);
         LibraryUser temp3 = new LibraryUser("admin", "admin","Admin","Account", "",new ArrayList<>());
         System.out.println("######################\n" + temp);
         System.out.println("######################\n" + temp2);
