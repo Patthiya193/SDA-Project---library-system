@@ -10,14 +10,12 @@ export const styles = StyleSheet.create({
     top: {
         // flex: 1.35,
         alignItems: 'baseline',
-        
         paddingTop: "10%",
         paddingLeft: 40
     },
     nonUserTop: {
         // flex: 1.35,
         alignItems: 'center',
-        
         paddingTop: "10%",
     },
     mainBody: {
@@ -33,12 +31,13 @@ export const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     nameText: {
-        fontSize: 40,
+        fontSize: 32,
         fontWeight: 'bold',
         color: 'white',
         marginTop: 30,
         marginBottom: 5,
-        textAlign: 'left'
+        marginRight: 10,
+        textAlign: 'center',
     },
     inputContainer: {
         width: Dimensions.get('window').width * 0.75,
@@ -112,13 +111,12 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'lightgrey',
         marginTop: 5,
-        marginBottom: 20,
+        marginBottom: 5,
         textAlign: 'left',
         paddingRight: 20,
         paddingLeft: 10
     },
     rowText: {
-        height: 80,
         flexDirection: 'row',
         paddingLeft: 0,
         paddingRight: 0,
