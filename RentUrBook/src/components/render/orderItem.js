@@ -1,6 +1,6 @@
 
 import React from "react";
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, Text, View, Image } from "react-native";
 import { BookIcon } from "../../screens/Home/bookIcon";
 
 import { bookItemStyles } from "../../screens/universalStyles";
