@@ -123,16 +123,15 @@ const Register = ({navigation}) => {
                     }} value = {password}/>
                 </View>
                 
-                <Pressable style = {styles.RegisterButtonStyle} onPress = {onPressRegister}>
-                    <Text style={styles.ReText}> Register </Text>
-                
+                <Pressable style={({pressed}) => [{backgroundColor: pressed ? '#8185eb':'#6C70EB'}, styles.RegisterButtonStyle]} onPress = {onPressRegister}>
+                    <Text style={styles.ReText}>Register</Text>
                 </Pressable>
-                <Text style={{paddingBottom: 10}}> Already have an account ? </Text>
+                <Text style={styles.signinContainer}>Already have an account ? </Text>
                     <Pressable onPress={() => {
                             navigation.navigate('SignIn')
                         }}>
                         {({ pressed }) => (
-                            <Text style={[{color: pressed ? '#434594':'#6C70EB'}]}>
+                            <Text style={[{color: pressed ? '#434594':'#6C70EB'}, styles.signinText]}>
                                 Log In
                             </Text>
                         )}

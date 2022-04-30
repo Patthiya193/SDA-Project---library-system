@@ -64,17 +64,26 @@ export const styles = StyleSheet.create({
     RegisterButtonStyle: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 38,
+        width: Dimensions.get('window').width * 0.75,
+        height: Dimensions.get('window').width * 0.125,
         borderRadius: 16,
         elevation: 3,
-        backgroundColor: '#6C70EB',
-        marginTop: 30,
-        marginBottom: 20
+        marginTop: 15,
+        marginBottom: 10,
     },
     ReText: {
         color: '#FFFFFF',
         fontWeight: 'bold',
+    },
+
+    signinText: {
+        fontWeight: 'bold',
+    },
+
+    signinContainer: {
+        flexDirection: 'row',
+        marginTop: 5,
+        marginBottom: 5,
     },
 
 })
