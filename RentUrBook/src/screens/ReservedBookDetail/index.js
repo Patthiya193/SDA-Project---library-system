@@ -131,8 +131,8 @@ const ReservedBookDetail = ({navigation, route}) => {
                     
                     <View style={styles.topContainer}>
 
-                        <TouchableOpacity onPress={onPressHome}>
-                            <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  style={styles.iconStyle}/>
+                        <TouchableOpacity onPress={onPressHome} style={styles.iconContainerStyle}>
+                            <FontAwesomeIcon icon={ faHouse } color='#F9FAFB' size={30}  />
                         </TouchableOpacity>
 
                         <Text style={body.title}>Book Detail</Text>
@@ -168,7 +168,7 @@ const ReservedBookDetail = ({navigation, route}) => {
                             marginTop: 15,
                             marginBottom: 15,
                             marginRight: 30, }} onPress = {onPressBorrow}>
-                                <Text style={styles.borrowText}>Allow Borrowing</Text>
+                                <Text style={styles.borrowText}>Confirm</Text>
                         </Pressable>
     
                     </View>    
