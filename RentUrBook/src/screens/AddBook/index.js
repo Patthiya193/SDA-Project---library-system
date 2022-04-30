@@ -288,7 +288,7 @@ const AddBook = ({navigation, route}) => {
                                     alignItems:'center' ,
                                     width: Dimensions.get('window').width * 0.75,
                                     paddingVertical: 18,
-                                    paddingHorizontal: 80,
+                                    paddingHorizontal: 50,
                                     borderRadius: 16,
                                     backgroundColor: addImageColor,
                                     marginTop: 15,

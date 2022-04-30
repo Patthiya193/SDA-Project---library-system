@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
     },
     desContainer: {
         width: Dimensions.get('window').width * 0.75,
-        height: Dimensions.get('window').height * 0.225,
+        height: Dimensions.get('window').height * 0.2,
         marginTop: 10,
         marginBottom: 10,
         flexDirection: 'row',
