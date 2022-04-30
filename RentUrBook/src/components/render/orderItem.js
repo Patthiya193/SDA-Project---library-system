@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { TouchableOpacity, Text, View, Image } from "react-native";
 import { getBookById } from "../../network/bookService";
 import { BookIcon } from "../../screens/Home/bookIcon";
-import { getBookById } from "../../network/bookService";
 
 import { bookItemStyles } from "../../screens/universalStyles";
 
