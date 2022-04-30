@@ -30,9 +30,10 @@ const OrderDetail = ({navigation, route}) => {
         // navigation.dispatch( StackActions.popToTop())
         navigation.dispatch( StackActions.replace('MainLoggedIn', {"userData":userData}))
     }
-    useEffect(() => {
-        var book = await getBookById(order["bookId"])
-        setImage(book["coverImage"])
+    useFocusEffect(() => {
+        getBookById(order["bookId"])
+        .then(book => setImage(book["coverImage"]))
+        
     }, [])
 
     if ( order["curState"] == "borrowing") {
